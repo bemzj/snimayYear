@@ -1,0 +1,13 @@
+$(function(){
+	//您的选择
+	$(document).on('click','.selected',function(){
+		$('.open').text("您的选择："+$(this).text());
+		$(this).css('background-color','#00f1fa');
+		$(this).siblings('li').css('background-color','#066162');
+	});
+	//报名
+	$(document).on('click','#popWin3',function(){
+		$(this).hide();
+		$('#popWin4').show();
+	});
+});
