@@ -23,31 +23,6 @@
     text-align: center;
     margin-top: 5px; }
 
-.stepTitle {
-  position: relative;
-  margin-top: 15px;
-  margin-bottom: 9%; }
-  .stepTitle img {
-    width: 97%; }
-  .stepTitle p {
-    position: absolute;
-    width: 100%;
-    text-align: center; }
-  .stepTitle p:nth-child(1) {
-    color: #00f1fa;
-    font-size: 0.4rem;
-    font-weight: bold;
-    top: -15%; }
-  .stepTitle p:nth-child(2) {
-    color: white;
-    font-size: 0.28rem;
-    font-weight: bold;
-    top: 55%; }
-  .stepTitle p:nth-child(3) {
-    color: white;
-    font-size: 0.24rem;
-    top: 115%; }
-
 .next {
   margin-top: 6.8%;
   margin-bottom: 6.8%; }
