@@ -9,7 +9,7 @@
 		<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
 		<meta content="telephone=no" name="format-detection"/>
 		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/public.css?v=1" />
 		<link rel="stylesheet" href="css/apply.css?v=4" />
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
 		<link rel="stylesheet" href="../static/layui/css/layui.css">
@@ -35,7 +35,7 @@
 				<ul class="selectBox">
 					<li class="selected" value="1">创意设计师</li>
 					<li class="selected" value="2">全能店长</li>
-					<li class="selected" value="3">高级家居设计师</li>
+					<li class="selected" value="3">高级家居顾问</li>
 					<li class="selected" value="4">安装服务工程师</li>
 				</ul>
 				
@@ -251,7 +251,8 @@
 					<li>
 						<div class="imgup">
 							<img src="img/upImg01.jpg" id="upImg"/>
-							<div class="imgTips">
+							<div class="imgTips" id="upImg_txt">
+								<img src="img/addupload.png" style="width:20%;" />
 								<p>请点击并上传设计案例效果图</p>
 								<p>效果图实际安装图</p>
 							</div>
@@ -266,10 +267,11 @@
 						</div>
 					</li>
 					<li>
-						<div class="imgup imgupTwo">
+						<div class="imgup">
 							<img src="img/upImg02.jpg" id="spacepic"/>
-							<div class="imgTips">
-								<p>请点击并上传酷家乐全景图链接</p>
+							<div class="imgTips" id="spacepic_txt">
+								<img src="img/addupload.png" style="width:20%;" />
+								<p>请点击并上传酷家乐全景图</p>
 							</div>
 							<input type="file"  name="file" class="file_upload" id="file_upload_space"/>
 							<input type="hidden" id="space_pics" name="space_pics" value="">
@@ -293,11 +295,12 @@
 				<img src="img/stepTitle.png" />
 			</div>
 			<div class="upload">
-				<ul>
-					<li>
+				<ul class="addSell">
+					<li id="li_a" style="display: none;">
 						<div class="imgup">
 							<img src="img/upImg01.jpg" id="sell_c" />
-							<div class="imgTips">
+							<div class="imgTips" id="sell_c_txt">
+								<img src="img/addupload.png" style="width:20%;" />
 								<p>请点击并上传店面形象照3张</p>
 								<p>（包含但不限于：门头、前台、</p>
 								<p>样品展示区、洽谈区）</p>
@@ -307,10 +310,11 @@
 							<input type="hidden" id="sell_pic_c" name="sell_pic" value="">
 						</div>
 					</li>
-					<li>
+					<li id="li_b" style="display: none;">
 						<div class="imgup">
 							<img src="img/upImg01.jpg"  id="sell_d"/>
-							<div class="imgTips">
+							<div class="imgTips" id="sell_d_txt">
+								<img src="img/addupload.png" style="width:20%;" />
 								<p>请点击并上传店面形象照3张</p>
 								<p>（包含但不限于：门头、前台、</p>
 								<p>样品展示区、洽谈区）</p>
@@ -323,7 +327,8 @@
 					<li>
 						<div class="imgup">
 							<img src="img/upImg01.jpg" id="sell_e"/>
-							<div class="imgTips">
+							<div class="imgTips" id="sell_e_txt">
+								<img src="img/addupload.png" style="width:20%;" />
 								<p>请点击并上传店面形象照3张</p>
 								<p>（包含但不限于：门头、前台、</p>
 								<p>样品展示区、洽谈区）</p>
@@ -335,20 +340,20 @@
 					</li>
 					<li>
 						<div class="explain">
-							<textarea id="shop_desc" placeholder="介绍（140字以内）"></textarea>
+							<textarea id="shop_desc" placeholder="店面介绍（140字以内）"></textarea>
 						</div>
 					</li>
-					<li>
-						<div class="imgup imgupTwo">
-							<img src="img/upImg02.jpg" id="space_p"/>
-							<div class="imgTips">
-								<p>请点击并上传酷家乐全景图链接</p>
-							</div>
-							<input type="file" name="file" class="file_upload" id="file_upload_p"/>
-							<input type="hidden" id="space_pics_p" name="space_pics" value="">
-							<input type="hidden" id="space_pic_p" name="space_pic" value="">
-						</div>
-					</li>
+					<!--<li>-->
+						<!--<div class="imgup imgupTwo">-->
+							<!--<img src="img/upImg02.jpg" id="space_p"/>-->
+							<!--<div class="imgTips" id="space_p_txt">-->
+								<!--<p>请点击并上传酷家乐全景图链接</p>-->
+							<!--</div>-->
+							<!--<input type="file" name="file" class="file_upload" id="file_upload_p"/>-->
+							<!--<input type="hidden" id="space_pics_p" name="space_pics" value="">-->
+							<!--<input type="hidden" id="space_pic_p" name="space_pic" value="">-->
+						<!--</div>-->
+					<!--</li>-->
 				</ul>				
 			</div>
 			<div class="next">
@@ -374,6 +379,7 @@
                                 Your browser does not support the video tag.
                             </video>
 							<div class="imgTips" id="img_vido">
+								<img src="img/addupload.png" style="width:20%;" />
 								<p>请点击并上传一段1分钟左右小视频，</p>
 								<p>（视频内容包含但不限于：服务标准流程、</p>
 								<p>谈单过程、讲述与顾客之间的故事...）</p>
@@ -412,6 +418,7 @@
                                 Your browser does not support the video tag.
                             </video>
 							<div class="imgTips" id="v_txt">
+								<img src="img/addupload.png" style="width:20%;" />
 								<p>请点击并上传一段1分钟左右小视频</p>
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_engs"/>
@@ -422,6 +429,7 @@
 						<div class="imgup">
 							<img src="img/upImg01.jpg" id="ownerpic"/>
 							<div class="imgTips" id="owner_txt">
+								<img src="img/addupload.png" style="width:20%;"/>
 								<p>请点击并上传业主评价截图</p>
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_o"/>
@@ -482,11 +490,11 @@
 			</div>
 		</div>
 		<!--底部导航-->
-		<div style="height: 1.6rem;"></div>
+		<div style="height: 1.4rem;"></div>
 		<div id="bottomNav">
 			<ul>
 				<li class="navBox">
-					<a href="index.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/homeh.png" />
 						<p>首页</p>
 					</a>
@@ -498,7 +506,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="order.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/orderh.png" />
 						<p>排名</p>
 					</a>
@@ -510,7 +518,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="won.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/wonh.png" />
 						<p>获奖</p>
 					</a>
@@ -541,5 +549,9 @@
             win.addEventListener(resizeEvt, recalc, false);
             doc.addEventListener('DOMContentLoaded', recalc, false);
         })(document, window);
+
+		function lay(){
+			layer.msg('该功能暂未开放');
+		}
 	</script>
 </html>

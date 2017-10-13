@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+        <meta name="keywords" content="诗尼曼年度十优评选盛典">
+        <meta name="description" content="诗尼曼年度十优评选盛典">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 		<meta content="yes" name="apple-mobile-web-app-capable"/>
 		<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
@@ -9,7 +11,10 @@
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/public.css" />
 		<link rel="stylesheet" href="css/rule.css?v=1" />
-		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+        <link rel="stylesheet" href="../static/layui/css/layui.css">
+        <script type="text/javascript" src="../static/layui/layui.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 		<title>诗尼曼年度评选盛典活动规则</title>
 	</head>
 	<body>
@@ -20,11 +25,12 @@
 				<img src="img/stepTitle.png" />
 			</div>
 			<div class="classes">
-				<a href="###" class="aActive rSelect">设计师</a>
-				<a href="###" class="rSelect">店长</a>
-				<a href="###" class="rSelect">顾问</a>
-				<a href="###" class="rSelect">工程师</a>
-				<img src="img/class.png"/>		
+				<a href="###" class="aActive rSelect" onclick="design()">设计师</a>
+				<a href="###" class="rSelect" onclick="shopner()">店长</a>
+				<a href="###" class="rSelect" onclick="adv()">顾问</a>
+				<a href="###" class="rSelect" onclick="eng()">工程师</a>
+				<img src="img/class.png"/>
+				<img src="img/sjx.png" id="sjx" style="width: 11px;" class="design"/>
 			</div>
 			<div class="ruleAndAward">
 				<div class="awardPic">
@@ -116,11 +122,11 @@
 		</div>
 		
 		<!--底部导航-->
-		<div style="height: 1.6rem;"></div>
+		<div style="height: 1.4rem;"></div>
 		<div id="bottomNav">
 			<ul>
 				<li class="navBox">
-					<a href="index.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/homeh.png" />
 						<p>首页</p>
 					</a>
@@ -132,7 +138,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="order.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/orderh.png" />
 						<p>排名</p>
 					</a>
@@ -144,7 +150,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="won.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/wonh.png" />
 						<p>获奖</p>
 					</a>
@@ -154,6 +160,9 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="js/rule.js" ></script>
+    <script type="text/javascript" src="https://static.runoob.com/assets/vue/1.0.11/vue.min.js"></script>
+    <script type="text/javascript" src="js/public.js" ></script>
+    <script src="js/vue.js"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,
@@ -172,5 +181,9 @@
             win.addEventListener(resizeEvt, recalc, false);
             doc.addEventListener('DOMContentLoaded', recalc, false);
         })(document, window);
+
+		function lay(){
+			layer.msg('该功能暂未开放');
+		}
 	</script>
 </html>

@@ -1,6 +1,6 @@
 var data={
-    link:'http://3d.snimay.com/index.php/',
-    imgLink:'http://3d.snimay.com/public',
+    link:'http://toupiao.snimay.com/index.php/',
+    imgLink:'http://toupiao.snimay.com/public',
     //link:'http://127.0.0.1/snimay/',
     //imgLink:'http://127.0.0.1/snimay/public',
     token:'',
@@ -12,7 +12,8 @@ var data={
     orderDesc:'',
     hasClick:true,
     editUser:'',
-    editPic:[]
+    editPic:[],
+
 };
 
 var all = new Vue({
@@ -36,7 +37,7 @@ var all = new Vue({
 
         $('#file_upload').on('click',function(){
             $this.uploads('#file_upload',function(res){
-                $("#designPic").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#designPic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#user_pics").attr('value',res.thumb.pic_s);
                 $("#user_pic").attr('value',res.thumb.pic);
             });
@@ -45,7 +46,8 @@ var all = new Vue({
 
         $('#file_upload_des').on('click',function(){
             $this.uploads('#file_upload_des',function(res){
-                $("#upImg").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#upImg_txt").hide();
+                $("#upImg").attr('src',$this.imgLink+res.thumb.pic);
                 $("#real_pics").attr('value',res.thumb.pic_s);
                 $("#real_pic").attr('value',res.thumb.pic);
             });
@@ -54,7 +56,8 @@ var all = new Vue({
 
         $('#file_upload_space').on('click',function(){
             $this.uploads('#file_upload_space',function(res){
-                $("#spacepic").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#spacepic_txt").hide();
+                $("#spacepic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#space_pics").attr('value',res.thumb.pic_s);
                 $("#space_pic").attr('value',res.thumb.pic);
             });
@@ -63,7 +66,7 @@ var all = new Vue({
 
         $('#file_upload_a').on('click',function(){
             $this.uploads('#file_upload_a',function(res){
-                $("#adviserPic").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#adviserPic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#adv_pics").attr('value',res.thumb.pic_s);
                 $("#adv_pic").attr('value',res.thumb.pic);
             });
@@ -72,7 +75,7 @@ var all = new Vue({
 
         $('#file_upload_b').on('click',function(){
             $this.uploads('#file_upload_b',function(res){
-                $("#teamPic").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#teamPic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#team_pics").attr('value',res.thumb.pic_s);
                 $("#team_pic").attr('value',res.thumb.pic);
             });
@@ -81,7 +84,8 @@ var all = new Vue({
 
         $('#file_upload_c').on('click',function(){
             $this.uploads('#file_upload_c',function(res){
-                $("#sell_c").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#sell_c_txt").hide();
+                $("#sell_c").attr('src',$this.imgLink+res.thumb.pic);
                 $("#sell_pics_c").attr('value',res.thumb.pic_s);
                 $("#sell_pic_c").attr('value',res.thumb.pic);
             });
@@ -90,33 +94,38 @@ var all = new Vue({
 
         $('#file_upload_d').on('click',function(){
             $this.uploads('#file_upload_d',function(res){
-                $("#sell_d").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#sell_d_txt").hide();
+                $("#sell_d").attr('src',$this.imgLink+res.thumb.pic);
                 $("#sell_pics_d").attr('value',res.thumb.pic_s);
                 $("#sell_pic_d").attr('value',res.thumb.pic);
+                $("#li_a").show();
             });
         });
 
 
         $('#file_upload_e').on('click',function(){
             $this.uploads('#file_upload_e',function(res){
-                $("#sell_e").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#sell_e_txt").hide();
+                $("#sell_e").attr('src',$this.imgLink+res.thumb.pic);
                 $("#sell_pics_e").attr('value',res.thumb.pic_s);
                 $("#sell_pic_e").attr('value',res.thumb.pic);
+                $("#li_b").show();
             });
         });
 
 
-        $('#file_upload_p').on('click',function(){
-            $this.uploads('#file_upload_p',function(res){
-                $("#space_p").attr('src',$this.imgLink+res.thumb.pic_s);
-                $("#space_pics_p").attr('value',res.thumb.pic_s);
-                $("#space_pic_p").attr('value',res.thumb.pic);
-            });
-        });
+        //$('#file_upload_p').on('click',function(){
+        //    $this.uploads('#file_upload_p',function(res){
+        //        $("#space_p_txt").hide();
+        //        $("#space_p").attr('src',$this.imgLink+res.thumb.pic_s);
+        //        $("#space_pics_p").attr('value',res.thumb.pic_s);
+        //        $("#space_pic_p").attr('value',res.thumb.pic);
+        //    });
+        //});
 
         $('#file_upload_adv').on('click',function(){
             $this.uploads('#file_upload_adv',function(res){
-                $("#adPic").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#adPic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#advpics").attr('value',res.thumb.pic_s);
                 $("#advpic").attr('value',res.thumb.pic);
             });
@@ -134,7 +143,7 @@ var all = new Vue({
                 ,size:20480
                 ,url: $this.link+"uploads" //上传接口
                 ,before:function(){
-                    index=layer.load(1);
+                    index=layer.load();
                 }
                 ,done: function(res){
                     layer.closeAll();
@@ -161,7 +170,7 @@ var all = new Vue({
 
         $('#file_upload_eng').on('click',function(){
             $this.uploads('#file_upload_eng',function(res){
-                $("#enPic").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#enPic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#engpics").attr('value',res.thumb.pic_s);
                 $("#engpic").attr('value',res.thumb.pic);
             });
@@ -179,7 +188,7 @@ var all = new Vue({
                 ,size:20480
                 ,url: $this.link+"uploads" //上传接口
                 ,before:function(){
-                    index=layer.load(1);
+                    index=layer.load();
                 }
                 ,done: function(res){
                     layer.closeAll();
@@ -207,7 +216,7 @@ var all = new Vue({
         $('#file_upload_o').on('click',function(){
             $this.uploads('#file_upload_o',function(res){
                 $("#owner_txt").hide();
-                $("#ownerpic").attr('src',$this.imgLink+res.thumb.pic_s);
+                $("#ownerpic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#owner_pics").attr('value',res.thumb.pic_s);
                 $("#owner_pic").attr('value',res.thumb.pic);
             });
@@ -245,7 +254,7 @@ var all = new Vue({
                     ,size:3072
                     ,url: $this.link+"upload" //上传接口
                     ,before:function(){
-                        index=layer.load(1);
+                        index=layer.load();
                     }
                     ,done: function(res){
                         layer.closeAll();
@@ -323,8 +332,8 @@ var all = new Vue({
             var sell_pic_e = $("#sell_pic_e").val();
 
             var shop_desc = $("#shop_desc").val();
-            var space_pics = $("#space_pics_p").val();
-            var space_pic = $("#space_pic_p").val();
+            //var space_pics = $("#space_pics_p").val();
+            //var space_pic = $("#space_pic_p").val();
             var sell_pic = sell_pic_c+';'+sell_pic_d+';'+sell_pic_e+';';
             var sell_pics = sell_pics_c+';'+sell_pics_d+';'+sell_pics_e+';';
             var index=layer.load(2);
@@ -335,13 +344,11 @@ var all = new Vue({
                 "user_pic":user_pic,
                 "team_pic":team_pic,
                 "sell_pic":sell_pic,
-                "space_pic":space_pic,
                 "desc":desc,
                 "shop_desc":shop_desc,
                 "user_pics":user_pics,
                 "team_pics":team_pics,
                 "sell_pics":sell_pics,
-                "space_pics":space_pics,
                 "__token__":$this.token
             },function(res){
                 layer.close(index);

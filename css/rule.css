@@ -203,4 +203,22 @@
 .aActive {
   font-weight: bold !important; }
 
+.design{
+  margin-left: 16%;
+  margin-top: -3%;
+}
+.shopner{
+  margin-left: 38%;
+  margin-top: -3%;
+}
+.adv{
+  margin-left: 59%;
+  margin-top: -3%;
+}
+.eng{
+  margin-left: 81%;
+  margin-top: -3%;
+}
+
+
 /*# sourceMappingURL=rule.css.map */

@@ -18,7 +18,7 @@ a, img {
 
 #bottomNav {
   background-color: #000000;
-  padding: 18px 0 14px 0;
+  padding: 6px 0 5px 0;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -31,19 +31,24 @@ a, img {
     text-align: center; }
     #bottomNav .navBox a {
       color: white; }
+
+#bottomNav .navBox a p{
+  font-size: 10px;
+}
+
   #bottomNav .navBox img {
     margin: 0 auto;
     margin-bottom: 5px; }
   #bottomNav .navBox:nth-child(1) img {
-    width: 47.5%; }
+    width: 40.5%; }
   #bottomNav .navBox:nth-child(2) img {
-    width: 48.5%; }
+    width: 40.5%; }
   #bottomNav .navBox:nth-child(3) img {
-    width: 61.5%; }
+    width: 50.5%; }
   #bottomNav .navBox:nth-child(4) img {
-    width: 37.5%; }
+    width: 31.5%; }
   #bottomNav .navBox:nth-child(5) img {
-    width: 47.5%; }
+    width: 40.5%; }
 
 body {
   background: url(../img/homeBkg.jpg) repeat-y;

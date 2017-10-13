@@ -8,6 +8,10 @@
 		<meta content="telephone=no" name="format-detection"/>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/public.css" />
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+		<link rel="stylesheet" href="../static/layui/css/layui.css">
+		<script type="text/javascript" src="../static/layui/layui.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 		<title>首页</title>
 	</head>
 	<body>
@@ -17,11 +21,11 @@
 			<img src="img/logo.png" />
 		</div>
 		<!--底部导航-->
-		<div style="height: 1.6rem;"></div>
+		<div style="height: 1.4rem;"></div>
 		<div id="bottomNav">
 			<ul>
 				<li class="navBox">
-					<a href="index.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/homeh.png" />
 						<p>首页</p>
 					</a>
@@ -33,7 +37,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="###">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/orderv.png" />
 						<p>排名</p>
 					</a>
@@ -45,7 +49,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="won.html">
+					<a href="javascript:;" onclick="lay()">
 						<img src="img/wonh.png" />
 						<p>获奖</p>
 					</a>
@@ -54,6 +58,7 @@
 			<div class="clearl"></div>
 		</div>
 	</body>
+	<script type="text/javascript" src="js/public.js" ></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,
@@ -72,5 +77,9 @@
             win.addEventListener(resizeEvt, recalc, false);
             doc.addEventListener('DOMContentLoaded', recalc, false);
         })(document, window);
+
+		function lay(){
+			layer.msg('该功能暂未开放');
+		}
 	</script>
 </html>
