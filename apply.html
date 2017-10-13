@@ -2,24 +2,25 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="keywords" content="诗尼曼年度十优评选盛典">
+		<meta name="description" content="诗尼曼年度十优评选盛典">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 		<meta content="yes" name="apple-mobile-web-app-capable"/>
 		<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
 		<meta content="telephone=no" name="format-detection"/>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/public.css" />
-		<link rel="stylesheet" href="css/apply.css" />
+		<link rel="stylesheet" href="css/apply.css?v=4" />
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
-		<title>首页</title>
+		<link rel="stylesheet" href="../static/layui/css/layui.css">
+		<script type="text/javascript" src="../static/layui/layui.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<title>诗尼曼年度评选盛典</title>
 	</head>
-	<body>		
+	<body id="vueMain">
 		<!--第一步-->
-		<div id="firstStep" style="display: none;">
+		<div id="firstStep" >
 			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-				<img src="img/logo.png" />
-			</div>
 			<div class="banner">
 				<img src="img/bannerApply.jpg" />
 			</div>
@@ -32,24 +33,21 @@
 			<div class="select">
 				<button isOpen='false' class="open">您的选择</button>
 				<ul class="selectBox">
-					<li class="selected">创意设计师</li>
-					<li class="selected">全能店长</li>
-					<li class="selected">高级家居设计师</li>
-					<li class="selected">安装服务工程师</li>
+					<li class="selected" value="1">创意设计师</li>
+					<li class="selected" value="2">全能店长</li>
+					<li class="selected" value="3">高级家居设计师</li>
+					<li class="selected" value="4">安装服务工程师</li>
 				</ul>
 				
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button onclick="selected()">下一步</button>
 			</div>
 		</div>
 		<!--第二步-->
 			<!--设计师-->
 		<div id="secondStepOne" class="secondStep" style="display: none;">
 			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第二步</p>
@@ -58,8 +56,11 @@
 			</div>
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
-				<div class="head">
-					<img src="img/head.jpg" />
+				<div class="head" style="position: relative">
+					<img src="img/head.jpg" id="designPic"/>
+					<input type="file" name="file" class="file_upload" id="file_upload" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
+					<input type="hidden" id="user_pics" name="user_pics" value="">
+					<input type="hidden" id="user_pic" name="user_pic" value="">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
@@ -69,29 +70,30 @@
 			<div class="message">
 				<ul>
 					<li>
-						<input type="text" placeholder="姓名："/>
+						<input type="text" id="des_name" placeholder="姓名："/>
 					</li>
 					<li>
-						<input type="text" placeholder="店名："/>
+						<input type="text" id="des_sell" placeholder="店名："/>
 					</li>
 					<li>
-						<input type="text" maxlength="11" placeholder="手机："/>
+						<input type="text" id="des_phone" maxlength="11" placeholder="手机："/>
 					</li>
 					<li>
-						<textarea maxlength="14" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
+						<textarea maxlength="14" id="des_content" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
 					</li>
 				</ul>
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="designTwo_prev()">上一步</button>
+				<button class="nextStep" onclick="designTwo()">下一步</button>
 			</div>
 		</div>
+
+
 			<!--店长-->
 		<div id="secondStepTwo" class="secondStep" style="display: none;">
 			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
+
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第二步</p>
@@ -100,15 +102,24 @@
 			</div>
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
-				<div class="head">
-					<img src="img/head.jpg" />
+				<div class="head" style="position: relative">
+					<img src="img/head.jpg" id="adviserPic"/>
+					<input type="file" name="file" class="file_upload" id="file_upload_a" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
+					<input type="hidden" id="adv_pics" name="user_pics" value="">
+					<input type="hidden" id="adv_pic" name="user_pic" value="">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
 					<p>照片尺寸：600x500dpi,（1兆以内）</p>
 				</div>
-				<div class="headTwo">
+				<!-- <div class="headTwo">
 					<img src="img/headTwo.jpg" />
+				</div> -->
+				<div class="headTwo" style="position: relative">
+					<img src="img/headTwo.jpg" id="teamPic"/>
+					<input type="file" name="file" class="file_upload" id="file_upload_b" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
+					<input type="hidden" id="team_pics" name="team_pics" value="">
+					<input type="hidden" id="team_pic" name="team_pic" value="">
 				</div>
 				<div class="ptips">
 					<p>请上传团队合照一张</p>
@@ -118,39 +129,41 @@
 			<div class="message">
 				<ul>
 					<li>
-						<input type="text" placeholder="姓名："/>
+						<input type="text" id="shop_name" placeholder="姓名："/>
 					</li>
 					<li>
-						<input type="text" placeholder="店名："/>
+						<input type="text" id="shop_sell" placeholder="店名："/>
 					</li>
 					<li>
-						<input type="text" maxlength="11" placeholder="手机："/>
+						<input type="text" id="shop_phone" maxlength="11" placeholder="手机："/>
 					</li>
 					<li>
-						<textarea maxlength="14" placeholder="个人介绍（140字以内，包含但不限于：管理理念、门店主要事迹、成就）"></textarea>
+						<textarea maxlength="14" id="shop_des" placeholder="个人介绍（140字以内，包含但不限于：管理理念、门店主要事迹、成就）"></textarea>
 					</li>
 				</ul>
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="adviserTwo_prev()">上一步</button>
+				<button class="nextStep" onclick="adviserTwo()">下一步</button>
 			</div>
 		</div>
 			<!--家具顾问组-->
 		<div id="secondStepThree" class="secondStep" style="display: none;">
 			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
+
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第二步</p>
-				<p>家具顾问组个人参赛信息</p>
+				<p>家居顾问组个人参赛信息</p>
 				<img src="img/stepTitle.png" />
 			</div>
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
-				<div class="head">
-					<img src="img/head.jpg" />
+				<div class="head" style="position: relative">
+					<img src="img/head.jpg" id="adPic"/>
+					<input type="file" name="file" class="file_upload" id="file_upload_adv" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
+					<input type="hidden" id="advpics" name="user_pics" value="">
+					<input type="hidden" id="advpic" name="user_pic" value="">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
@@ -160,29 +173,28 @@
 			<div class="message">
 				<ul>
 					<li>
-						<input type="text" placeholder="姓名："/>
+						<input type="text" id="adv_name" placeholder="姓名："/>
 					</li>
 					<li>
-						<input type="text" placeholder="店名："/>
+						<input type="text" id="adv_sell" placeholder="店名："/>
 					</li>
 					<li>
-						<input type="text" maxlength="11" placeholder="手机："/>
+						<input type="text" id="adv_phone" maxlength="11" placeholder="手机："/>
 					</li>
 					<li>
-						<textarea maxlength="14" placeholder="个人介绍（140字以内）"></textarea>
+						<textarea maxlength="14" id="adv_desc" placeholder="个人介绍（140字以内）"></textarea>
 					</li>
 				</ul>
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="advTwo_prev()">上一步</button>
+				<button class="nextStep" onclick="advTwo()">下一步</button>
 			</div>
 		</div>
 			<!--服务工程师组-->
-		<div id="secondStepThree" class="secondStep" style="display: none;">
+		<div id="secondStepFour" class="secondStep" style="display: none;">
 			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
+
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第二步</p>
@@ -191,8 +203,11 @@
 			</div>
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
-				<div class="head">
-					<img src="img/head.jpg" />
+				<div class="head" style="position: relative">
+					<img src="img/head.jpg" id="enPic"/>
+					<input type="file" name="file" class="file_upload" id="file_upload_eng" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
+					<input type="hidden" id="engpics" name="user_pics" value="">
+					<input type="hidden" id="engpic" name="user_pic" value="">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
@@ -202,30 +217,29 @@
 			<div class="message">
 				<ul>
 					<li>
-						<input type="text" placeholder="姓名："/>
+						<input type="text" id="eng_name" placeholder="姓名："/>
 					</li>
 					<li>
-						<input type="text" placeholder="店名："/>
+						<input type="text" id="eng_sell" placeholder="店名："/>
 					</li>
 					<li>
-						<input type="text" maxlength="11" placeholder="手机："/>
+						<input type="text" id="eng_phone" maxlength="11" placeholder="手机："/>
 					</li>
 					<li>
-						<textarea maxlength="14" placeholder="个人介绍（140字以内，包含但不限于：提供过安装服务的家庭数量、安装过程中遇到什么难题又是如何解决的等等...）"></textarea>
+						<textarea maxlength="14" id="eng_desc" placeholder="个人介绍（140字以内，包含但不限于：提供过安装服务的家庭数量、安装过程中遇到什么难题又是如何解决的等等...）"></textarea>
 					</li>
 				</ul>
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="engTwo_prev()">上一步</button>
+				<button class="nextStep" onclick="engTwo()">下一步</button>
 			</div>
 		</div>
 		<!--第三步-->
 			<!--设计师-->
 		<div id="thridStepOne" class="thridStep" style="display: none;">
 			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
+
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第三步</p>
@@ -236,40 +250,42 @@
 				<ul>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" />
+							<img src="img/upImg01.jpg" id="upImg"/>
 							<div class="imgTips">
 								<p>请点击并上传设计案例效果图</p>
 								<p>效果图实际安装图</p>
 							</div>
-							<input type="file"/>
+							<input type="file"  name="file" class="file_upload" id="file_upload_des"/>
+							<input type="hidden" id="real_pics" name="real_pics" value="">
+							<input type="hidden" id="real_pic" name="real_pic" value="">
 						</div>
 					</li>
 					<li>
 						<div class="explain">
-							<textarea placeholder="案例介绍（140字以内）"></textarea>
+							<textarea id="design_desc" placeholder="案例介绍（140字以内）"></textarea>
 						</div>
 					</li>
 					<li>
 						<div class="imgup imgupTwo">
-							<img src="img/upImg02.jpg" />
+							<img src="img/upImg02.jpg" id="spacepic"/>
 							<div class="imgTips">
 								<p>请点击并上传酷家乐全景图链接</p>
 							</div>
-							<input type="file"/>
+							<input type="file"  name="file" class="file_upload" id="file_upload_space"/>
+							<input type="hidden" id="space_pics" name="space_pics" value="">
+							<input type="hidden" id="space_pic" name="space_pic" value="">
 						</div>
 					</li>
 				</ul>				
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="designThree_prev()">上一步</button>
+				<button class="nextStep" v-on:click="add_design()">提交</button>
 			</div>
 		</div>
 			<!--店长-->
 		<div id="thridStepTwo" class="thridStep" style="display: none;">
-			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
+			
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第三步</p>
@@ -280,99 +296,107 @@
 				<ul>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" />
+							<img src="img/upImg01.jpg" id="sell_c" />
 							<div class="imgTips">
 								<p>请点击并上传店面形象照3张</p>
 								<p>（包含但不限于：门头、前台、</p>
 								<p>样品展示区、洽谈区）</p>
 							</div>
-							<input type="file"/>
+							<input type="file" name="file" class="file_upload" id="file_upload_c"/>
+							<input type="hidden" id="sell_pics_c" name="sell_pics" value="">
+							<input type="hidden" id="sell_pic_c" name="sell_pic" value="">
 						</div>
 					</li>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" />
+							<img src="img/upImg01.jpg"  id="sell_d"/>
 							<div class="imgTips">
 								<p>请点击并上传店面形象照3张</p>
 								<p>（包含但不限于：门头、前台、</p>
 								<p>样品展示区、洽谈区）</p>
 							</div>
-							<input type="file"/>
+							<input type="file" name="file" class="file_upload" id="file_upload_d"/>
+							<input type="hidden" id="sell_pics_d" name="sell_pics" value="">
+							<input type="hidden" id="sell_pic_d" name="sell_pic" value="">
 						</div>
 					</li>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" />
+							<img src="img/upImg01.jpg" id="sell_e"/>
 							<div class="imgTips">
 								<p>请点击并上传店面形象照3张</p>
 								<p>（包含但不限于：门头、前台、</p>
 								<p>样品展示区、洽谈区）</p>
 							</div>
-							<input type="file"/>
+							<input type="file" name="file" class="file_upload" id="file_upload_e"/>
+							<input type="hidden" id="sell_pics_e" name="sell_pics" value="">
+							<input type="hidden" id="sell_pic_e" name="sell_pic" value="">
 						</div>
 					</li>
 					<li>
 						<div class="explain">
-							<textarea placeholder="介绍（140字以内）"></textarea>
+							<textarea id="shop_desc" placeholder="介绍（140字以内）"></textarea>
 						</div>
 					</li>
 					<li>
 						<div class="imgup imgupTwo">
-							<img src="img/upImg02.jpg" />
+							<img src="img/upImg02.jpg" id="space_p"/>
 							<div class="imgTips">
 								<p>请点击并上传酷家乐全景图链接</p>
 							</div>
-							<input type="file"/>
+							<input type="file" name="file" class="file_upload" id="file_upload_p"/>
+							<input type="hidden" id="space_pics_p" name="space_pics" value="">
+							<input type="hidden" id="space_pic_p" name="space_pic" value="">
 						</div>
 					</li>
 				</ul>				
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="adviserThree_prev()">上一步</button>
+				<button class="nextStep" v-on:click="add_shop()">提交</button>
 			</div>
 		</div>
 			<!--家具顾问组-->
 		<div id="thridStepThree" class="thridStep" style="display: none;">
-			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
+			
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第三步</p>
-				<p>店长组上传店面形象图</p>
+				<p>家居顾问组个人参赛信息</p>
 				<img src="img/stepTitle.png" />
 			</div>
 			<div class="upload">
 				<ul>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" />
-							<div class="imgTips">
+							<img src="img/upImg01.jpg" id="vido_pic"/>
+							<video src="" width="100%" height="100%" controls="controls" class="layui-upload-img pic2" style="display: none;">
+                                Your browser does not support the video tag.
+                            </video>
+							<div class="imgTips" id="img_vido">
 								<p>请点击并上传一段1分钟左右小视频，</p>
 								<p>（视频内容包含但不限于：服务标准流程、</p>
 								<p>谈单过程、讲述与顾客之间的故事...）</p>
 							</div>
-							<input type="file"/>
+							<input type="file" name="file" class="file_upload" id="file_upload_v"/>
+							<input type="hidden" id="vido" name="vido" value="">
 						</div>
 					</li>
 					<li>
 						<div class="explain">
-							<textarea placeholder="视频介绍（140字以内）"></textarea>
+							<textarea id="adv_vdes" placeholder="视频介绍（140字以内）"></textarea>
 						</div>
 					</li>
 				</ul>				
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="advTThree_prev()">上一步</button>
+				<button class="nextStep" v-on:click="add_adv()">提交</button>
 			</div>
 		</div>
 			<!--服务工程师组-->
 		<div id="thridStepFour" class="thridStep" style="display: none;">
-			<!--logo-->
-			<div id="logo">
-				<img src="img/logo.png" />
-			</div>
+			
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第三步</p>
@@ -383,26 +407,33 @@
 				<ul>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" />
-							<div class="imgTips">
+							<img src="img/upImg01.jpg" id="eng_pic_v"/>
+							<video src="" width="100%" height="100%" controls="controls" class="layui-upload-img pic3" style="display: none;">
+                                Your browser does not support the video tag.
+                            </video>
+							<div class="imgTips" id="v_txt">
 								<p>请点击并上传一段1分钟左右小视频</p>
 							</div>
-							<input type="file"/>
+							<input type="file" name="file" class="file_upload" id="file_upload_engs"/>
+							<input type="hidden" id="vido_eng" name="vido" value="">
 						</div>
 					</li>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" />
-							<div class="imgTips">
+							<img src="img/upImg01.jpg" id="ownerpic"/>
+							<div class="imgTips" id="owner_txt">
 								<p>请点击并上传业主评价截图</p>
 							</div>
-							<input type="file"/>
+							<input type="file" name="file" class="file_upload" id="file_upload_o"/>
+							<input type="hidden" id="owner_pics" name="owner_pics" value="">
+							<input type="hidden" id="owner_pic" name="owner_pic" value="">
 						</div>
 					</li>
 				</ul>				
 			</div>
 			<div class="next">
-				<button>下一步</button>
+				<button class="prev" onclick="engThree_prev()">上一步</button>
+				<button class="nextStep" v-on:click="add_eng()">提交</button>
 			</div>
 		</div>
 		<!--弹窗1-->
@@ -434,7 +465,7 @@
 			</div>
 		</div>
 		<!--弹窗3-->
-		<div id="popWin3">
+		<div id="popWin3" style="display: none;">
 			<img src="img/suceess.png" />
 		</div>
 		<!--弹窗4-->
@@ -488,7 +519,10 @@
 			<div class="clearl"></div>
 		</div>
 	</body>
-	<script type="text/javascript" src="js/apply.js" ></script>
+	<script type="text/javascript" src="js/apply.js?v=3" ></script>
+	<script type="text/javascript" src="https://static.runoob.com/assets/vue/1.0.11/vue.min.js"></script>
+	<script type="text/javascript" src="js/public.js" ></script>
+	<script src="js/vue.js"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,

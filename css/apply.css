@@ -51,6 +51,7 @@
 .next {
   margin-top: 6.8%;
   margin-bottom: 6.8%; }
+
   .next button {
     width: 24%;
     display: block;
@@ -62,6 +63,15 @@
     border: 0;
     background: url(../img/next.png) no-repeat;
     background-size: 100% 100%; }
+
+.next .prev {
+  float: left;
+  margin-left: 1.1rem;
+}
+.next .nextStep {
+  margin-right: 1.1rem;
+}
+
 
 .upPhoto > p {
   font-size: 0.24rem;
