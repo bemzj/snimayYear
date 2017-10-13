@@ -67,3 +67,33 @@ body{
         visibility: hidden;
     }
 }
+.stepTitle {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 9%;
+    img {
+        width: 97%;
+    }
+    p {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+    }
+    p:nth-child(1) {
+        color: #00f1fa;
+        font-size: 0.4rem;
+        font-weight: bold;
+        top: -15%;
+    }
+    p:nth-child(2) {
+        color: white;
+        font-size: 0.28rem;
+        font-weight: bold;
+        top: 55%;
+    }
+    p:nth-child(3) {
+        color: white;
+        font-size: 0.24rem;
+        top: 115%;
+    }
+}
