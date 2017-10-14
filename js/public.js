@@ -51,5 +51,11 @@ $.ajax({
         })
     }
 });
-
-
+//公共弹窗
+function popWindow(error){
+	$('#popW').show();
+	$('#popW').html('<div class="allWindow" ><div class="popBox"><img src="img/winBox.png" /><img src="img/cry.png" /><img src="img/close.png" class="closed" /><div class="popBoxin"><p>'+error+'</p></div></div></div>')
+	$(document).on('click','.closed',function(){
+		$('#popW').hide();
+	});
+}

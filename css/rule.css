@@ -20,10 +20,10 @@
   margin-top: 10px;
   position: absolute;
   width: 100%;
-  height: 65%;
+  height: 70%;
   overflow-y: scroll; }
   #rule .ruleAndAward ul li {
-    padding-bottom: 15px; }
+    margin-bottom: 15px; }
   #rule .ruleAndAward .ruleBox .leftRule {
     position: relative;
     width: 28%;
@@ -202,23 +202,5 @@
 
 .aActive {
   font-weight: bold !important; }
-
-.design{
-  margin-left: 16%;
-  margin-top: -3%;
-}
-.shopner{
-  margin-left: 38%;
-  margin-top: -3%;
-}
-.adv{
-  margin-left: 59%;
-  margin-top: -3%;
-}
-.eng{
-  margin-left: 81%;
-  margin-top: -3%;
-}
-
 
 /*# sourceMappingURL=rule.css.map */
