@@ -1,8 +1,8 @@
 var data={
-    link:'http://toupiao.snimay.com/index.php/',
-    imgLink:'http://toupiao.snimay.com/public',
-    //link:'http://127.0.0.1/snimay/',
-    //imgLink:'http://127.0.0.1/snimay/public',
+    //link:'http://toupiao.snimay.com/index.php/',
+    //imgLink:'http://toupiao.snimay.com/public',
+    link:'http://127.0.0.1/snimay/',
+    imgLink:'http://127.0.0.1/snimay/public',
     token:'',
     rankList:[],
     getUser:'',
@@ -13,6 +13,7 @@ var data={
     hasClick:true,
     editUser:'',
     editPic:[],
+
 
 };
 
@@ -48,8 +49,69 @@ var all = new Vue({
             $this.uploads('#file_upload_des',function(res){
                 $("#upImg_txt").hide();
                 $("#upImg").attr('src',$this.imgLink+res.thumb.pic);
+                $("#effect_pics").attr('value',res.thumb.pic_s);
+                $("#effect_pic").attr('value',res.thumb.pic);
+                var real_pic = $("#real_pic").val();
+                if(real_pic != ''){
+                    $("#d_pic").show();
+                }
+            });
+        });
+
+        $('#file_upload_des0').on('click',function(){
+            $this.uploads('#file_upload_des0',function(res){
+                $("#upImg_txt_0").hide();
+                $("#upImg0").attr('src',$this.imgLink+res.thumb.pic);
                 $("#real_pics").attr('value',res.thumb.pic_s);
                 $("#real_pic").attr('value',res.thumb.pic);
+                var effect_pic = $("#effect_pic").val();
+                if(effect_pic != ''){
+                    $("#d_pic").show();
+                }
+            });
+        });
+
+        $('#file_upload_des1').on('click',function(){
+            $this.uploads('#file_upload_des1',function(res){
+                $("#upImg_txt_1").hide();
+                $("#upImg1").attr('src',$this.imgLink+res.thumb.pic);
+                $("#effect_pics1").attr('value',res.thumb.pic_s);
+                $("#effect_pic1").attr('value',res.thumb.pic);
+                var real_pic2 = $("#real_pic2").val();
+                if(real_pic2 != ''){
+                    $("#d_pic_a").show();
+                }
+            });
+        });
+
+        $('#file_upload_des2').on('click',function(){
+            $this.uploads('#file_upload_des2',function(res){
+                $("#upImg_txt_2").hide();
+                $("#upImg2").attr('src',$this.imgLink+res.thumb.pic);
+                $("#real_pics2").attr('value',res.thumb.pic_s);
+                $("#real_pic2").attr('value',res.thumb.pic);
+                var effect_pic1 = $("#effect_pic1").val();
+                if(effect_pic1 != ''){
+                    $("#d_pic_a").show();
+                }
+            });
+        });
+
+        $('#file_upload_des3').on('click',function(){
+            $this.uploads('#file_upload_des3',function(res){
+                $("#upImg_txt_3").hide();
+                $("#upImg3").attr('src',$this.imgLink+res.thumb.pic);
+                $("#effect_pics3").attr('value',res.thumb.pic_s);
+                $("#effect_pic3").attr('value',res.thumb.pic);
+            });
+        });
+
+        $('#file_upload_des4').on('click',function(){
+            $this.uploads('#file_upload_des4',function(res){
+                $("#upImg_txt_4").hide();
+                $("#upImg4").attr('src',$this.imgLink+res.thumb.pic);
+                $("#real_pics4").attr('value',res.thumb.pic_s);
+                $("#real_pic4").attr('value',res.thumb.pic);
             });
         });
 
@@ -151,7 +213,7 @@ var all = new Vue({
                     if(res.code == 1){
                         $("#vido_pic").hide();
                         $("#img_vido").hide();
-                        $(".pic2").show();
+                        $(".pics2").show();
                         $(".pic2").attr('src',$this.imgLink+res.thumb.pic);
                         $("#vido").attr('value',res.thumb.pic);
                         //$this.adding.push(res.thumb);
@@ -176,39 +238,12 @@ var all = new Vue({
             });
         });
 
-        //执行实例
-        var token=$this.token;
-        layui.use('upload', function(){
-            var upload = layui.upload;
-            //var index;
-            var uploadInst = upload.render({
-                elem: '#file_upload_engs' //绑定元素
-                ,data:{"__token__":token}
-                ,accept:'video'
-                ,size:20480
-                ,url: $this.link+"uploads" //上传接口
-                ,before:function(){
-                    index=layer.load();
-                }
-                ,done: function(res){
-                    layer.closeAll();
-                    $this.token=res.token;
-                    if(res.code == 1){
-                        $("#eng_pic_v").hide();
-                        $("#v_txt").hide();
-                        $(".pic3").show();
-                        $(".pic3").attr('src',$this.imgLink+res.thumb.pic);
-                        $("#vido_eng").attr('value',res.thumb.pic);
-                        //$this.adding.push(res.thumb);
-                    }else{
-                        layer.msg(res.msg);
-                    }
-                }
-                ,error: function(){
-                    layer.closeAll();
-                    //请求异常回调
-                    //layer.close(index);
-                }
+        $('#file_upload_engs').on('click',function(){
+            $this.uploads('#file_upload_engs',function(res){
+                $("#v_txt").hide();
+                $("#eng_pic_v").attr('src',$this.imgLink+res.thumb.pic);
+                $("#tool_pics").attr('value',res.thumb.pic_s);
+                $("#tool_pic").attr('value',res.thumb.pic);
             });
         });
 
@@ -282,11 +317,49 @@ var all = new Vue({
             var user_pic = $("#user_pic").val();
             var user_pics = $("#user_pics").val();
             var desc = $("#des_content").val();
-            var real_pics = $("#real_pics").val();
-            var real_pic = $("#real_pic").val();
-            var design_desc = $("#design_desc").val();
+            //var design_desc = $("#design_desc").val();
             var space_pics = $("#space_pics").val();
             var space_pic = $("#space_pic").val();
+
+            var real_pics = $("#real_pics").val();
+            var real_pic = $("#real_pic").val();
+            var effect_pic = $("#effect_pic").val();
+            var effect_pics = $("#effect_pics").val();
+
+            var real_pics2 = $("#real_pics2").val();
+            var real_pic2 = $("#real_pic2").val();
+            var effect_pic1 = $("#effect_pic1").val();
+            var effect_pics1 = $("#effect_pics1").val();
+
+            var real_pics4 = $("#real_pics4").val();
+            var real_pic4 = $("#real_pic4").val();
+            var effect_pic3 = $("#effect_pic3").val();
+            var effect_pics3 = $("#effect_pics3").val();
+            if(real_pic != ''){
+                real_pic = real_pic+';';
+                real_pics = real_pics+';';
+            }
+            if(effect_pic != ''){
+                effect_pic = effect_pic+';';
+                effect_pics = effect_pics+';';
+            }
+            if(real_pic2 != ''){
+                real_pic += real_pic2+';';
+                real_pics += real_pics2+';';
+            }
+            if(effect_pic1 != ''){
+                effect_pic += effect_pic1+';';
+                effect_pics += effect_pics1+';';
+            }
+            if(real_pic4 != ''){
+                real_pic += real_pic4+';';
+                real_pics += real_pics4+';';
+            }
+            if(effect_pic3 != ''){
+                effect_pic += effect_pic3+';';
+                effect_pics += effect_pics3+';';
+            }
+
             var index=layer.load(2);
             $this.AjaxL($this.link+'addDesign','POST',{
                 "sell_name":sell_name,
@@ -295,9 +368,10 @@ var all = new Vue({
                 "user_pic":user_pic,
                 "user_pics":user_pics,
                 "desc":desc,
+                "effect_pics":effect_pics,
+                "effect_pic":effect_pic,
                 "real_pics":real_pics,
                 "real_pic":real_pic,
-                "design_desc":design_desc,
                 "space_pics":space_pics,
                 "space_pic":space_pic,
                 "__token__":$this.token
@@ -309,6 +383,24 @@ var all = new Vue({
                     $this.setTimeouts();
                 }else{
                     layer.msg(res.msg);
+                }
+            });
+        },
+        design_check:function(){
+            var $this=this;
+            var phone = $("#des_phone").val();
+            var index=layer.load(2);
+            $this.AjaxL($this.link+'checkDesign','POST',{
+                "phone":phone,
+            },function(res){
+                layer.close(index);
+                if(res.code == 1){
+                    layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
+                        //location.href=;
+                    });
+                }else{
+                    layer.closeAll();
+                    //layer.msg(res.msg);
                 }
             });
         },
@@ -361,6 +453,24 @@ var all = new Vue({
                 }
             });
         },
+        shop_check:function(){
+            var $this=this;
+            var phone = $("#shop_phone").val();
+            var index=layer.load(2);
+            $this.AjaxL($this.link+'checkShop','POST',{
+                "phone":phone,
+            },function(res){
+                layer.close(index);
+                if(res.code == 1){
+                    layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
+                        //location.href=;
+                    });
+                }else{
+                    layer.closeAll();
+                    //layer.msg(res.msg);
+                }
+            });
+        },
 
 
         add_adv:function(){
@@ -396,6 +506,24 @@ var all = new Vue({
                 }
             });
         },
+        adv_check:function(){
+            var $this=this;
+            var phone = $("#adv_phone").val();
+            var index=layer.load(2);
+            $this.AjaxL($this.link+'checkAdv','POST',{
+                "phone":phone,
+            },function(res){
+                layer.close(index);
+                if(res.code == 1){
+                    layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
+                        //location.href=;
+                    });
+                }else{
+                    layer.closeAll();
+                    //layer.msg(res.msg);
+                }
+            });
+        },
 
         add_eng:function(){
             var $this=this;
@@ -405,9 +533,10 @@ var all = new Vue({
             var desc = $("#eng_desc").val();
             var user_pic = $("#engpic").val();
             var user_pics = $("#engpics").val();
-            var video = $("#vido_eng").val();
             var owner_pic = $("#owner_pic").val();
             var owner_pics = $("#owner_pics").val();
+            var tool_pic = $("#tool_pic").val();
+            var tool_pics = $("#tool_pics").val();
         
             var index=layer.load(2);
             $this.AjaxL($this.link+'addEng','POST',{
@@ -417,9 +546,10 @@ var all = new Vue({
                 "user_pic":user_pic,
                 "desc":desc,
                 "user_pics":user_pics,
-                "video":video,
                 "owner_pic":owner_pic,
                 "owner_pics":owner_pics,
+                "tool_pic":tool_pic,
+                "tool_pics":tool_pics,
                 "__token__":$this.token
             },function(res){
                 layer.close(index);
@@ -429,6 +559,24 @@ var all = new Vue({
                     $this.setTimeouts();
                 }else{
                     layer.msg(res.msg);
+                }
+            });
+        },
+        eng_check:function(){
+            var $this=this;
+            var phone = $("#eng_phone").val();
+            var index=layer.load(2);
+            $this.AjaxL($this.link+'checkEng','POST',{
+                "phone":phone,
+            },function(res){
+                layer.close(index);
+                if(res.code == 1){
+                    layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
+                        //location.href=;
+                    });
+                }else{
+                    layer.closeAll();
+                    //layer.msg(res.msg);
                 }
             });
         },
