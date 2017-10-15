@@ -1085,16 +1085,42 @@
     .banner{
         width: 90%;
         margin: 0 auto;
+        position: relative;
+        margin-bottom: 10px;
         img{
             width: 100%;
         }
         .swiper-button-next{
             background-image: url(../img/right.png);
-            right: 0%;
+            right: -19px;
+            position: absolute;
+            top: 50%;
+            width: 14px;
+            height: 24px;
+            margin-top: -12px;
+            z-index: 10;
+            cursor: pointer;
+            -moz-background-size: 27px 44px;
+            -webkit-background-size: 27px 44px;
+            background-size: 14px 24px;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .swiper-button-prev{
             background-image: url(../img/left.png);
-            left: 0%;
+            left: -19px;
+            position: absolute;
+            top: 50%;
+            width: 14px;
+            height: 24px;
+            margin-top: -12px;
+            z-index: 10;
+            cursor: pointer;
+            -moz-background-size: 27px 44px;
+            -webkit-background-size: 27px 44px;
+            background-size: 14px 24px;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     }
 }
