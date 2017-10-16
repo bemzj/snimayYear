@@ -181,29 +181,36 @@
     }
 }
 .line{     
+    width: 100%;
     position: relative; 
     p{
         font-size: 0.28rem;
         color: #00f1fa;
     }
     p:nth-child(1){
-        padding: 0.08rem 0;
-        border-bottom: 1px solid #00f1fa;
+        width: 100%;
+        text-align: center;
+        background-color: #000000;
     }
     p:nth-child(2){
         position: absolute;
-        top: 0%;
-        left: 39.5%;
-        text-align: center;
-        background-color: #000000;
-        padding: 0 0.1rem;
+        width: 32%;
+        top: 50%;
+        left: 0%;
+        border-bottom: 1px solid #00f1fa;
     }
+    p:nth-child(3){
+        position: absolute;
+        width: 32%;
+        top: 50%;
+        right: 0%;
+        border-bottom: 1px solid #00f1fa;
+    }
+    
 }
 .line1{
     margin-top: 10px;
-}
-.line1 p:nth-child(2){
-    left: 33.5%;
+    margin-bottom: 10px;
 }
 .voteBtn {
     position: absolute;

@@ -12,6 +12,18 @@ $(function(){
 		$(this).hide();
 		$('#popWin4').show();
 	});
+	//跑马灯
+	var run = $(window).width();
+	$('.run').css('margin-left',run+'px');
+	var getText = $('.run').width();
+	setInterval(function(){
+		run--;
+		if(2*getText-$(window).width()>(-run));
+		{
+			$('.run').css('margin-left',$(window).width()+'px');
+		}
+		$('.run').css('margin-left',run+'px');
+	},20);
 });
 
 
