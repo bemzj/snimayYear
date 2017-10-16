@@ -45,7 +45,8 @@
 				<div class="clearl"></div>
 			</div>
 			<div id="searchResult">
-                <template v-for="item in searchResult">
+
+                <template v-for="(key,item) in searchResult">
 				<div class="message">
 					<div class="ml floatl">
 						<div class="headImg">
@@ -58,31 +59,34 @@
 								<p>NO：{{item.id}}</p>
 								<p>姓名：{{item.username}}</p>
 								<p>店名：{{item.sell_name}}</p>
-								<p>票数：{{item.clicknum}}</p>
+                                <p class="clicknum_{{item.id}}">票数：{{item.clicknum}}</p>
 								<p>排名：{{item.rank}}</p>
 							</li>
+							<li>
+								<div class="voteBtn">
+									<div class="votel floatr" v-on:click="setNum(item.id,item.group_id)">
+										<a href="javascript:;" class="yourVote">
+											<p>投TA</p>
+											<p>一票</p>
+										</a>
+									</div>
+									<div class="clearl"></div>
+								</div>
+							</li>
 						</ul>
-						<div class="voteBtn">
-							<div class="votel floatr">
-								<a href="###" class="yourVote">
-									<p>投TA</p>
-									<p>一票</p>
-								</a>
-							</div>
-							<div class="clearr"></div>
-						</div>
 					</div>
 					<div class="clearl"></div>
-					<div class="imgShow" >
-						<img src="img/no1.png" />
+					<div class="imgShow" v-if='key == 1'>
+                        <img src="img/no1.png v-else-if='key == 2'no2.png" />
 					</div>
+                    <div class="imgShow" v-else-if='key == 2'>
+                        <img src="img/no2.png" />
+                    </div>
 					<div class="textShow" style="display: none;">
 						<p>999</p>
 					</div>
 				</div>
                 </template>
-
-				</div>
 				<!--<div class="line line1" style="margin-bottom: 0.2rem;">-->
 					<!--<p></p>-->
 					<!--<p>这是世界的尽头</p>-->
@@ -184,7 +188,7 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="js/public.js" ></script>
-	<script src="js/vue.js?v=2"></script>
+	<script src="js/vue-order.js?v=2"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,

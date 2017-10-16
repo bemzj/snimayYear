@@ -4,11 +4,9 @@ var data={
     link:'http://127.0.0.1/snimay/',
     imgLink:'http://127.0.0.1/snimay/public',
     token:'',
-    searchResult:[],
-    getUser:'',
-    page:'',
+    adding:[],
     hasClick:true,
-    system:'',
+    searchResult:[],
 };
 
 var all = new Vue({
@@ -23,9 +21,27 @@ var all = new Vue({
                 $this.token=res.token;
             }
         });
-        $this.AjaxL($this.link+'systemList','GET',false,function(res){
-            $this.system=res;
+
+        $this.searchResult=[];
+        layui.use('flow', function(){  //排行榜
+            var flow = layui.flow;
+            flow.load({
+                elem: '#searchResult' //指定列表容器
+                ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+                    var lis = [];
+                    //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                    $this.AjaxL($this.link+'search_des','GET',{"page":page},function(res){
+                        list=res.list;
+                        for (x in list){
+                            $this.searchResult.push(list[x]);
+                        }
+                        next('', page <= res.last_page);
+                    });
+
+                }
+            });
         });
+
 
     },
 
@@ -51,16 +67,20 @@ var all = new Vue({
                 }
             })
         },
-        //首页搜索
-        seachData:function(){
+
+
+        seachs:function(ins){
             var $this=this;
-            var ins;
-            $('.indexS').each(function(){
-                if($(this).hasClass('aActive')){
-                    ins=$(this).index();
-                }
-            });
-            var search = $("#seachData").val();
+            var url;
+            if(ins == 1){
+                url = 'search_des';
+            }else if(ins == 2){
+                url = 'search_shop';
+            }else if(ins == 3){
+                url = 'search_adv';
+            }else if(ins == 4){
+                url = 'search_eng';
+            }
             $this.searchResult=[];
             layui.use('flow', function(){  //排行榜
                 var flow = layui.flow;
@@ -69,9 +89,7 @@ var all = new Vue({
                     ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
                         var lis = [];
                         //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                        $this.AjaxL($this.link+'search','GET',{"page":page,"search":search,"ins":ins},function(res){
-                            $("#main").hide();
-                            $("#searchResult").show();
+                        $this.AjaxL($this.link+url,'GET',{"page":page},function(res){
                             list=res.list;
                             for (x in list){
                                 $this.searchResult.push(list[x]);
@@ -83,16 +101,26 @@ var all = new Vue({
                 });
             });
         },
-        //搜索结果
-        seachDatas:function(){
+
+        seachOrder:function(){
             var $this=this;
+            var url;
             var ins;
-            $('.voteS').each(function(){
+            $('.indexS').each(function(){
                 if($(this).hasClass('aActive')){
                     ins=$(this).index();
                 }
             });
-            var search = $("#seachDatas").val();
+            if(ins == 0){
+                url = 'search_des';
+            }else if(ins == 1){
+                url = 'search_shop';
+            }else if(ins == 2){
+                url = 'search_adv';
+            }else if(ins == 3){
+                url = 'search_eng';
+            }
+            var search = $("#seachData").val();
             $this.searchResult=[];
             layui.use('flow', function(){  //排行榜
                 var flow = layui.flow;
@@ -101,9 +129,7 @@ var all = new Vue({
                     ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
                         var lis = [];
                         //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                        $this.AjaxL($this.link+'search','GET',{"page":page,"search":search,"ins":ins},function(res){
-                            $("#main").hide();
-                            $("#searchResult").show();
+                        $this.AjaxL($this.link+url,'GET',{"page":page,"search":search},function(res){
                             list=res.list;
                             for (x in list){
                                 $this.searchResult.push(list[x]);
@@ -114,6 +140,7 @@ var all = new Vue({
                     }
                 });
             });
+
         },
         //投票
         setNum:function(id,group_id){
@@ -138,22 +165,7 @@ var all = new Vue({
             });
 
         },
-        //个人信息
-        getDatas:function(id,group_id){
-            var $this=this;
-            var url;
-            if(group_id == 1){
-                url = 'get_des';
-            }else if(group_id == 2){
-                url = 'get_shop';
-            }else if(group_id == 3){
-                url = 'get_adv';
-            }else if(group_id == 4){
-                url = 'get_eng';
-            }
-            window.location.href="userDetail.html?url="+url+"&id="+id+"&group_id="+group_id;
 
-        },
 
 
     }

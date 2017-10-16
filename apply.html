@@ -15,11 +15,16 @@
 		<link rel="stylesheet" href="../static/layui/css/layui.css">
 		<script type="text/javascript" src="../static/layui/layui.js"></script>
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-		<title>诗尼曼年度十优评选盛典活动报名</title>
+		<title>诗尼曼年度十优评选盛典</title>
 	</head>
 	<body id="vueMain">
+		<div id="run">
+			<div class="run">
+				<p><nobr>活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明</nobr></p>
+			</div>
+		</div>
 		<!--第一步-->
-		<div id="firstStep" >
+		<div id="firstStep" style="display: none;">
 			<!--logo-->
 			<div class="banner">
 				<img src="img/bannerApply.jpg" />
@@ -46,7 +51,7 @@
 		</div>
 		<!--第二步-->
 			<!--设计师-->
-		<div id="secondStepOne" class="secondStep" style="display: none;">
+		<div id="secondStepOne" class="secondStep" >
 			<!--logo-->
 			<div class="stepTitle">
 				<p>报名参赛</p>
@@ -69,17 +74,44 @@
 			</div>
 			<div class="message">
 				<ul>
-					<li>
+					<!--<li>
 						<input type="text" id="des_name" placeholder="姓名："/>
 					</li>
 					<li>
 						<input type="text" id="des_sell" placeholder="店名："/>
+					</li>-->
+					<li>
+						<div class="inputL floatl">
+							<p>电话号码：</p>
+						</div>
+						<div class="inputR floatl">
+							<input type="text" id="des_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+						</div>
+						<div class="clearl"></div>
 					</li>
 					<li>
-						<input type="text" id="des_phone" maxlength="11" placeholder="手机：" v-on:blur="design_check()" />
-					</li>
-					<li>
-						<textarea maxlength="14" id="des_content" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
+						<div class="ptop">
+							<p>个人简介：</p>
+						</div>
+						<div class="pMid">
+							<p>大家好,</p>
+							<input type="text" id="des_name"/>
+							<p>的店长</p>
+							<input type="text" id="des_sell"/>
+							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
+						</div>
+						<div class="clearl"></div>
+						<div class="pBottom">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<textarea maxlength="140" id="des_content" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
+						</div>						
 					</li>
 				</ul>
 			</div>
@@ -129,16 +161,37 @@
 			<div class="message">
 				<ul>
 					<li>
-						<input type="text" id="shop_name" placeholder="姓名："/>
+						<div class="inputL floatl">
+							<p>电话号码：</p>
+						</div>
+						<div class="inputR floatl">
+							<input type="text" id="shop_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+						</div>
+						<div class="clearl"></div>
 					</li>
 					<li>
-						<input type="text" id="shop_sell" placeholder="店名："/>
-					</li>
-					<li>
-						<input type="text" id="shop_phone" maxlength="11" placeholder="手机：" v-on:blur="shop_check()"/>
-					</li>
-					<li>
-						<textarea maxlength="14" id="shop_des" placeholder="个人介绍（140字以内，包含但不限于：管理理念、门店主要事迹、成就）"></textarea>
+						<div class="ptop">
+							<p>个人简介：</p>
+						</div>
+						<div class="pMid">
+							<p>大家好,</p>
+							<input type="text" id="shop_name"/>
+							<p>的店长</p>
+							<input type="text" id="shop_sell"/>
+							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
+						</div>
+						<div class="clearl"></div>
+						<div class="pBottom">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<textarea maxlength="140" id="shop_des" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
+						</div>						
 					</li>
 				</ul>
 			</div>
@@ -173,16 +226,37 @@
 			<div class="message">
 				<ul>
 					<li>
-						<input type="text" id="adv_name" placeholder="姓名："/>
+						<div class="inputL floatl">
+							<p>电话号码：</p>
+						</div>
+						<div class="inputR floatl">
+							<input type="text" id="adv_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+						</div>
+						<div class="clearl"></div>
 					</li>
 					<li>
-						<input type="text" id="adv_sell" placeholder="店名："/>
-					</li>
-					<li>
-						<input type="text" id="adv_phone" maxlength="11" placeholder="手机：" v-on:blur="adv_check()"/>
-					</li>
-					<li>
-						<textarea maxlength="14" id="adv_desc" placeholder="个人介绍（140字以内）"></textarea>
+						<div class="ptop">
+							<p>个人简介：</p>
+						</div>
+						<div class="pMid">
+							<p>大家好,</p>
+							<input type="text" id="adv_name"/>
+							<p>的店长</p>
+							<input type="text" id="adv_sell"/>
+							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
+						</div>
+						<div class="clearl"></div>
+						<div class="pBottom">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<textarea maxlength="140" id="adv_desc" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
+						</div>						
 					</li>
 				</ul>
 			</div>
@@ -217,16 +291,37 @@
 			<div class="message">
 				<ul>
 					<li>
-						<input type="text" id="eng_name" placeholder="姓名："/>
+						<div class="inputL floatl">
+							<p>电话号码：</p>
+						</div>
+						<div class="inputR floatl">
+							<input type="text" id="eng_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+						</div>
+						<div class="clearl"></div>
 					</li>
 					<li>
-						<input type="text" id="eng_sell" placeholder="店名："/>
-					</li>
-					<li>
-						<input type="text" id="eng_phone" maxlength="11" placeholder="手机：" v-on:blur="eng_check()"/>
-					</li>
-					<li>
-						<textarea maxlength="14" id="eng_desc" placeholder="个人介绍（140字以内，包含但不限于：提供过安装服务的家庭数量、安装过程中遇到什么难题又是如何解决的等等...）"></textarea>
+						<div class="ptop">
+							<p>个人简介：</p>
+						</div>
+						<div class="pMid">
+							<p>大家好,</p>
+							<input type="text" id="eng_name"/>
+							<p>的店长</p>
+							<input type="text" id="eng_sell"/>
+							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
+						</div>
+						<div class="clearl"></div>
+						<div class="pBottom">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<textarea maxlength="140" id="eng_desc" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
+						</div>						
 					</li>
 				</ul>
 			</div>

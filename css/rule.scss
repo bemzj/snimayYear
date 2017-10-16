@@ -27,7 +27,7 @@
         margin-top: 10px;
         position: absolute;
         width: 100%;
-        height: 70%;
+        height: 7.4rem;
         overflow-y: scroll;
         ul li{
             margin-bottom: 15px;
@@ -231,7 +231,7 @@
             top: 0;
             left: 0;
             img{
-                width: 40%;
+                height: 45%;
             }
             p{
                 width: 100%;
@@ -248,4 +248,7 @@
 }
 .aActive{
     font-weight: bold!important;
+}
+.tangle {
+    margin-left: 16%;
 }

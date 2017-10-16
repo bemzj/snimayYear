@@ -13,7 +13,6 @@ var all = new Vue({
     data:data,
     created:function(){
         var $this=this;
-
         $this.AjaxL($this.link+'hasAuth','GET',false,function(res){
             if(res.code==408){
                 window.location.href=$this.link+"weixLogin";
@@ -24,7 +23,6 @@ var all = new Vue({
 
 
         $('#file_upload').on('click',function(){
-
             $this.uploads('#file_upload',function(res){
                 $("#designPic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#user_pics").attr('value',res.thumb.pic_s);
@@ -164,15 +162,6 @@ var all = new Vue({
         });
 
 
-        //$('#file_upload_p').on('click',function(){
-        //    $this.uploads('#file_upload_p',function(res){
-        //        $("#space_p_txt").hide();
-        //        $("#space_p").attr('src',$this.imgLink+res.thumb.pic_s);
-        //        $("#space_pics_p").attr('value',res.thumb.pic_s);
-        //        $("#space_pic_p").attr('value',res.thumb.pic);
-        //    });
-        //});
-
         $('#file_upload_adv').on('click',function(){
             $this.uploads('#file_upload_adv',function(res){
                 $("#adPic").attr('src',$this.imgLink+res.thumb.pic);
@@ -270,7 +259,6 @@ var all = new Vue({
         },
         uploads:function(box,cal){
             var $this=this;
-
             layui.use('upload', function(){
                 var upload = layui.upload;
                 //var index;
@@ -382,13 +370,12 @@ var all = new Vue({
             var $this=this;
             var phone = $("#des_phone").val();
             var index=layer.load(2);
-            $this.AjaxL($this.link+'checkDesign','POST',{
-                "phone":phone,
-            },function(res){
+            var url = 'get_des';
+            $this.AjaxL($this.link+'checkDesign','POST',{"phone":phone},function(res){
                 layer.close(index);
                 if(res.code == 1){
                     layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
-                        //location.href=;
+                        window.location.href="userDetail.html?url="+url+"&id="+res.id+"&group_id="+1;
                     });
                 }else{
                     layer.closeAll();
@@ -449,13 +436,14 @@ var all = new Vue({
             var $this=this;
             var phone = $("#shop_phone").val();
             var index=layer.load(2);
+            var url = 'get_shop';
             $this.AjaxL($this.link+'checkShop','POST',{
                 "phone":phone,
             },function(res){
                 layer.close(index);
                 if(res.code == 1){
                     layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
-                        //location.href=;
+                        window.location.href="userDetail.html?url="+url+"&id="+res.id+"&group_id="+2;
                     });
                 }else{
                     layer.closeAll();
@@ -502,13 +490,14 @@ var all = new Vue({
             var $this=this;
             var phone = $("#adv_phone").val();
             var index=layer.load(2);
+            var url = 'get_adv';
             $this.AjaxL($this.link+'checkAdv','POST',{
                 "phone":phone,
             },function(res){
                 layer.close(index);
                 if(res.code == 1){
                     layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
-                        //location.href=;
+                        window.location.href="userDetail.html?url="+url+"&id="+res.id+"&group_id="+3;
                     });
                 }else{
                     layer.closeAll();
@@ -558,13 +547,14 @@ var all = new Vue({
             var $this=this;
             var phone = $("#eng_phone").val();
             var index=layer.load(2);
+            var url = 'get_eng';
             $this.AjaxL($this.link+'checkEng','POST',{
                 "phone":phone,
             },function(res){
                 layer.close(index);
                 if(res.code == 1){
                     layer.confirm('检测到您已报过名，是否绑定微信？',function(index){
-                        //location.href=;
+                        window.location.href="userDetail.html?url="+url+"&id="+res.id+"&group_id="+4;
                     });
                 }else{
                     layer.closeAll();

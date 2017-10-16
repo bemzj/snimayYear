@@ -66,13 +66,13 @@
 					<p>距离上一名还差</p>
 				</div>
 				<div class="floatl">
-					<p>{{getUser.clicknum}}</p>
+					<p class="clicknum_{{item.id}}">{{getUser.clicknum}}</p>
 					<p>当前票数</p>
 				</div>
 				<div class="clearl"></div>
 			</div>
-			<!--设计作品-->			
-			<div class="designer" >
+			<!--设计作品-->
+			<div class="designer">
 				<div class="introTitleBox">
 					<p></p>
 					<p></p>
@@ -81,7 +81,7 @@
 						<img src="img/ruleBkg.png" />
 					</div>
 				</div>
-                <template v-for="item in getUser.designs">
+				<template v-for="item in getUser.designs">
 				<div class="dBox">
 					<div class="floatl dBoxl">
 						<div class="dBoxll">
@@ -121,7 +121,7 @@
 				</div>
 				<div class="videoBox">
 					<img src="img/video.jpg" id="vpic"/>
-					<video width="288px" height="155px" controls="controls" preload="auto" webkit-playsinline="" playsinline="">
+                    <video width="288px" height="155px" controls="controls" preload="auto" webkit-playsinline="" playsinline="">
                         <source src="{{imgLink + getUser.video}}" type="video/mp4">
                     </video>
 					<div class="play">
@@ -174,10 +174,27 @@
 						</div>
 						<p>{{item.open_name}}</p>
 					</div>
-                    </template>
+                     </template>
+
 					<div class="clearl"></div>
 				</div>
 			</div>
+			<div class="yourVoteBox">
+				<ul>
+					<li>
+						<a href="javascript:;" class="yourVote" v-on:click="setNum(getUser.id,getUser.group_id)">
+							<p>投TA</p>
+							<p>一票</p>
+						</a>
+					</li>
+					<li>
+						<a href="###" class="share">
+							<p>分享</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 		<!--店长介绍页面-->
 		<div id="intro-shop" style="display: none;">
@@ -229,7 +246,7 @@
 					<p>距离上一名还差</p>
 				</div>
 				<div class="floatl">
-					<p>{{getUser.clicknum}}</p>
+					<p class="clicknum_{{item.id}}">{{getUser.clicknum}}</p>
 					<p>当前票数</p>
 				</div>
 				<div class="clearl"></div>
@@ -244,11 +261,12 @@
 			</div>
 			<div class="banner">
 				<div class="swiper-container">
-				    <div class="swiper-wrapper">
+					<div class="swiper-wrapper">
                         <template v-for="item in getUser.sell">
-				        <div class="swiper-slide"><img src="{{imgLink + item}}"/></div>
-				        </template>
-				    </div>				    
+						<div class="swiper-slide"><img src="{{imgLink + item}}"/></div>
+                        </template>
+
+					</div>
 				</div>
 				<!-- 如果需要导航按钮 -->
 				<div class="swiper-button-prev"></div>
@@ -265,15 +283,31 @@
 				</div>
 				<div class="workerBox">
                     <template v-for="item in getUser.open">
-                        <div class="wb floatl">
-                            <div class="wbBox">
-                                <img src="{{item.open_face}}" />
-                            </div>
-                            <p>{{item.open_name}}</p>
-                        </div>
+					<div class="wb floatl">
+						<div class="wbBox">
+							<img src="{{item.open_face}}" />
+						</div>
+						<p>{{item.open_name}}</p>
+					</div>
                     </template>
+
 					<div class="clearl"></div>
 				</div>
+			</div>
+			<div class="yourVoteBox">
+				<ul>
+					<li>
+                        <a href="javascript:;" class="yourVote" v-on:click="setNum(getUser.id,getUser.group_id)">
+							<p>投TA</p>
+							<p>一票</p>
+						</a>
+					</li>
+					<li>
+						<a href="###" class="share">
+							<p>分享</p>
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<!--分享页面-->
@@ -373,7 +407,7 @@
 	</body>
     <script type="text/javascript" src="js/index.js" ></script>
     <script type="text/javascript" src="js/public.js" ></script>
-    <script src="js/vue-index.js?v=2"></script>
+    <script src="js/vue-user.js?v=2"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,

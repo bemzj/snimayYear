@@ -150,7 +150,7 @@
 						<li>
 							<p>姓名：{{item.username}}</p>
 							<p>店名：{{item.sell_name}}</p>
-							<p>票数：{{item.clicknum}}</p>
+							<p class="clicknum_{{item.id}}">票数：{{item.clicknum}}</p>
 						</li>
 						<li>
 							<div class="voteBtn">
@@ -160,7 +160,7 @@
 										<p>一票</p>
 									</a>
 								</div>
-								<div class="voter floatl">
+								<div class="voter floatl" onclick="fenxiang()">
 									<a href="###" class="share">
 										<p>分享</p>
 									</a>
@@ -173,267 +173,10 @@
 				<div class="clearl"></div>
 			</div>
             </template>
-
-			<!--<div class="line line1">-->
-				<!--<p></p>-->
-				<!--<p>这是世界的尽头</p>-->
-			<!--</div>-->
 		</div>
 		<!--介绍页面-->
-		<!--<div id="intro" style="display: none;">-->
-			<!--<div class="introTitleBox">-->
-				<!--<p></p>-->
-				<!--<p></p>-->
-				<!--<div class="introTitle">-->
-					<!--<p>个人介绍</p>-->
-					<!--<img src="img/ruleBkg.png" />-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;头像&ndash;&gt;-->
-			<!--<div class="topIntop">-->
-				<!--<div class="introl floatl">-->
-					<!--<img src="{{imgLink + getUser.user_pic}}" />-->
-				<!--</div>-->
-				<!--<div class="intror floatl">-->
-					<!--<ul>-->
-						<!--<li>-->
-							<!--<div class="floatl il">-->
-								<!--<p>{{getUser.username}}</p>-->
-							<!--</div>-->
-							<!--<div class="floatl ir">-->
-								<!--<p>投票须知</p>-->
-								<!--<div class="clearr"></div>-->
-							<!--</div>-->
-							<!--<div class="clearl"></div>-->
-						<!--</li>-->
-						<!--<li>-->
-							<!--<p>{{getUser.desc}}</p>-->
-						<!--</li>-->
-					<!--</ul>-->
-				<!--</div>-->
-				<!--<div class="clearl"></div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;排名&ndash;&gt;-->
-			<!--<div class="topOrder">-->
-				<!--<div class="floatl">-->
-					<!--<p>{{getUser.rank}}</p>-->
-					<!--<p>当前排名</p>-->
-				<!--</div>-->
-				<!--<div class="floatl">-->
-					<!--<p>{{getUser.prevNum}}</p>-->
-					<!--<p>距离上一名还差</p>-->
-				<!--</div>-->
-				<!--<div class="floatl">-->
-					<!--<p>{{getUser.clicknum}}</p>-->
-					<!--<p>当前票数</p>-->
-				<!--</div>-->
-				<!--<div class="clearl"></div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;设计作品&ndash;&gt;			-->
-			<!--<div class="designer" >-->
-				<!--<div class="introTitleBox">-->
-					<!--<p></p>-->
-					<!--<p></p>-->
-					<!--<div class="introTitle">-->
-						<!--<p>参赛作品</p>-->
-						<!--<img src="img/ruleBkg.png" />-->
-					<!--</div>-->
-				<!--</div>-->
-                <!--<template v-for="item in getUser.designs">-->
-				<!--<div class="dBox">-->
-					<!--<div class="floatl dBoxl">-->
-						<!--<div class="dBoxll">-->
-							<!--<img src="{{imgLink + item.real}}" />-->
-						<!--</div>-->
-						<!--<p>[设计案例效果图]</p>-->
-					<!--</div>-->
-					<!--<div class="floatr dBoxr">-->
-						<!--<div class="dBoxrr">-->
-							<!--<img src="{{imgLink + item.effect}}" />-->
-						<!--</div>-->
-						<!--<p>[设计案例实装图]</p>-->
-					<!--</div>-->
-					<!--<div class="clearBoth"></div>-->
-				<!--</div>-->
-                <!--</template>-->
-				<!--<div class="dBoxBottom">-->
-					<!--<ul>-->
-						<!--<li>-->
-							<!--<img src="{{imgLink + getUser.space_pic}}"/>-->
-						<!--</li>-->
-						<!--<li>-->
-							<!--<p>[酷家乐全屋漫游图]</p>-->
-						<!--</li>-->
-					<!--</ul>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;家居作品&ndash;&gt;-->
-			<!--<div class="home" style="display: none;">-->
-				<!--<div class="introTitleBox">-->
-					<!--<p></p>-->
-					<!--<p></p>-->
-					<!--<div class="introTitle">-->
-						<!--<p>参赛视频</p>-->
-						<!--<img src="img/ruleBkg.png" />-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="videoBox">-->
-					<!--<img src="img/video.jpg" id="vpic"/>-->
-					<!--<video width="288px" height="155px" controls="controls" preload="auto" webkit-playsinline="" playsinline="">-->
-                        <!--<source src="{{imgLink + getUser.video}}" type="video/mp4">-->
-                    <!--</video>-->
-					<!--<div class="play">-->
-						<!--<a href="###"><img src="img/play.png"/></a>-->
-					<!--</div>-->
-					<!--<div class="pause" style="display: none;">-->
-						<!--<a href="###"><img src="img/pause.png"/></a>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;工程师作品&ndash;&gt;-->
-			<!--<div class="work" style="display: none;">-->
-				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
-					<!--<p></p>-->
-					<!--<p></p>-->
-					<!--<div class="introTitle">-->
-						<!--<p>现场工作图</p>-->
-						<!--<img src="img/ruleBkg.png" />-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="workBox">-->
-					<!--<img src="{{imgLink + getUser.tool_pic}}" />-->
-				<!--</div>-->
-				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
-					<!--<p></p>-->
-					<!--<p></p>-->
-					<!--<div class="introTitle">-->
-						<!--<p>业主评价</p>-->
-						<!--<img src="img/ruleBkg.png" />-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="workBox">-->
-					<!--<img src="{{imgLink + getUser.owner_pic}}" />-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="worker">-->
-				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
-					<!--<p></p>-->
-					<!--<p></p>-->
-					<!--<div class="introTitle">-->
-						<!--<p>参与投票者</p>-->
-						<!--<img src="img/ruleBkg.png" />-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="workerBox">-->
-                    <!--<template v-for="item in getUser.open">-->
-					<!--<div class="wb floatl">-->
-						<!--<div class="wbBox">-->
-							<!--<img src="{{item.open_face}}" />-->
-						<!--</div>-->
-						<!--<p>{{item.open_name}}</p>-->
-					<!--</div>-->
-                    <!--</template>-->
-					<!--<div class="clearl"></div>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-		<!--&lt;!&ndash;店长介绍页面&ndash;&gt;-->
-		<!--<div id="intro-shop" style="display: none;">-->
-			<!--<div class="introTitleBox">-->
-				<!--<p></p>-->
-				<!--<p></p>-->
-				<!--<div class="introTitle">-->
-					<!--<p>个人介绍</p>-->
-					<!--<img src="img/ruleBkg.png" />-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;头像&ndash;&gt;-->
-			<!--<div class="topIntop">-->
-				<!--<div class="intro1">-->
-					<!--<div class="intl floatl">-->
-						<!--<img src="{{imgLink + getUser.user_pic}}" />-->
-					<!--</div>-->
-					<!--<div class="intr floatl">-->
-						<!--<img src="{{imgLink + getUser.team_pic}}" />-->
-					<!--</div>-->
-					<!--<div class="clearl"></div>-->
-				<!--</div>-->
-				<!--<div class="intro2">-->
-					<!--<ul>-->
-						<!--<li>-->
-							<!--<div class="floatl il">-->
-								<!--<p>{{getUser.username}}</p>-->
-							<!--</div>-->
-							<!--<div class="floatl ir">-->
-								<!--<p>投票须知</p>-->
-								<!--<div class="clearr"></div>-->
-							<!--</div>-->
-							<!--<div class="clearl"></div>-->
-						<!--</li>-->
-						<!--<li>-->
-							<!--<p>{{getUser.desc}}</p>-->
-						<!--</li>-->
-					<!--</ul>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;排名&ndash;&gt;-->
-			<!--<div class="topOrder">-->
-				<!--<div class="floatl">-->
-					<!--<p>{{getUser.rank}}</p>-->
-					<!--<p>当前排名</p>-->
-				<!--</div>-->
-				<!--<div class="floatl">-->
-					<!--<p>{{getUser.prevNum}}</p>-->
-					<!--<p>距离上一名还差</p>-->
-				<!--</div>-->
-				<!--<div class="floatl">-->
-					<!--<p>{{getUser.clicknum}}</p>-->
-					<!--<p>当前票数</p>-->
-				<!--</div>-->
-				<!--<div class="clearl"></div>-->
-			<!--</div>-->
-			<!--<div class="introTitleBox" style="margin-top: 10px;">-->
-				<!--<p></p>-->
-				<!--<p></p>-->
-				<!--<div class="introTitle">-->
-					<!--<p>店面形象</p>-->
-					<!--<img src="img/ruleBkg.png" />-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="banner">-->
-				<!--<div class="swiper-container">-->
-				    <!--<div class="swiper-wrapper">-->
-                        <!--<template v-for="item in getUser.sell">-->
-				        <!--<div class="swiper-slide"><img src="{{imgLink + item}}"/></div>-->
-				        <!--</template>-->
-				    <!--</div>				    -->
-				<!--</div>-->
-				<!--&lt;!&ndash; 如果需要导航按钮 &ndash;&gt;-->
-				<!--<div class="swiper-button-prev"></div>-->
-				<!--<div class="swiper-button-next"></div>-->
-			<!--</div>-->
-			<!--<div class="worker">-->
-				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
-					<!--<p></p>-->
-					<!--<p></p>-->
-					<!--<div class="introTitle">-->
-						<!--<p>参与投票者</p>-->
-						<!--<img src="img/ruleBkg.png" />-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="workerBox">-->
-                    <!--<template v-for="item in getUser.open">-->
-                        <!--<div class="wb floatl">-->
-                            <!--<div class="wbBox">-->
-                                <!--<img src="{{item.open_face}}" />-->
-                            <!--</div>-->
-                            <!--<p>{{item.open_name}}</p>-->
-                        <!--</div>-->
-                    <!--</template>-->
-					<!--<div class="clearl"></div>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
+
+
 		<!--分享页面-->
 		<div id="shareWin" style="display: none;">
 			<img src="img/share.png" />
@@ -551,6 +294,8 @@
             doc.addEventListener('DOMContentLoaded', recalc, false);
         })(document, window);
 
-
+        function fenxiang(){
+            $("#shareWin").show();
+        }
 	</script>
 </html>

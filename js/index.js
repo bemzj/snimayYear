@@ -47,14 +47,7 @@ $(function(){
 	$('#shareWin').on('click',function(){
 		$(this).hide();
 	});
-	//投票
-	$('.yourVote').on('click',function(){
-		$('.votePop').show();
-	});
-	$('.confirm').on('click',function(){
-		$('.votePop').hide();
-		$('#voteSuccess').show();
-	});
+
 	//返回
 	$('.return').on('click',function(){
 		$('#voteSuccess').hide();

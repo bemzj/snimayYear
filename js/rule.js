@@ -6,52 +6,35 @@ $(function(){
 		$(this).siblings('a').removeClass('aActive');
 		switch(index){
 			case 0:
-				$('.awardTitleOne p').text('年度十优创意设计师奖品');
-				$('.awardLeft img').attr('src','img/computer.png');
-				$('.awardLeft .name').text('Microsoft Surface Pro 4');
-			break;
+				$('.tangle').animate({marginLeft:'16%'},500);
+				$('#rule .ruleAndAward .awardBoxTwo img').attr('src','img/headset.png');
+				$('#rule .ruleAndAward .awardBoxTwo p').html('奖品：小米运动蓝牙耳机');
+				$('#rule .ruleAndAward .awardLeft img').attr('src','img/computer.png');
+				$('#rule .ruleAndAward .awardLeft p:nth-child(2)').html('Microsoft Surface Pro 4');
+				break;
 			case 1:
-				$('.awardTitleOne p').text('年度十优全能店长奖品');
-				$('.awardLeft img').attr('src','img/iPhone8.png');
-				$('.awardLeft .name').text('iPhone8 64G');
-			break;
+				$('.tangle').animate({marginLeft:'38%'},500);
+				$('#rule .ruleAndAward .awardBoxTwo img').attr('src','img/xmw.png');
+				$('#rule .ruleAndAward .awardBoxTwo p').html('奖品：小米手环2套装');
+				$('#rule .ruleAndAward .awardLeft img').attr('src','img/iPhone8.png');
+				$('#rule .ruleAndAward .awardLeft p:nth-child(2)').html('iPhone8 64G');
+				break;
 			case 2:
-				$('.awardTitleOne p').text('年度十优高级家居顾问奖品');
-				$('.awardLeft img').attr('src','img/watch.png');
-				$('.awardLeft .name').text('Apple Watch');
-			break;
+				$('.tangle').animate({marginLeft:'59.5%'},500);
+				$('#rule .ruleAndAward .awardBoxTwo img').attr('src','img/bed.png');
+				$('#rule .ruleAndAward .awardBoxTwo p').html('奖品：床上用品4件套');
+				$('#rule .ruleAndAward .awardLeft img').attr('src','img/watch.png');
+				$('#rule .ruleAndAward .awardLeft p:nth-child(2)').html('Apple Watch');
+				break;
 			case 3:
-				$('.awardTitleOne p').text('年度十优安装服务工程师奖品');
-				$('.awardLeft img').attr('src','img/mime.png');
-				$('.awardLeft .name').text('小米6(亮黑色64G)');
-			break;
+				$('.tangle').animate({marginLeft:'80.8%'},500);
+				$('#rule .ruleAndAward .awardBoxTwo img').attr('src','img/seting.png');
+				$('#rule .ruleAndAward .awardBoxTwo p').html('奖品：安装工具套装');
+				$('#rule .ruleAndAward .awardLeft img').attr('src','img/mime.png');
+				$('#rule .ruleAndAward .awardLeft p:nth-child(2)').html('小米6(亮黑色64G)');
+				break;
 		}
 	})
 });
-
-function design(){
-	$("#sjx").addClass('design');
-	$("#sjx").removeClass('shopner');
-	$("#sjx").removeClass('adv');
-	$("#sjx").removeClass('eng');
-}
-function shopner(){
-	$("#sjx").addClass('shopner');
-	$("#sjx").removeClass('design');
-	$("#sjx").removeClass('adv');
-	$("#sjx").removeClass('eng');
-}
-function adv(){
-	$("#sjx").addClass('adv');
-	$("#sjx").removeClass('design');
-	$("#sjx").removeClass('shopner');
-	$("#sjx").removeClass('eng');
-}
-function eng(){
-	$("#sjx").addClass('eng');
-	$("#sjx").removeClass('design');
-	$("#sjx").removeClass('shopner');
-	$("#sjx").removeClass('adv');
-}
 
 
