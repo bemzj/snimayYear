@@ -13,17 +13,23 @@ $(function(){
 		$('#popWin4').show();
 	});
 	//跑马灯
-	var run = $(window).width();
-	$('.run').css('margin-left',run+'px');
-	var getText = $('.run').width();
-	setInterval(function(){
-		run--;
-		if(2*getText-$(window).width()>(-run));
-		{
-			$('.run').css('margin-left',$(window).width()+'px');
+	var lefts = $(window).width();
+	$('.runBox').css('left',lefts+'px');
+	var lefts1 = lefts+$('.runBox').width()+20;
+	$('.runBox1').css('left',lefts1+'px');
+	var run = $('.runBox').width();
+	setInterval(function(){		
+		if(lefts==-run){
+			lefts=20;
+			$('.runBox').css('left',lefts+'px');
+			lefts1 = lefts+$('.runBox').width()+20;
+			$('.runBox1').css('left',lefts1+'px');
 		}
-		$('.run').css('margin-left',run+'px');
-	},20);
+		lefts--;
+		lefts1--;
+		$('.runBox').css('left',lefts+'px');
+		$('.runBox1').css('left',lefts1+'px');
+	},10);
 });
 
 
