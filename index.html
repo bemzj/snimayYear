@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="keywords" content="诗尼曼年度十优评选盛典">
+		<meta name="description" content="诗尼曼年度十优评选盛典">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 		<meta content="yes" name="apple-mobile-web-app-capable"/>
 		<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
@@ -15,61 +17,62 @@
 		<script type="text/javascript" src="../static/layui/layui.js"></script>
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 		<script type="text/javascript" src="js/swiper-3.4.2.min.js" ></script>
+        <script type="text/javascript" src="https://static.runoob.com/assets/vue/1.0.11/vue.min.js"></script>
 		<title>诗尼曼年度十优评选盛典</title>
 	</head>
-	<body>
+	<body id="vueMain">
 		<!--主页-->
-		<div id="main" style="display: none;">
+		<div id="main" >
 			<div class="banner">
 				<img src="img/index.png" />
 			</div>
 			<div class="data">
 				<div class="floatl dataBox">
 					<img src='img/ruleBkg.png' />
-					<p>0</p>
+					<p>{{system.regist_number}}</p>
 					<p>已报名人数</p>
 				</div>
 				<div class="floatl dataBox">
 					<img src='img/ruleBkg.png' />
-					<p>0</p>
+					<p>{{system.votes_number}}</p>
 					<p>投票人数</p>
 				</div>
 				<div class="floatl dataBox">
 					<img src='img/ruleBkg.png' />
-					<p>10000000</p>
+					<p>{{system.brow_number}}</p>
 					<p>浏览量</p>
 				</div>
 				<div class="clearl"></div>
 			</div>
 			<div class="classBox">
 				<div class="classes">
-					<a href="###" class="aActive rSelect indexS">设计师</a>
-					<a href="###" class="rSelect indexS">店长</a>
-					<a href="###" class="rSelect indexS">顾问</a>
-					<a href="###" class="rSelect indexS">工程师</a>
+					<a href="javascript:;" value="1" class="aActive rSelect indexS">设计师</a>
+					<a href="javascript:;" value="2" class="rSelect indexS">店长</a>
+					<a href="javascript:;" value="3" class="rSelect indexS">顾问</a>
+					<a href="javascript:;" value="4" class="rSelect indexS">工程师</a>
 					<img src="img/class.png"/>
-					<img src="img/sjx.png" id="sjx" style="width: 11px;" class="design tangle"/>
+					<img src="img/sjx.png" id="sjx" style="width: 11px;" class="design tangle tangle1"/>
 				</div>
 			</div>
 			<div class="search">
 				<div class="sl floatl">
-					<input type="search" placeholder="请输入名字搜索" />
+					<input type="search" placeholder="请输入名字搜索" id="seachData" />
 				</div>
-				<div class="sr floatl">
+				<div class="sr floatl" v-on:click="seachData()">
 					<input type="image" value="搜索查找" src="img/next.png" />
 					<p>搜索查找</p>
 				</div>
 				<div class="clearl"></div>
 			</div>
-			<div id="vote">
+			<div id="vote" style="display:none;">
 				<div class="classBox">
 					<div class="classes">
-						<a href="###" class="aActive rSelect voteS">设计师</a>
-						<a href="###" class="rSelect voteS">店长</a>
-						<a href="###" class="rSelect voteS">顾问</a>
-						<a href="###" class="rSelect voteS">工程师</a>
+						<a href="javascript:;" value="1" class="aActive rSelect voteS">设计师</a>
+						<a href="javascript:;" value="2" class="rSelect voteS">店长</a>
+						<a href="javascript:;" value="3" class="rSelect voteS">顾问</a>
+						<a href="javascript:;" value="4" class="rSelect voteS">工程师</a>
 						<img src="img/class.png" />
-						<img src="img/sjx.png" id="sjx" style="width: 11px;" class="design tangle" />
+						<img src="img/sjx.png"  style="width: 11px;" class="design tangle tangle1" />
 					</div>
 				</div>
 				<div class="voteBox">
@@ -108,39 +111,51 @@
 				</div>
 			</div>
 		</div>
+
 		<!--投票-->
-		<div id="searchResult" style="display: none;">
+		<div id="searchResult" style="display:none;">
 			<div class="line">
 				<p></p>
 				<p>搜索结果</p>
 			</div>
-			<div class="search">
+            <div class="classBox" style="padding-top: 20px">
+                <div class="classes">
+                    <a href="###" class="aActive rSelect voteS">设计师</a>
+                    <a href="###" class="rSelect voteS">店长</a>
+                    <a href="###" class="rSelect voteS">顾问</a>
+                    <a href="###" class="rSelect voteS">工程师</a>
+                    <img src="img/class.png" />
+                    <img src="img/sjx.png" id="" style="width: 11px;" class="design tangle tangle2" />
+                </div>
+            </div>
+			<div class="search" style="padding-top: 10px">
 				<div class="sl floatl">
-					<input type="search" placeholder="请输入名字搜索" />
+					<input type="search" placeholder="请输入名字搜索" id="seachDatas" />
 				</div>
-				<div class="sr floatl">
+				<div class="sr floatl" v-on:click="seachDatas()">
 					<input type="image" value="搜索查找" src="img/next.png" />
 					<p>搜索查找</p>
 				</div>
 				<div class="clearl"></div>
 			</div>
+            <template v-for="item in searchResult">
 			<div class="message">
-				<div class="ml floatl">
+				<div class="ml floatl" v-on:click="getDatas(item.id,item.group_id)">
 					<div class="headImg">
-						<img src="img/head.jpg" />
+						<img src="{{imgLink + item.user_pics}}" />
 					</div>
 				</div>
 				<div class="mr floatl">
 					<ul>
 						<li>
-							<p>姓名：李光练</p>
-							<p>店名：广州海珠区</p>
-							<p>票数：1500</p>
+							<p>姓名：{{item.username}}</p>
+							<p>店名：{{item.sell_name}}</p>
+							<p>票数：{{item.clicknum}}</p>
 						</li>
 						<li>
 							<div class="voteBtn">
-								<div class="votel floatl">
-									<a href="###" class="yourVote">
+								<div class="votel floatl" v-on:click="setNum(item.id,item.group_id)">
+									<a href="javascript:;" class="yourVote" />
 										<p>投TA</p>
 										<p>一票</p>
 									</a>
@@ -157,399 +172,268 @@
 				</div>
 				<div class="clearl"></div>
 			</div>
-			<div class="message">
-				<div class="ml floatl">
-					<div class="headImg">
-						<img src="img/head.jpg" />
-					</div>
-				</div>
-				<div class="mr floatl">
-					<ul>
-						<li>
-							<p>姓名：李光练</p>
-							<p>店名：广州海珠区</p>
-							<p>票数：1500</p>
-						</li>
-						<li>
-							<div class="voteBtn">
-								<div class="votel floatl">
-									<a href="###" class="yourVote">
-										<p>投TA</p>
-										<p>一票</p>
-									</a>
-								</div>
-								<div class="voter floatl">
-									<a href="###" class="share">
-										<p>分享</p>
-									</a>
-								</div>
-								<div class="clearl"></div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="clearl"></div>
-			</div>
-			<div class="line line1">
-				<p></p>
-				<p>这是世界的尽头</p>
-			</div>
+            </template>
+
+			<!--<div class="line line1">-->
+				<!--<p></p>-->
+				<!--<p>这是世界的尽头</p>-->
+			<!--</div>-->
 		</div>
 		<!--介绍页面-->
-		<div id="intro">
-			<div class="introTitleBox">
-				<p></p>
-				<p></p>
-				<div class="introTitle">
-					<p>个人介绍</p>
-					<img src="img/ruleBkg.png" />
-				</div>
-			</div>
-			<!--头像-->
-			<div class="topIntop">
-				<div class="introl floatl">
-					<img src="img/w.png" />
-				</div>
-				<div class="intror floatl">
-					<ul>
-						<li>
-							<div class="floatl il">
-								<p>张三</p>
-							</div>
-							<div class="floatl ir">
-								<p>投票须知</p>
-								<div class="clearr"></div>
-							</div>
-							<div class="clearl"></div>
-						</li>
-						<li>
-							<p>大家好，我叫刘雨，是广州海珠区诗尼曼的设计师，这次参加诗尼曼的年度十优选拔赛，希望能得到大家的支持！</p>
-						</li>
-					</ul>
-				</div>
-				<div class="clearl"></div>
-			</div>
-			<!--排名-->
-			<div class="topOrder">
-				<div class="floatl">
-					<p>33</p>
-					<p>当前排名</p>
-				</div>
-				<div class="floatl">
-					<p>33</p>
-					<p>距离上一名还差</p>
-				</div>
-				<div class="floatl">
-					<p>3333</p>
-					<p>当前票数</p>
-				</div>
-				<div class="clearl"></div>
-			</div>
-			<!--设计作品-->			
-			<div class="designer" style="display: none;">
-				<div class="introTitleBox">
-					<p></p>
-					<p></p>
-					<div class="introTitle">
-						<p>参赛作品</p>
-						<img src="img/ruleBkg.png" />
-					</div>
-				</div>
-				<div class="dBox">
-					<div class="floatl dBoxl">
-						<div class="dBoxll">
-							<img src="img/dezigner.jpg" />
-						</div>
-						<p>[设计案例效果图]</p>
-					</div>
-					<div class="floatr dBoxr">
-						<div class="dBoxrr">
-							<img src="img/dezigner.jpg" />
-						</div>
-						<p>[设计案例实装图]</p>
-					</div>
-					<div class="clearBoth"></div>
-				</div>
-				<div class="dBoxBottom">
-					<ul>
-						<li>
-							<img src="img/upImg02.jpg"/>
-						</li>
-						<li>
-							<p>[酷家乐全屋漫游图]</p>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!--家居作品-->
-			<div class="home" style="display: none;">
-				<div class="introTitleBox">
-					<p></p>
-					<p></p>
-					<div class="introTitle">
-						<p>参赛视频</p>
-						<img src="img/ruleBkg.png" />
-					</div>
-				</div>
-				<div class="videoBox">
-					<img src="img/video.jpg" />
-					<video></video>
-					<div class="play">
-						<a href="###"><img src="img/play.png"/></a>
-					</div>
-					<div class="pause" style="display: none;">
-						<a href="###"><img src="img/pause.png"/></a>
-					</div>
-				</div>
-			</div>
-			<!--工程师作品-->
-			<div class="work">
-				<div class="introTitleBox" style="margin-top: 15px;">
-					<p></p>
-					<p></p>
-					<div class="introTitle">
-						<p>现场工作图</p>
-						<img src="img/ruleBkg.png" />
-					</div>
-				</div>
-				<div class="workBox">
-					<img src="img/video.jpg" />
-				</div>
-				<div class="introTitleBox" style="margin-top: 15px;">
-					<p></p>
-					<p></p>
-					<div class="introTitle">
-						<p>业主评价</p>
-						<img src="img/ruleBkg.png" />
-					</div>
-				</div>
-				<div class="workBox">
-					<img src="img/video.jpg" />
-				</div>
-			</div>
-			<div class="worker">
-				<div class="introTitleBox" style="margin-top: 15px;">
-					<p></p>
-					<p></p>
-					<div class="introTitle">
-						<p>参与投票者</p>
-						<img src="img/ruleBkg.png" />
-					</div>
-				</div>
-				<div class="workerBox">
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小A</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小B</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小C</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小D</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小E</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小A</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小B</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小C</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小D</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小E</p>
-					</div>
-					<div class="clearl"></div>
-				</div>
-			</div>
-		</div>
-		<!--店长介绍页面-->
-		<div id="intro-shop" style="display: none;">
-			<div class="introTitleBox">
-				<p></p>
-				<p></p>
-				<div class="introTitle">
-					<p>个人介绍</p>
-					<img src="img/ruleBkg.png" />
-				</div>
-			</div>
-			<!--头像-->
-			<div class="topIntop">
-				<div class="intro1">
-					<div class="intl floatl">
-						<img src="img/head.jpg" />
-					</div>
-					<div class="intr floatl">
-						<img src="img/headTwo.jpg" />
-					</div>
-					<div class="clearl"></div>
-				</div>
-				<div class="intro2">
-					<ul>
-						<li>
-							<div class="floatl il">
-								<p>张三</p>
-							</div>
-							<div class="floatl ir">
-								<p>投票须知</p>
-								<div class="clearr"></div>
-							</div>
-							<div class="clearl"></div>
-						</li>
-						<li>
-							<p>大家好，我叫刘雨，是广州海珠区诗尼曼的设计师，这次参加诗尼曼的年度十优选拔赛，希望能得到大家的支持！</p>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!--排名-->
-			<div class="topOrder">
-				<div class="floatl">
-					<p>33</p>
-					<p>当前排名</p>
-				</div>
-				<div class="floatl">
-					<p>33</p>
-					<p>距离上一名还差</p>
-				</div>
-				<div class="floatl">
-					<p>3333</p>
-					<p>当前票数</p>
-				</div>
-				<div class="clearl"></div>
-			</div>
-			<div class="introTitleBox" style="margin-top: 10px;">
-				<p></p>
-				<p></p>
-				<div class="introTitle">
-					<p>店面形象</p>
-					<img src="img/ruleBkg.png" />
-				</div>
-			</div>
-			<div class="banner">
-				<div class="swiper-container">
-				    <div class="swiper-wrapper">
-				        <div class="swiper-slide"><img src="img/upImg02.jpg"/></div>
-				        <div class="swiper-slide"><img src="img/upImg02.jpg"/></div>
-				        <div class="swiper-slide"><img src="img/upImg02.jpg"/></div>
-				    </div>				    
-				</div>
-				<!-- 如果需要导航按钮 -->
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-			</div>
-			<div class="worker">
-				<div class="introTitleBox" style="margin-top: 15px;">
-					<p></p>
-					<p></p>
-					<div class="introTitle">
-						<p>参与投票者</p>
-						<img src="img/ruleBkg.png" />
-					</div>
-				</div>
-				<div class="workerBox">
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小A</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小B</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小C</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小D</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小E</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小A</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小B</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小C</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小D</p>
-					</div>
-					<div class="wb floatl">
-						<div class="wbBox">
-							<img src="img/work.png" />
-						</div>
-						<p>小E</p>
-					</div>
-					<div class="clearl"></div>
-				</div>
-			</div>
-		</div>
+		<!--<div id="intro" style="display: none;">-->
+			<!--<div class="introTitleBox">-->
+				<!--<p></p>-->
+				<!--<p></p>-->
+				<!--<div class="introTitle">-->
+					<!--<p>个人介绍</p>-->
+					<!--<img src="img/ruleBkg.png" />-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash;头像&ndash;&gt;-->
+			<!--<div class="topIntop">-->
+				<!--<div class="introl floatl">-->
+					<!--<img src="{{imgLink + getUser.user_pic}}" />-->
+				<!--</div>-->
+				<!--<div class="intror floatl">-->
+					<!--<ul>-->
+						<!--<li>-->
+							<!--<div class="floatl il">-->
+								<!--<p>{{getUser.username}}</p>-->
+							<!--</div>-->
+							<!--<div class="floatl ir">-->
+								<!--<p>投票须知</p>-->
+								<!--<div class="clearr"></div>-->
+							<!--</div>-->
+							<!--<div class="clearl"></div>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<p>{{getUser.desc}}</p>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+				<!--<div class="clearl"></div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash;排名&ndash;&gt;-->
+			<!--<div class="topOrder">-->
+				<!--<div class="floatl">-->
+					<!--<p>{{getUser.rank}}</p>-->
+					<!--<p>当前排名</p>-->
+				<!--</div>-->
+				<!--<div class="floatl">-->
+					<!--<p>{{getUser.prevNum}}</p>-->
+					<!--<p>距离上一名还差</p>-->
+				<!--</div>-->
+				<!--<div class="floatl">-->
+					<!--<p>{{getUser.clicknum}}</p>-->
+					<!--<p>当前票数</p>-->
+				<!--</div>-->
+				<!--<div class="clearl"></div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash;设计作品&ndash;&gt;			-->
+			<!--<div class="designer" >-->
+				<!--<div class="introTitleBox">-->
+					<!--<p></p>-->
+					<!--<p></p>-->
+					<!--<div class="introTitle">-->
+						<!--<p>参赛作品</p>-->
+						<!--<img src="img/ruleBkg.png" />-->
+					<!--</div>-->
+				<!--</div>-->
+                <!--<template v-for="item in getUser.designs">-->
+				<!--<div class="dBox">-->
+					<!--<div class="floatl dBoxl">-->
+						<!--<div class="dBoxll">-->
+							<!--<img src="{{imgLink + item.real}}" />-->
+						<!--</div>-->
+						<!--<p>[设计案例效果图]</p>-->
+					<!--</div>-->
+					<!--<div class="floatr dBoxr">-->
+						<!--<div class="dBoxrr">-->
+							<!--<img src="{{imgLink + item.effect}}" />-->
+						<!--</div>-->
+						<!--<p>[设计案例实装图]</p>-->
+					<!--</div>-->
+					<!--<div class="clearBoth"></div>-->
+				<!--</div>-->
+                <!--</template>-->
+				<!--<div class="dBoxBottom">-->
+					<!--<ul>-->
+						<!--<li>-->
+							<!--<img src="{{imgLink + getUser.space_pic}}"/>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<p>[酷家乐全屋漫游图]</p>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash;家居作品&ndash;&gt;-->
+			<!--<div class="home" style="display: none;">-->
+				<!--<div class="introTitleBox">-->
+					<!--<p></p>-->
+					<!--<p></p>-->
+					<!--<div class="introTitle">-->
+						<!--<p>参赛视频</p>-->
+						<!--<img src="img/ruleBkg.png" />-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="videoBox">-->
+					<!--<img src="img/video.jpg" id="vpic"/>-->
+					<!--<video width="288px" height="155px" controls="controls" preload="auto" webkit-playsinline="" playsinline="">-->
+                        <!--<source src="{{imgLink + getUser.video}}" type="video/mp4">-->
+                    <!--</video>-->
+					<!--<div class="play">-->
+						<!--<a href="###"><img src="img/play.png"/></a>-->
+					<!--</div>-->
+					<!--<div class="pause" style="display: none;">-->
+						<!--<a href="###"><img src="img/pause.png"/></a>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash;工程师作品&ndash;&gt;-->
+			<!--<div class="work" style="display: none;">-->
+				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
+					<!--<p></p>-->
+					<!--<p></p>-->
+					<!--<div class="introTitle">-->
+						<!--<p>现场工作图</p>-->
+						<!--<img src="img/ruleBkg.png" />-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="workBox">-->
+					<!--<img src="{{imgLink + getUser.tool_pic}}" />-->
+				<!--</div>-->
+				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
+					<!--<p></p>-->
+					<!--<p></p>-->
+					<!--<div class="introTitle">-->
+						<!--<p>业主评价</p>-->
+						<!--<img src="img/ruleBkg.png" />-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="workBox">-->
+					<!--<img src="{{imgLink + getUser.owner_pic}}" />-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="worker">-->
+				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
+					<!--<p></p>-->
+					<!--<p></p>-->
+					<!--<div class="introTitle">-->
+						<!--<p>参与投票者</p>-->
+						<!--<img src="img/ruleBkg.png" />-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="workerBox">-->
+                    <!--<template v-for="item in getUser.open">-->
+					<!--<div class="wb floatl">-->
+						<!--<div class="wbBox">-->
+							<!--<img src="{{item.open_face}}" />-->
+						<!--</div>-->
+						<!--<p>{{item.open_name}}</p>-->
+					<!--</div>-->
+                    <!--</template>-->
+					<!--<div class="clearl"></div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--&lt;!&ndash;店长介绍页面&ndash;&gt;-->
+		<!--<div id="intro-shop" style="display: none;">-->
+			<!--<div class="introTitleBox">-->
+				<!--<p></p>-->
+				<!--<p></p>-->
+				<!--<div class="introTitle">-->
+					<!--<p>个人介绍</p>-->
+					<!--<img src="img/ruleBkg.png" />-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash;头像&ndash;&gt;-->
+			<!--<div class="topIntop">-->
+				<!--<div class="intro1">-->
+					<!--<div class="intl floatl">-->
+						<!--<img src="{{imgLink + getUser.user_pic}}" />-->
+					<!--</div>-->
+					<!--<div class="intr floatl">-->
+						<!--<img src="{{imgLink + getUser.team_pic}}" />-->
+					<!--</div>-->
+					<!--<div class="clearl"></div>-->
+				<!--</div>-->
+				<!--<div class="intro2">-->
+					<!--<ul>-->
+						<!--<li>-->
+							<!--<div class="floatl il">-->
+								<!--<p>{{getUser.username}}</p>-->
+							<!--</div>-->
+							<!--<div class="floatl ir">-->
+								<!--<p>投票须知</p>-->
+								<!--<div class="clearr"></div>-->
+							<!--</div>-->
+							<!--<div class="clearl"></div>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<p>{{getUser.desc}}</p>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash;排名&ndash;&gt;-->
+			<!--<div class="topOrder">-->
+				<!--<div class="floatl">-->
+					<!--<p>{{getUser.rank}}</p>-->
+					<!--<p>当前排名</p>-->
+				<!--</div>-->
+				<!--<div class="floatl">-->
+					<!--<p>{{getUser.prevNum}}</p>-->
+					<!--<p>距离上一名还差</p>-->
+				<!--</div>-->
+				<!--<div class="floatl">-->
+					<!--<p>{{getUser.clicknum}}</p>-->
+					<!--<p>当前票数</p>-->
+				<!--</div>-->
+				<!--<div class="clearl"></div>-->
+			<!--</div>-->
+			<!--<div class="introTitleBox" style="margin-top: 10px;">-->
+				<!--<p></p>-->
+				<!--<p></p>-->
+				<!--<div class="introTitle">-->
+					<!--<p>店面形象</p>-->
+					<!--<img src="img/ruleBkg.png" />-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="banner">-->
+				<!--<div class="swiper-container">-->
+				    <!--<div class="swiper-wrapper">-->
+                        <!--<template v-for="item in getUser.sell">-->
+				        <!--<div class="swiper-slide"><img src="{{imgLink + item}}"/></div>-->
+				        <!--</template>-->
+				    <!--</div>				    -->
+				<!--</div>-->
+				<!--&lt;!&ndash; 如果需要导航按钮 &ndash;&gt;-->
+				<!--<div class="swiper-button-prev"></div>-->
+				<!--<div class="swiper-button-next"></div>-->
+			<!--</div>-->
+			<!--<div class="worker">-->
+				<!--<div class="introTitleBox" style="margin-top: 15px;">-->
+					<!--<p></p>-->
+					<!--<p></p>-->
+					<!--<div class="introTitle">-->
+						<!--<p>参与投票者</p>-->
+						<!--<img src="img/ruleBkg.png" />-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="workerBox">-->
+                    <!--<template v-for="item in getUser.open">-->
+                        <!--<div class="wb floatl">-->
+                            <!--<div class="wbBox">-->
+                                <!--<img src="{{item.open_face}}" />-->
+                            <!--</div>-->
+                            <!--<p>{{item.open_name}}</p>-->
+                        <!--</div>-->
+                    <!--</template>-->
+					<!--<div class="clearl"></div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
 		<!--分享页面-->
 		<div id="shareWin" style="display: none;">
 			<img src="img/share.png" />
@@ -611,7 +495,7 @@
 		<div id="bottomNav">
 			<ul>
 				<li class="navBox">
-					<a href="javascript:;" onclick="lay()">
+					<a href="index.html">
 						<img src="img/homev.png" />
 						<p>首页</p>
 					</a>
@@ -623,7 +507,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="javascript:;" onclick="lay()">
+					<a href="order.html">
 						<img src="img/orderh.png" />
 						<p>排名</p>
 					</a>
@@ -635,7 +519,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="javascript:;" onclick="lay()">
+					<a href="won.html">
 						<img src="img/wonh.png" />
 						<p>获奖</p>
 					</a>
@@ -643,10 +527,11 @@
 			</ul>
 			<div class="clearl"></div>
 		</div>
-		<script type="text/javascript" src="js/index.js" ></script>
+
 	</body>
-	<script type="text/javascript" src="js/public.js" ></script>
-	
+    <script type="text/javascript" src="js/index.js" ></script>
+    <script type="text/javascript" src="js/public.js" ></script>
+    <script src="js/vue-index.js?v=2"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,
@@ -666,8 +551,6 @@
             doc.addEventListener('DOMContentLoaded', recalc, false);
         })(document, window);
 
-		function lay(){
-			layer.msg('该功能暂未开放');
-		}
+
 	</script>
 </html>

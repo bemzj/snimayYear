@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="诗尼曼年度十优评选盛典">
+		<meta name="description" content="诗尼曼年度十优评选盛典">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable"/>
+		<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+		<meta content="telephone=no" name="format-detection"/>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+		<link rel="stylesheet" href="../static/layui/css/layui.css">
+		<script type="text/javascript" src="../static/layui/layui.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script type="text/javascript" src="js/swiper-3.4.2.min.js" ></script>
+        <script type="text/javascript" src="https://static.runoob.com/assets/vue/1.0.11/vue.min.js"></script>
+		<title>诗尼曼年度十优评选盛典</title>
+	</head>
+	<body id="vueMain">
+		<!--介绍页面-->
+		<div id="intro">
+			<div class="introTitleBox">
+				<p></p>
+				<p></p>
+				<div class="introTitle">
+					<p>个人介绍</p>
+					<img src="img/ruleBkg.png" />
+				</div>
+			</div>
+			<!--头像-->
+			<div class="topIntop">
+				<div class="introl floatl">
+					<img src="{{imgLink + getUser.user_pic}}" />
+				</div>
+				<div class="intror floatl">
+					<ul>
+						<li>
+							<div class="floatl il">
+								<p>{{getUser.username}}</p>
+							</div>
+							<div class="floatl ir">
+								<p>投票须知</p>
+								<div class="clearr"></div>
+							</div>
+							<div class="clearl"></div>
+						</li>
+						<li>
+							<p>{{getUser.desc}}</p>
+						</li>
+					</ul>
+				</div>
+				<div class="clearl"></div>
+			</div>
+			<!--排名-->
+			<div class="topOrder">
+				<div class="floatl">
+					<p>{{getUser.rank}}</p>
+					<p>当前排名</p>
+				</div>
+				<div class="floatl">
+					<p>{{getUser.prevNum}}</p>
+					<p>距离上一名还差</p>
+				</div>
+				<div class="floatl">
+					<p>{{getUser.clicknum}}</p>
+					<p>当前票数</p>
+				</div>
+				<div class="clearl"></div>
+			</div>
+			<!--设计作品-->			
+			<div class="designer" >
+				<div class="introTitleBox">
+					<p></p>
+					<p></p>
+					<div class="introTitle">
+						<p>参赛作品</p>
+						<img src="img/ruleBkg.png" />
+					</div>
+				</div>
+                <template v-for="item in getUser.designs">
+				<div class="dBox">
+					<div class="floatl dBoxl">
+						<div class="dBoxll">
+							<img src="{{imgLink + item.real}}" />
+						</div>
+						<p>[设计案例效果图]</p>
+					</div>
+					<div class="floatr dBoxr">
+						<div class="dBoxrr">
+							<img src="{{imgLink + item.effect}}" />
+						</div>
+						<p>[设计案例实装图]</p>
+					</div>
+					<div class="clearBoth"></div>
+				</div>
+                </template>
+				<div class="dBoxBottom">
+					<ul>
+						<li>
+							<img src="{{imgLink + getUser.space_pic}}"/>
+						</li>
+						<li>
+							<p>[酷家乐全屋漫游图]</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--家居作品-->
+			<div class="home" style="display: none;">
+				<div class="introTitleBox">
+					<p></p>
+					<p></p>
+					<div class="introTitle">
+						<p>参赛视频</p>
+						<img src="img/ruleBkg.png" />
+					</div>
+				</div>
+				<div class="videoBox">
+					<img src="img/video.jpg" id="vpic"/>
+					<video width="288px" height="155px" controls="controls" preload="auto" webkit-playsinline="" playsinline="">
+                        <source src="{{imgLink + getUser.video}}" type="video/mp4">
+                    </video>
+					<div class="play">
+						<a href="###"><img src="img/play.png"/></a>
+					</div>
+					<div class="pause" style="display: none;">
+						<a href="###"><img src="img/pause.png"/></a>
+					</div>
+				</div>
+			</div>
+			<!--工程师作品-->
+			<div class="work" style="display: none;">
+				<div class="introTitleBox" style="margin-top: 15px;">
+					<p></p>
+					<p></p>
+					<div class="introTitle">
+						<p>现场工作图</p>
+						<img src="img/ruleBkg.png" />
+					</div>
+				</div>
+				<div class="workBox">
+					<img src="{{imgLink + getUser.tool_pic}}" />
+				</div>
+				<div class="introTitleBox" style="margin-top: 15px;">
+					<p></p>
+					<p></p>
+					<div class="introTitle">
+						<p>业主评价</p>
+						<img src="img/ruleBkg.png" />
+					</div>
+				</div>
+				<div class="workBox">
+					<img src="{{imgLink + getUser.owner_pic}}" />
+				</div>
+			</div>
+			<div class="worker">
+				<div class="introTitleBox" style="margin-top: 15px;">
+					<p></p>
+					<p></p>
+					<div class="introTitle">
+						<p>参与投票者</p>
+						<img src="img/ruleBkg.png" />
+					</div>
+				</div>
+				<div class="workerBox">
+                    <template v-for="item in getUser.open">
+					<div class="wb floatl">
+						<div class="wbBox">
+							<img src="{{item.open_face}}" />
+						</div>
+						<p>{{item.open_name}}</p>
+					</div>
+                    </template>
+					<div class="clearl"></div>
+				</div>
+			</div>
+		</div>
+		<!--店长介绍页面-->
+		<div id="intro-shop" style="display: none;">
+			<div class="introTitleBox">
+				<p></p>
+				<p></p>
+				<div class="introTitle">
+					<p>个人介绍</p>
+					<img src="img/ruleBkg.png" />
+				</div>
+			</div>
+			<!--头像-->
+			<div class="topIntop">
+				<div class="intro1">
+					<div class="intl floatl">
+						<img src="{{imgLink + getUser.user_pic}}" />
+					</div>
+					<div class="intr floatl">
+						<img src="{{imgLink + getUser.team_pic}}" />
+					</div>
+					<div class="clearl"></div>
+				</div>
+				<div class="intro2">
+					<ul>
+						<li>
+							<div class="floatl il">
+								<p>{{getUser.username}}</p>
+							</div>
+							<div class="floatl ir">
+								<p>投票须知</p>
+								<div class="clearr"></div>
+							</div>
+							<div class="clearl"></div>
+						</li>
+						<li>
+							<p>{{getUser.desc}}</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--排名-->
+			<div class="topOrder">
+				<div class="floatl">
+					<p>{{getUser.rank}}</p>
+					<p>当前排名</p>
+				</div>
+				<div class="floatl">
+					<p>{{getUser.prevNum}}</p>
+					<p>距离上一名还差</p>
+				</div>
+				<div class="floatl">
+					<p>{{getUser.clicknum}}</p>
+					<p>当前票数</p>
+				</div>
+				<div class="clearl"></div>
+			</div>
+			<div class="introTitleBox" style="margin-top: 10px;">
+				<p></p>
+				<p></p>
+				<div class="introTitle">
+					<p>店面形象</p>
+					<img src="img/ruleBkg.png" />
+				</div>
+			</div>
+			<div class="banner">
+				<div class="swiper-container">
+				    <div class="swiper-wrapper">
+                        <template v-for="item in getUser.sell">
+				        <div class="swiper-slide"><img src="{{imgLink + item}}"/></div>
+				        </template>
+				    </div>				    
+				</div>
+				<!-- 如果需要导航按钮 -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+			<div class="worker">
+				<div class="introTitleBox" style="margin-top: 15px;">
+					<p></p>
+					<p></p>
+					<div class="introTitle">
+						<p>参与投票者</p>
+						<img src="img/ruleBkg.png" />
+					</div>
+				</div>
+				<div class="workerBox">
+                    <template v-for="item in getUser.open">
+                        <div class="wb floatl">
+                            <div class="wbBox">
+                                <img src="{{item.open_face}}" />
+                            </div>
+                            <p>{{item.open_name}}</p>
+                        </div>
+                    </template>
+					<div class="clearl"></div>
+				</div>
+			</div>
+		</div>
+		<!--分享页面-->
+		<div id="shareWin" style="display: none;">
+			<img src="img/share.png" />
+		</div>
+		<!--投票弹窗-->
+		<div class="votePop" style="display: none;">
+			<div class="vbox">
+				<div class="vimg1">					
+				</div>
+				<div class="vimg2">
+					<img src="img/w.png" />
+				</div>
+				<div class="vimg3"></div>
+				<div class="vimg4"></div>
+				<p>NO.20</p>
+				<p>姓名：刘雨</p>
+				<p>组别：设计师</p>
+				<p class="tips">您还有3票！</p>
+				<a href="###" class="confirm">确认</a>
+			</div>
+		</div>
+		<!--弹窗2-->
+		<div id="popWin2" class="popWin" style="display: none;">
+			<div class="popBox">
+				<img src="img/winBox.png" />
+				<img src="img/cry.png" />
+				<!--<img src="img/close.png" class="close" />-->
+				<div class="popBoxin">
+					<p>投票活动已结束！</p>
+					<p>感谢关注！</p>
+					<p></p>
+					<p>2017年9月30日～12月27日</p>
+				</div>
+			</div>
+		</div>
+		<!--票数用完-->
+		<div id="popWin4" class="popWindow" style="display: none;">
+			<div class="popBox">
+				<img src="img/winBox.png" />
+				<img src="img/cry.png" />
+				<img src="img/close.png" class="close" />
+				<div class="popBoxin">
+					<p>很抱歉！</p>
+					<p>您的票数已用完！</p>
+				</div>
+			</div>
+		</div>
+		<!--投票成功-->
+		<div id="voteSuccess" style="display: none;">
+			<div class="successBkg">
+				<img src="img/successBkg.png" />
+				<a href="###" class="return">返回</a>
+				<a href="###" class="help">帮TA拉票</a>
+			</div>
+		</div>
+		<div id="popW" style="display: none;"></div>
+		<!--底部导航-->
+		<div style="height: 1.5888rem;"></div>
+		<div id="bottomNav">
+			<ul>
+				<li class="navBox">
+					<a href="index.html">
+						<img src="img/homev.png" />
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="navBox">
+					<a href="apply.html">
+						<img src="img/applyh.png" />
+						<p>报名</p>
+					</a>
+				</li>
+				<li class="navBox">
+					<a href="order.html">
+						<img src="img/orderh.png" />
+						<p>排名</p>
+					</a>
+				</li>
+				<li class="navBox">
+					<a href="rule.html">
+						<img src="img/ruleh.png" />
+						<p>规则</p>
+					</a>
+				</li>
+				<li class="navBox">
+					<a href="won.html">
+						<img src="img/wonh.png" />
+						<p>获奖</p>
+					</a>
+				</li>
+			</ul>
+			<div class="clearl"></div>
+		</div>
+
+	</body>
+    <script type="text/javascript" src="js/index.js" ></script>
+    <script type="text/javascript" src="js/public.js" ></script>
+    <script src="js/vue-index.js?v=2"></script>
+	<script>
+		(function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth >= 640) {
+                        docEl.style.fontSize = '100px';
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                    }
+                };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+
+
+	</script>
+</html>

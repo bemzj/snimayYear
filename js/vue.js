@@ -4,17 +4,8 @@ var data={
     link:'http://127.0.0.1/snimay/',
     imgLink:'http://127.0.0.1/snimay/public',
     token:'',
-    rankList:[],
-    getUser:'',
-    page:'',
     adding:[],
-    inv:'',
-    orderDesc:'',
     hasClick:true,
-    editUser:'',
-    editPic:[],
-
-
 };
 
 var all = new Vue({
@@ -22,11 +13,7 @@ var all = new Vue({
     data:data,
     created:function(){
         var $this=this;
-        //点赞成功
-        function hitSuccess(){
-            $this.hasClick=true;
-            $('#hitGoodS').show();
-        }
+
         $this.AjaxL($this.link+'hasAuth','GET',false,function(res){
             if(res.code==408){
                 window.location.href=$this.link+"weixLogin";
@@ -37,6 +24,7 @@ var all = new Vue({
 
 
         $('#file_upload').on('click',function(){
+
             $this.uploads('#file_upload',function(res){
                 $("#designPic").attr('src',$this.imgLink+res.thumb.pic);
                 $("#user_pics").attr('value',res.thumb.pic_s);
@@ -274,11 +262,15 @@ var all = new Vue({
                     if(res.url){
                         window.location.href=res.url;
                     }
+                },
+                error:function(xml,status){
+                    console.log(xml);
                 }
             })
         },
         uploads:function(box,cal){
             var $this=this;
+
             layui.use('upload', function(){
                 var upload = layui.upload;
                 //var index;
@@ -483,7 +475,7 @@ var all = new Vue({
             var user_pics = $("#advpics").val();
             var video = $("#vido").val();
             var video_desc = $("#adv_vdes").val();
-        
+
             var index=layer.load(2);
             $this.AjaxL($this.link+'addAdv','POST',{
                 "sell_name":sell_name,
@@ -537,7 +529,7 @@ var all = new Vue({
             var owner_pics = $("#owner_pics").val();
             var tool_pic = $("#tool_pic").val();
             var tool_pics = $("#tool_pics").val();
-        
+
             var index=layer.load(2);
             $this.AjaxL($this.link+'addEng','POST',{
                 "sell_name":sell_name,
@@ -588,190 +580,5 @@ var all = new Vue({
             },2000);
         },
 
-
-        
-
-        updateShow:function(id){
-            var $this=this;
-            $this.AjaxL($this.link+'update','POST',{"id":id,"__token__":$this.token},function(res){
-            	if(res.list.id != 0){
-	                $(".information").css("display","none");
-	                $("#editInfo").css("display","block");
-	                $this.editUser=res.list;
-                    $this.editPic=res.list.pics;
-                    if(res.list.invoice == ''){
-                        $("#photo-inc").hide();
-                        $("#addInc").show();
-                    }
-                    var lenth = $("#photo-pic").children().length;
-                    if(lenth < 5){
-                        $("#upic").show();
-                    }
-            	}
-            });
-        },
-
-        delPic:function(key){
-            var $this=this;
-
-            $this.editPic.splice(key,1);
-
-        },
-
-         delInc:function(){
-            var $this=this;
-             $this.editUser.invoice=false;
-        },
-
-        edit:function(id){
-            var $this=this;
-            var username = $("#username2").val();
-            var phone = $("#phone2").val();
-            var J_Address = $("#J_Address2").val();
-            var X_Address = $("#X_Address2").text();
-            var file = $("#file2").val();
-            var desc = $("#desc2").text();
-            var invoice = $(".pic_inc2").val();
-            var pic=[];
-            $('.pic_box2').each(function(){
-                pic_s_img=$(this).find('.pic_s2').attr('value');
-                pic_img=$(this).find('.pic2').attr('value');
-                var data={"pic":pic_img,"pic_s":pic_s_img};
-                pic.push(data);
-            });
-            var index=layer.load(2);
-            $this.AjaxL( $this.link+'edit','POST',{
-                "id":id,
-                "username":username,
-                "phone":phone,
-                "region":J_Address,
-                "addr":X_Address,
-                "desc":desc,
-                "life":$('[name="life2"]').val(),
-                "pic":pic,
-                "invoice":invoice,
-                "__token__":$this.token
-            },function(res){
-                layer.close(index);
-                if(res.code == 1){
-                    applyS();
-                    $this.sign();
-                }else{
-                    showFailInfor(0,res.msg);
-                }
-            });
-        },
-        clicknum:function(id,group_id){
-            var $this=this;
-            if($this.hasClick==true){
-                $this.hasClick=false;
-                $this.AjaxL( $this.link+'click_num','POST',{"user_id":id,"group_id":group_id,"__token__":$this.token},function(res){
-                    if(res.code == 1){
-                        normalPop("点赞成功");
-                        $('.clicknum_'+id).text(res.clicknum);
-                    }else{
-                        normalPop(res.msg);
-                    }
-                });
-            }
-        },
-        sign:function(){
-            var $this=this;
-            $this.AjaxL($this.link+'getUser','GET',false,function(res){
-                if(res.id != 0){
-                    $(".apply").hide();
-                    $("#apply").children(".information").show();
-                    $this.getUser=res;
-                }
-            });
-        },
-        search:function(){
-            var $this=this;
-            var search = $("#search").val();
-            $this.rankList=[];
-            layui.use('flow', function(){  //排行榜
-                var flow = layui.flow;
-                flow.load({
-                    elem: '#rankList' //指定列表容器
-                    ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
-                        var lis = [];
-                        //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                        $this.AjaxL($this.link+'rank','GET',{page:page,"search":search},function(res){
-                            list=res.list;
-                            for (x in list){
-                                $this.rankList.push(list[x]);
-                            }
-                            next('', page <= res.last_page);
-                        });
-
-                    }
-                });
-            });
-
-        },
-        rank:function(){
-            var order=$('#order');
-            order.children('.order').show();
-            order.children('.renkDesc').hide();
-            var $this=this;
-            $this.rankList=[];
-            layui.use('flow', function(){  //排行榜
-                var flow = layui.flow;
-                flow.load({
-                    elem: '#rankList' //指定列表容器
-                    ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
-                        var lis = [];
-                        //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                        $this.AjaxL($this.link+'rank','GET',{page:page},function(res){
-                            list=res.list;
-                            for (x in list){
-                                $this.rankList.push(list[x]);
-                            }
-                            next('', page <= res.last_page);
-                        });
-
-                    }
-                });
-            });
-        },
-        upload:function(){
-            var $this=this;
-            var file = $("#file_pic").val();
-            $this.AjaxL( $this.link+'upload','POST',{"file":file,"__token__":$this.token},function(res){
-
-            });
-        },
-        showOrder:function(id){
-            var $this=this;
-            var order=$('#order');
-            $this.AjaxL($this.link+'orderDesc','GET',{id:id},function(res){
-                if(res.id != 0){
-                    order.children('.order').hide();
-                    order.children('.renkDesc').show();
-                    order.children('.renkDesc').children('.information').show();
-                    $this.orderDesc=res;
-                }
-            });
-        },
-        more:function(){
-            var order=$('#order');
-            order.children('.order').show();
-            order.children('.renkDesc').hide();
-        },
-        orderClick:function(id,group_id){
-            var $this=this;
-            $this.AjaxL( $this.link+'click_num','POST',{"user_id":id,"group_id":group_id,"__token__":$this.token},function(res){
-                if(res.code == 1){
-                    normalPop("点赞成功");
-                    $('#orderClick').text(res.clicknum);
-                }else if(res.code==0){
-                    //hitFail();
-                    normalPop(res.msg);
-                }else{
-                    //showFailInfor(0,res.msg);
-                    normalPop(res.msg);
-                }
-            });
-        }
     }
 });

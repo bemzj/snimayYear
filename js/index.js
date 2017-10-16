@@ -7,16 +7,36 @@ $(function(){
 		$(this).siblings('a').removeClass('aActive');
 		switch(index){
 			case 0:
-				$('.tangle').animate({marginLeft:'16%'},500);
+				$('.tangle1').animate({marginLeft:'16%'},500);
 				break;
 			case 1:
-				$('.tangle').animate({marginLeft:'38%'},500);
+				$('.tangle1').animate({marginLeft:'38%'},500);
 				break;
 			case 2:
-				$('.tangle').animate({marginLeft:'59.5%'},500);
+				$('.tangle1').animate({marginLeft:'59.5%'},500);
 				break;
 			case 3:
-				$('.tangle').animate({marginLeft:'80.8%'},500);
+				$('.tangle1').animate({marginLeft:'80.8%'},500);
+				break;
+		}
+	});
+	//搜索
+	$('.voteS').on('click',function(){
+		var index = $(this).index();
+		$(this).addClass('aActive');
+		$(this).siblings('a').removeClass('aActive');
+		switch(index){
+			case 0:
+				$('.tangle2').animate({marginLeft:'16%'},500);
+				break;
+			case 1:
+				$('.tangle2').animate({marginLeft:'38%'},500);
+				break;
+			case 2:
+				$('.tangle2').animate({marginLeft:'59.5%'},500);
+				break;
+			case 3:
+				$('.tangle2').animate({marginLeft:'80.8%'},500);
 				break;
 		}
 	});

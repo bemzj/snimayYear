@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="keywords" content="诗尼曼年度十优评选盛典">
+		<meta name="description" content="诗尼曼年度十优评选盛典">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 		<meta content="yes" name="apple-mobile-web-app-capable"/>
 		<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
@@ -179,7 +181,7 @@
 		<div id="bottomNav">
 			<ul>
 				<li class="navBox">
-					<a href="javascript:;" onclick="lay()">
+					<a href="index.html">
 						<img src="img/homeh.png" />
 						<p>首页</p>
 					</a>
@@ -191,7 +193,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="javascript:;" onclick="lay()">
+					<a href="order.html">
 						<img src="img/orderh.png" />
 						<p>排名</p>
 					</a>
@@ -203,7 +205,7 @@
 					</a>
 				</li>
 				<li class="navBox">
-					<a href="javascript:;" onclick="lay()">
+					<a href="won.html">
 						<img src="img/wonv.png" />
 						<p>获奖</p>
 					</a>
@@ -213,6 +215,8 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="js/public.js" ></script>
+    <script type="text/javascript" src="https://static.runoob.com/assets/vue/1.0.11/vue.min.js"></script>
+    <script src="js/vue.js?v=2"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,
@@ -232,8 +236,6 @@
             doc.addEventListener('DOMContentLoaded', recalc, false);
         })(document, window);
 
-		function lay(){
-			layer.msg('该功能暂未开放');
-		}
+
 	</script>
 </html>

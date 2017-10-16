@@ -1,7 +1,7 @@
 //微信分享
 $.ajax({
     type:'GET',
-    url:'http://toupiao.snimay.com/index.php/index/Index/jssdk_all/',//
+    url:'',//http://toupiao.snimay.com/index.php/index/Index/jssdk_all/
     dataType:'JSON',
     success:function(res){
         wx.config({
@@ -22,7 +22,7 @@ $.ajax({
                 title: '诗尼曼年度十优评选盛典',
                 desc: '榜样的力量，激励我们前行',
                 link: res.url,
-                imgUrl: 'http://toupiao.snimay.com/public/home/img/fenxiang.png',//
+                imgUrl: '',//http://toupiao.snimay.com/public/home/img/fenxiang.png
                 trigger: function (res) {
                 },
                 success: function (res) {
@@ -37,7 +37,7 @@ $.ajax({
                 title: '诗尼曼年度十优评选盛典',
                 desc: '榜样的力量，激励我们前行',
                 link: res.url,
-                imgUrl: 'http://toupiao.snimay.com/public/home/img/fenxiang.png',//
+                imgUrl: '',//http://toupiao.snimay.com/public/home/img/fenxiang.png
                 trigger: function (res) {
                 },
                 success: function (res) {
