@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<!--第一步-->
-		<div id="firstStep" >
+		<div id="firstStep" style="display: none;">
 			<!--logo-->
 			<div class="banner">
 				<img src="img/bannerApply.jpg" />
@@ -92,10 +92,16 @@
 							<p>个人简介：</p>
 						</div>
 						<div class="pMid">
-							<p>大家好,</p>
-							<input type="text" id="des_name"/>
-							<p>的设计师</p>
-							<input type="text" id="des_sell" style="width:20%"/>
+							<p>大家好,我是</p>
+							<input type="text" id="des_sell" placeholder="(店名)"/>
+							<p>的</p>
+							<p>诗尼曼设计师</p>
+							<input type="text" id="des_name" placeholder="(姓名)" style="width:26.2%"/>
+							<p>，今年累计设计</p>
+							<p>作品</p>
+							<input type="text" style="width:23.4%" placeholder="(作品量 )"/>
+							<p>个，总签单金额</p>
+							<input type="text" style="width:23.4%" placeholder="(金额)"/>
 							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
@@ -142,9 +148,6 @@
 					<p>请上传个人形象照一张（着新版工衣）</p>
 					<p>照片尺寸：600x500dpi,（1兆以内）</p>
 				</div>
-				<!-- <div class="headTwo">
-					<img src="img/headTwo.jpg" />
-				</div> -->
 				<div class="headTwo" style="position: relative">
 					<img src="img/headTwo.jpg" id="teamPic"/>
 					<input type="file" name="file" class="file_upload" id="file_upload_b" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
@@ -167,16 +170,20 @@
 						</div>
 						<div class="clearl"></div>
 					</li>
-					<li>
+					<li style="min-height: 5.2rem;">
 						<div class="ptop">
 							<p>个人简介：</p>
 						</div>
 						<div class="pMid">
-							<p>大家好,</p>
-							<input type="text" id="shop_name"/>
-							<p>的店长</p>
-							<input type="text" id="shop_sell"/>
-							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
+							<p>大家好,我是</p>
+							<input type="text" id="shop_sell" placeholder="(店名)" style="width:58.5%"/>
+							<p>的诗尼曼店长</p>
+							<input type="text" id="shop_name" placeholder="(姓名)" style="width:26.2%"/>
+							<p>；今年年度销售</p>
+							<p>目标完成率</p>
+							<input type="text" style="width:23.4%" placeholder="(完成率 )"/>
+							<p>%；争做2017诗尼</p>
+							<p>曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
 						<div class="pBottom">
@@ -189,7 +196,7 @@
 							<span></span>
 							<span></span>
 							<textarea maxlength="140" id="shop_des" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
-						</div>						
+						</div>					
 					</li>
 				</ul>
 			</div>
@@ -237,10 +244,17 @@
 							<p>个人简介：</p>
 						</div>
 						<div class="pMid">
-							<p>大家好,</p>
-							<input type="text" id="adv_name" style="width:18%"/>
-							<p>的家居顾问</p>
-							<input type="text" id="adv_sell" style="width:20%"/>
+							<p>大家好,我是</p>
+							<input type="text" id="adv_sell" placeholder="(店名)"/>
+							<p>的</p>
+							<p>诗尼曼家居顾问</p>
+							<input type="text" id="adv_name" placeholder="(姓名)" style="width:26.2%"/>
+							<p>；今年累计签</p>
+							<p>单</p>
+							<input type="text" style="width:23.4%" placeholder="(签单量 )"/>
+							<p>笔，总签单金额</p>
+							<input type="text" style="width:23.4%" placeholder="(金额)"/>
+							<p>；</p>
 							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
@@ -264,7 +278,7 @@
 			</div>
 		</div>
 			<!--服务工程师组-->
-		<div id="secondStepFour" class="secondStep" style="display: none;">
+		<div id="secondStepFour" class="secondStep" style="display: none;" >
 			<!--logo-->
 
 			<div class="stepTitle">
@@ -297,16 +311,20 @@
 						</div>
 						<div class="clearl"></div>
 					</li>
-					<li>
+					<li style="min-height: 5.2rem;">
 						<div class="ptop">
 							<p>个人简介：</p>
 						</div>
 						<div class="pMid">
-							<p>大家好,</p>
-							<input type="text" id="eng_name"/>
-							<p>的工程师</p>
-							<input type="text" id="eng_sell" style="width:20%"/>
-							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
+							<p>大家好,我是</p>
+							<input type="text" id="eng_sell" placeholder="(店名)" style="width:58.5%"/>
+							<p>的诗尼曼安装工程师</p>
+							<input type="text" id="eng_name" placeholder="(姓名)" style="width:26.2%"/>
+							<p>；今年累</p>
+							<p>计服务客户 </p>
+							<input type="text" style="width:23.4%" placeholder="(数量 )"/>
+							<p>家；争做2017诗尼</p>
+							<p>曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
 						<div class="pBottom">
@@ -319,7 +337,7 @@
 							<span></span>
 							<span></span>
 							<textarea maxlength="140" id="eng_desc" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
-						</div>						
+						</div>					
 					</li>
 				</ul>
 			</div>
@@ -330,7 +348,7 @@
 		</div>
 		<!--第三步-->
 			<!--设计师-->
-		<div id="thridStepOne" class="thridStep" style="display: none;">
+		<div id="thridStepOne" class="thridStep" >
 			<!--logo-->
 
 			<div class="stepTitle">
@@ -427,15 +445,17 @@
                                 <!--</li>-->
                             <!--</ul>-->
 						<!--</div>-->
-                        <div class="inputL floatl">
-                            <p>链接：</p>
-                        </div>
-                        <div class="inputR floatl">
-                            <input type="text" id="" placeholder="" />
-                        </div>
-
-                        <div class="clearl"></div>
-                        <p>请填写酷家乐全景图链接</p>
+						<div class="message1">
+							<div class="inputL1 floatl">
+                            	<p>链接：</p>
+	                        </div>
+	                        <div class="inputR1 floatl">
+	                            <input type="text" id="" placeholder="请输入酷家乐全景图链接地址" />
+	                        </div>
+	
+	                        <div class="clearl"></div>
+						</div>
+                        
 					</li>
 				</ul>				
 			</div>
