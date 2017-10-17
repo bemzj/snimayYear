@@ -74,8 +74,12 @@ var all = new Vue({
                         window.location.href=res.url;
                     }
                 },
-                error:function(xml,status){
-                    console.log(xml);
+                error:function(XMLHttpRequest){
+                    if(XMLHttpRequest.status==408){
+                        window.location.href=$this.link+"weixLogin";
+                    }else{
+                        myAlert('网络比较差，请重新进入。');
+                    }
                 }
             })
         },

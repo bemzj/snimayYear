@@ -950,4 +950,12 @@
       font-size: 0.24rem;
       font-weight: bold; }
 
+    .downs{
+      text-align: center;
+      color: #FCE73E;
+      border: 1px solid #FCE73E;
+      width: 80%;
+      margin: auto;
+    }
+
 /*# sourceMappingURL=index.css.map */
