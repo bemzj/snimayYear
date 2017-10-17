@@ -1,7 +1,7 @@
 //微信分享
 $.ajax({
     type:'GET',
-    url:'',//http://toupiao.snimay.com/index.php/index/Index/jssdk_all/
+    url:'http://toupiao.snimay.com/index.php/index/Index/jssdk_all/',//
     dataType:'JSON',
     success:function(res){
         wx.config({
@@ -22,7 +22,7 @@ $.ajax({
                 title: '诗尼曼年度十优评选盛典',
                 desc: '榜样的力量，激励我们前行',
                 link: res.url,
-                imgUrl: '',//http://toupiao.snimay.com/public/home/img/fenxiang.png
+                imgUrl: 'http://toupiao.snimay.com/public/home/img/fenxiang.png',//
                 trigger: function (res) {
                 },
                 success: function (res) {
@@ -37,7 +37,7 @@ $.ajax({
                 title: '诗尼曼年度十优评选盛典',
                 desc: '榜样的力量，激励我们前行',
                 link: res.url,
-                imgUrl: '',//http://toupiao.snimay.com/public/home/img/fenxiang.png
+                imgUrl: 'http://toupiao.snimay.com/public/home/img/fenxiang.png',//
                 trigger: function (res) {
                 },
                 success: function (res) {
@@ -58,4 +58,29 @@ function popWindow(error){
 	$(document).on('click','.closed',function(){
 		$('#popW').hide();
 	});
+}
+
+//报名
+function applys(){
+    $.ajax({
+        url:"http://toupiao.snimay.com/index.php/checkLogin",
+        type:"get",
+        success:function(re){
+            if(re.code == 0){
+                window.location.href="http://toupiao.snimay.com/public/home/apply.html";
+            }else if(re.code == 1){
+                var url = "get_des";
+                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+1;
+            }else if(re.code == 2){
+                var url = "get_shop";
+                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+2;
+            }else if(re.code == 3){
+                var url = "get_adv";
+                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+3;
+            }else if(re.code == 4){
+                var url = "get_eng";
+                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+4;
+            }
+        }
+    });
 }
