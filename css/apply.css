@@ -352,5 +352,19 @@
 	position: absolute;
 	left: 100%;
 	top: 0;
-}      
+}
+
+.link{
+  width: 35%;
+  height: 0.5rem;
+  text-align: center;
+  text-indent: 0.15rem;
+  color: white;
+    float: left;
+}
+.linkR{
+    width: 62%;
+    height: 0.5rem;
+    float: left;
+}
 /*# sourceMappingURL=apply.css.map */

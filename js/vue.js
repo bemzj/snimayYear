@@ -13,6 +13,7 @@ var all = new Vue({
     el:'#vueMain',
     data:data,
     created:function(){
+    
         var $this=this;
         $this.AjaxL($this.link+'hasAuth','GET',false,function(res){
             if(res.code==408){
@@ -21,9 +22,29 @@ var all = new Vue({
                 $this.token=res.token;
             }
         });
-
+        //跑马灯
         $this.AjaxL($this.link+'userList','GET',false,function(res){
             $this.user=res;
+            setTimeout(function(){
+                var lefts = $(window).width();
+                $('.runBox').css('left',lefts+'px');
+                var lefts1 = lefts+$('.runBox').width()+20;
+                $('.runBox1').css('left',lefts1+'px');
+                var run = $('.runBox').width();
+                setInterval(function(){
+                    if(lefts==-run){
+                        lefts=20;
+                        $('.runBox').css('left',lefts+'px');
+                        lefts1 = lefts+$('.runBox').width()+20;
+                        $('.runBox1').css('left',lefts1+'px');
+                    }
+                    lefts--;
+                    lefts1--;
+                    $('.runBox').css('left',lefts+'px');
+                    $('.runBox1').css('left',lefts1+'px');
+                },20);
+            },500)
+
         });
 
 
@@ -188,7 +209,7 @@ var all = new Vue({
                 ,size:20480
                 ,url: $this.link+"uploads" //上传接口
                 ,before:function(){
-                    index=layer.load();
+                    index=layer.load(1);
                 }
                 ,done: function(res){
                     layer.closeAll();
@@ -275,7 +296,7 @@ var all = new Vue({
                     ,size:3072
                     ,url: $this.link+"upload" //上传接口
                     ,before:function(){
-                        index=layer.load();
+                        index=layer.load(1);
                     }
                     ,done: function(res){
                         layer.closeAll();
@@ -346,7 +367,7 @@ var all = new Vue({
                 effect_pics += effect_pics3+';';
             }
 
-            var index=layer.load(2);
+            var index=layer.load(1);
             $this.AjaxL($this.link+'addDesign','POST',{
                 "sell_name":sell_name,
                 "username":username,
@@ -375,7 +396,7 @@ var all = new Vue({
         design_check:function(){
             var $this=this;
             var phone = $("#des_phone").val();
-            var index=layer.load(2);
+            var index=layer.load(1);
             var url = 'get_des';
             $this.AjaxL($this.link+'checkDesign','POST',{"phone":phone},function(res){
                 layer.close(index);
@@ -413,7 +434,7 @@ var all = new Vue({
             //var space_pic = $("#space_pic_p").val();
             var sell_pic = sell_pic_c+';'+sell_pic_d+';'+sell_pic_e+';';
             var sell_pics = sell_pics_c+';'+sell_pics_d+';'+sell_pics_e+';';
-            var index=layer.load(2);
+            var index=layer.load(1);
             $this.AjaxL($this.link+'addShop','POST',{
                 "sell_name":sell_name,
                 "username":username,
@@ -441,7 +462,7 @@ var all = new Vue({
         shop_check:function(){
             var $this=this;
             var phone = $("#shop_phone").val();
-            var index=layer.load(2);
+            var index=layer.load(1);
             var url = 'get_shop';
             $this.AjaxL($this.link+'checkShop','POST',{
                 "phone":phone,
@@ -470,7 +491,7 @@ var all = new Vue({
             var video = $("#vido").val();
             var video_desc = $("#adv_vdes").val();
 
-            var index=layer.load(2);
+            var index=layer.load(1);
             $this.AjaxL($this.link+'addAdv','POST',{
                 "sell_name":sell_name,
                 "username":username,
@@ -495,7 +516,7 @@ var all = new Vue({
         adv_check:function(){
             var $this=this;
             var phone = $("#adv_phone").val();
-            var index=layer.load(2);
+            var index=layer.load(1);
             var url = 'get_adv';
             $this.AjaxL($this.link+'checkAdv','POST',{
                 "phone":phone,
@@ -525,7 +546,7 @@ var all = new Vue({
             var tool_pic = $("#tool_pic").val();
             var tool_pics = $("#tool_pics").val();
 
-            var index=layer.load(2);
+            var index=layer.load(1);
             $this.AjaxL($this.link+'addEng','POST',{
                 "sell_name":sell_name,
                 "username":username,
@@ -552,7 +573,7 @@ var all = new Vue({
         eng_check:function(){
             var $this=this;
             var phone = $("#eng_phone").val();
-            var index=layer.load(2);
+            var index=layer.load(1);
             var url = 'get_eng';
             $this.AjaxL($this.link+'checkEng','POST',{
                 "phone":phone,
@@ -574,6 +595,9 @@ var all = new Vue({
                 $("#popWin3").hide();
                 $("#popWin4").show();
             },2000);
+            $('#popWin4').on('click',function(){
+                window.location.href='apply.html';
+            });
         },
 
     }

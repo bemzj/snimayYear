@@ -20,7 +20,7 @@
 	</head>
 	<body>
 		<!--logo-->
-		<div id="won">
+		<div id="won" style="display: none;">
 			<div class="stepTitle">
 				<img src="img/jinBkg.png" />
 			</div>
@@ -264,6 +264,8 @@
             if (!doc.addEventListener) return;
             win.addEventListener(resizeEvt, recalc, false);
             doc.addEventListener('DOMContentLoaded', recalc, false);
+            popWindow("获奖名单将在活动结束后进行公布");
+
         })(document, window);
 
 

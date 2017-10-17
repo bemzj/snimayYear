@@ -18,7 +18,7 @@
 		<title>诗尼曼年度十优评选盛典</title>
 	</head>
 	<body id="vueMain">
-		<div id="run">
+		<div id="run" style="opacity: 0;height:0;margin: 0">
 			<p>55555555</p>
 			<div class="runBox">
 				<p><nobr>{{user}}</nobr></p>
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<!--第一步-->
-		<div id="firstStep" style="display: none;">
+		<div id="firstStep" >
 			<!--logo-->
 			<div class="banner">
 				<img src="img/bannerApply.jpg" />
@@ -50,12 +50,12 @@
 				
 			</div>
 			<div class="next">
-				<button onclick="selected()">下一步</button>
+				<button onclick="selected()" style="margin-left: 2.5rem;">下一步</button>
 			</div>
 		</div>
 		<!--第二步-->
 			<!--设计师-->
-		<div id="secondStepOne" class="secondStep" >
+		<div id="secondStepOne" class="secondStep" style="display: none;">
 			<!--logo-->
 			<div class="stepTitle">
 				<p>报名参赛</p>
@@ -94,8 +94,8 @@
 						<div class="pMid">
 							<p>大家好,</p>
 							<input type="text" id="des_name"/>
-							<p>的店长</p>
-							<input type="text" id="des_sell"/>
+							<p>的设计师</p>
+							<input type="text" id="des_sell" style="width:20%"/>
 							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
@@ -238,9 +238,9 @@
 						</div>
 						<div class="pMid">
 							<p>大家好,</p>
-							<input type="text" id="adv_name"/>
-							<p>的店长</p>
-							<input type="text" id="adv_sell"/>
+							<input type="text" id="adv_name" style="width:18%"/>
+							<p>的家居顾问</p>
+							<input type="text" id="adv_sell" style="width:20%"/>
 							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
@@ -304,8 +304,8 @@
 						<div class="pMid">
 							<p>大家好,</p>
 							<input type="text" id="eng_name"/>
-							<p>的店长</p>
-							<input type="text" id="eng_sell"/>
+							<p>的工程师</p>
+							<input type="text" id="eng_sell" style="width:20%"/>
 							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
@@ -415,16 +415,27 @@
 						<!--</div>-->
 					<!--</li>-->
 					<li style="padding-top: 3%;clear: both;">
-						<div class="imgup">
-							<img src="img/upImg02.jpg" id="spacepic"/>
-							<div class="imgTips" id="spacepic_txt">
-								<img src="img/addupload.png" style="width:16%;" />
-								<p>请点击并上传酷家乐全景图</p>
-							</div>
-							<input type="file"  name="file" class="file_upload" id="file_upload_space"/>
-							<input type="hidden" id="space_pics" name="space_pics" value="">
-							<input type="hidden" id="space_pic" name="space_pic" value="">
-						</div>
+						<!--<div class="imgup">-->
+							<!--<img src="img/upImg02.jpg" id="spacepic"/>-->
+							<!--<div class="imgTips" id="spacepic_txt">-->
+								<!--<p>请填写酷家乐全景图链接</p>-->
+							<!--</div>-->
+							<!--&lt;!&ndash;<input type="text" id="space_pics" name="space_pics" value="">&ndash;&gt;-->
+						    <!--<ul>-->
+                                <!--<li>-->
+                                    <!---->
+                                <!--</li>-->
+                            <!--</ul>-->
+						<!--</div>-->
+                        <div class="inputL floatl">
+                            <p>链接：</p>
+                        </div>
+                        <div class="inputR floatl">
+                            <input type="text" id="" placeholder="" />
+                        </div>
+
+                        <div class="clearl"></div>
+                        <p>请填写酷家乐全景图链接</p>
 					</li>
 				</ul>				
 			</div>
@@ -589,7 +600,7 @@
 				</ul>				
 			</div>
 			<div class="next" align="center">
-				<button class="prev" onclick="engThree_prev()">上一步</button>
+				<button class="prev" onclick="engThree_prev()" style="margin-right: 0.44rem;margin-left:0;">上一步</button>
 				<button class="nextStep" v-on:click="add_eng()">提交</button>
 			</div>
 		</div>
@@ -680,10 +691,10 @@
 			<script src="https://s19.cnzz.com/z_stat.php?id=1265074528&web_id=1265074528" language="JavaScript"></script>
 		</div>
 	</body>
-	<script type="text/javascript" src="js/apply.js?v=4" ></script>
+	<script type="text/javascript" src="js/apply.js?v=5" ></script>
 	<script type="text/javascript" src="https://static.runoob.com/assets/vue/1.0.11/vue.min.js"></script>
 	<script type="text/javascript" src="js/public.js" ></script>
-	<script src="js/vue.js"></script>
+	<script src="js/vue.js?v=1"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,

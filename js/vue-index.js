@@ -1,8 +1,8 @@
 var data={
-    link:'http://toupiao.snimay.com/index.php/',
-    imgLink:'http://toupiao.snimay.com/public',
-    //link:'http://127.0.0.1/snimay/',
-    //imgLink:'http://127.0.0.1/snimay/public',
+    //link:'http://toupiao.snimay.com/index.php/',
+    //imgLink:'http://toupiao.snimay.com/public',
+    link:'http://127.0.0.1/snimay/',
+    imgLink:'http://127.0.0.1/snimay/public',
     token:'',
     searchResult:[],
     getUser:'',

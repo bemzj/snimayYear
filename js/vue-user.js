@@ -26,21 +26,32 @@ var all = new Vue({
         var id = $this.GetQueryString("id");
         var group_id = $this.GetQueryString("group_id");
         $this.AjaxL( $this.link+url,'GET',{"user_id":id,"group_id":group_id},function(res){
+            if(res.code==0){
+                $("#intro").hide();
+                $("#popWin5").show();
+
+                $('#popWin5').on('click',function(){
+                    window.location.href='index.html';
+                });
+                return;
+            }
             if(res.id != 0){
-                if(res.group_id == 2){
-                    $("#intro").hide();
-                    $("#intro-shop").show();
-                }else if(res.group_id == 3){
-                    $(".designer").hide();
-                    $(".home").show();
-                    $("#vpic").hide();
-                    $(".play").hide();
-                }else if(res.group_id == 4){
-                    $(".designer").hide();
-                    $(".home").hide();
-                    $(".work").show();
+                if(res.status >= 2){
+                    if(res.group_id == 2){
+                        $("#intro").hide();
+                        $("#intro-shop").show();
+                    }else if(res.group_id == 3){
+                        $(".designer").hide();
+                        $(".home").show();
+                        $("#vpic").hide();
+                        $(".play").hide();
+                    }else if(res.group_id == 4){
+                        $(".designer").hide();
+                        $(".home").hide();
+                        $(".work").show();
+                    }
+                    $this.getUser=res;
                 }
-                $this.getUser=res;
             }
         });
 

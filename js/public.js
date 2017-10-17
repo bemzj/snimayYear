@@ -54,7 +54,7 @@ $.ajax({
 //公共弹窗
 function popWindow(error){
 	$('#popW').show();
-	$('#popW').html('<div class="allWindow" ><div class="popBox"><img src="img/winBox.png" /><img src="img/cry.png" /><img src="img/close.png" class="closed" /><div class="popBoxin"><p>'+error+'</p></div></div></div>')
+	$('#popW').html('<div class="allWindow" ><div class="popBox"><img src="img/winBox.png" /><img src="img/laugh.png" /><img src="img/close.png" class="closed" /><div class="popBoxin"><p>'+error+'</p></div></div></div>')
 	$(document).on('click','.closed',function(){
 		$('#popW').hide();
 	});
@@ -63,11 +63,11 @@ function popWindow(error){
 //报名
 function applys(){
     $.ajax({
-        url:"http://toupiao.snimay.com/index.php/checkLogin",
+        url:"http://toupiao.snimay.com/index.php/checkLogin",//  http://127.0.0.1/snimay/index.php/checkLogin
         type:"get",
         success:function(re){
             if(re.code == 0){
-                window.location.href="http://toupiao.snimay.com/public/home/apply.html";
+                window.location.href="http://toupiao.snimay.com/public/home/apply.html";//  http://127.0.0.1/snimay/public/home/apply.html
             }else if(re.code == 1){
                 var url = "get_des";
                 window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+1;
@@ -84,3 +84,5 @@ function applys(){
         }
     });
 }
+
+

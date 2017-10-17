@@ -22,7 +22,7 @@
 	</head>
 	<body id="vueMain">
 		<!--介绍页面-->
-		<div id="intro">
+		<div id="intro" style="display: none;">
 			<div class="introTitleBox">
 				<p></p>
 				<p></p>
@@ -365,6 +365,19 @@
 				<a href="###" class="help">帮TA拉票</a>
 			</div>
 		</div>
+		<!--弹窗4-->
+		<div id="popWin5" class="popWin" style="display: none;">
+			<div class="popBox">
+				<img src="img/winBox.png" />
+				<img src="img/laugh.png" />
+				<!--<img src="img/close.png" class="close" />-->
+				<div class="popBoxin">
+					<p>系统审核中！</p>
+					<p>敬请期待！</p>
+					<p style="border: 0;font-size: 0.32rem;width: 100%;margin: 0;">谢谢您的关注！</p>
+				</div>
+			</div>
+		</div>
 		<div id="popW" style="display: none;"></div>
 		<!--底部导航-->
 		<div style="height: 1.5888rem;"></div>
@@ -372,13 +385,13 @@
 			<ul>
 				<li class="navBox">
 					<a href="index.html">
-						<img src="img/homev.png" />
+						<img src="img/homeh.png" />
 						<p>首页</p>
 					</a>
 				</li>
 				<li class="navBox" onclick="applys()">
 					<a href="javascript:;">
-						<img src="img/applyh.png" />
+						<img src="img/applyv.png" />
 						<p>报名</p>
 					</a>
 				</li>
@@ -403,13 +416,15 @@
 			</ul>
 			<div class="clearl"></div>
 		</div>
+
 		<div style="display: none">
 			<script src="https://s19.cnzz.com/z_stat.php?id=1265074528&web_id=1265074528" language="JavaScript"></script>
 		</div>
+
 	</body>
     <script type="text/javascript" src="js/index.js" ></script>
     <script type="text/javascript" src="js/public.js" ></script>
-    <script src="js/vue-user.js?v=2"></script>
+    <script src="js/vue-user.js?v=3"></script>
 	<script>
 		(function(doc, win) {
             var docEl = doc.documentElement,
