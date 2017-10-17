@@ -120,7 +120,7 @@
   background-size: 100% 100%; }
 .secondStep .message ul > li:nth-child(2) {
   margin-top: 7px;
-  min-height: 4.95rem;
+  min-height: 5.5rem;
   background: url(../img/textareaBkg.png) no-repeat;
   background-size: cover; }
   .secondStep .message ul > li:nth-child(2) .ptop p {
@@ -138,14 +138,29 @@
     margin-left: 4%;
     color: white; }
     .secondStep .message ul > li:nth-child(2) .pMid input {
-      width: 25.3%;
+      width: 52.5%;
       margin: 0% 1%;
       float: left;
       font-size: 0.24rem;
       line-height: 0.36rem;
-      margin-top: 0.05rem;
+      margin-top: 0.06rem;
       color: white;
+      text-align: center;
       border-bottom: 1px solid white; }
+.secondStep .message ul > li:nth-child(2) .pMid input::-moz-placeholder{
+	color: white;
+	font-size: 0.24rem;
+}
+.secondStep .message ul > li:nth-child(2) .pMid input::-ms-input-placeholder{
+	color: white;
+	font-size: 0.24rem;
+	
+}
+.secondStep .message ul > li:nth-child(2) .pMid input::-webkit-input-placeholder{
+	color: white;
+	font-size: 0.24rem;
+	
+}
     .secondStep .message ul > li:nth-child(2) .pMid p {
       float: left; }
     .secondStep .message ul > li:nth-child(2) .pMid p:nth-child(1) {
@@ -367,4 +382,45 @@
     height: 0.5rem;
     float: left;
 }
+.message1{
+	width: 74%;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	margin: 0 auto;
+	background: url(../img/mBkg.jpg) no-repeat;
+	background-size: cover;
+	font-size: 0.28rem;
+	
+}
+.inputL1{
+	width: 21%;
+	color: white;
+	text-indent: 0.15rem;
+	text-align: center;
+}
+.inputR1{
+	width: 79%;
+	color: white;
+}
+.inputR1 input{
+	border: 0;
+	width: 100%;
+	height: 100%;
+	line-height: 0.5rem;
+	background: rgba(0,0,0,0);
+	color: white;
+}
+.inputR1 input::-webkit-input-placeholder{
+	color: white;
+	font-size: 0.28rem;
+}
+.inputR1 input::-ms-input-placeholder{
+	color: white;
+	font-size: 0.28rem;
+}
+.inputR1 input::-moz-placeholder{
+	color: white;
+	font-size: 0.28rem;
+}
 /*# sourceMappingURL=apply.css.map */
+
