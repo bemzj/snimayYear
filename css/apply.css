@@ -25,19 +25,24 @@
 
 .next {
   margin-top: 6.8%;
-  margin-bottom: 6.8%; }
+  margin-bottom: 6.8%;
+  font-size: 0.28rem; 
+  }
   .next button {
     width: 24%;
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
     font-size: 0.28rem;
     line-height: 0.5rem;
     font-weight: bold;
     height: 0.5rem;
     border: 0;
     background: url(../img/next.png) no-repeat;
-    background-size: 100% 100%; }
-
+    background-size: 100% 100%;
+    margin-bottom: 0!important;}
+.next button:nth-child(1){
+	margin-left: 1.40rem;
+	margin-right: 0.44rem;
+}
 .upPhoto > p {
   font-size: 0.24rem;
   color: #00f1fa;
