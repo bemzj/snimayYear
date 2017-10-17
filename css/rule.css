@@ -21,7 +21,9 @@
   position: absolute;
   width: 100%;
   height: 7.4rem;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  margin-bottom: 1.5888rem;
+}
   #rule .ruleAndAward ul li {
     margin-bottom: 15px; }
   #rule .ruleAndAward .ruleBox .leftRule {

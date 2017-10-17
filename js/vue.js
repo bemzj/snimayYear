@@ -6,6 +6,7 @@ var data={
     token:'',
     adding:[],
     hasClick:true,
+    user:'',
 };
 
 var all = new Vue({
@@ -20,6 +21,11 @@ var all = new Vue({
                 $this.token=res.token;
             }
         });
+
+        $this.AjaxL($this.link+'userList','GET',false,function(res){
+            $this.user=res;
+        });
+
 
 
         $('#file_upload').on('click',function(){
