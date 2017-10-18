@@ -1,8 +1,8 @@
 var data={
-    link:'http://toupiao.snimay.com/index.php/',
-    imgLink:'http://toupiao.snimay.com/public',
-    //link:'http://127.0.0.1/snimay/',
-    //imgLink:'http://127.0.0.1/snimay/public',
+    //link:'http://toupiao.snimay.com/index.php/',
+    //imgLink:'http://toupiao.snimay.com/public',
+    link:'http://127.0.0.1/snimay/',
+    imgLink:'http://127.0.0.1/snimay/public',
     token:'',
     searchResult:[],
     getUser:'',
@@ -26,33 +26,40 @@ var all = new Vue({
         var id = $this.GetQueryString("id");
         var group_id = $this.GetQueryString("group_id");
         $this.AjaxL( $this.link+url,'GET',{"user_id":id,"group_id":group_id},function(res){
-            if(res.code==0){
-                $("#intro").hide();
-                $("#popWin5").show();
-
-                $('#popWin5').on('click',function(){
-                    window.location.href='index.html';
-                });
-                return;
-            }
-            if(res.id != 0){
-                if(res.status >= 2){
-                    if(res.group_id == 2){
-                        $("#intro").hide();
-                        $("#intro-shop").show();
-                    }else if(res.group_id == 3){
-                        $(".designer").hide();
-                        $(".home").show();
-                        $("#vpic").hide();
-                        $(".play").hide();
-                    }else if(res.group_id == 4){
-                        $(".designer").hide();
-                        $(".home").hide();
-                        $(".work").show();
-                    }
-                    $this.getUser=res;
+            if(res.code == 0){
+                var url;
+                if(res.list.group_id == 1){
+                    url = "get_des";
+                    window.location.href="apply.html?url="+url+"&id="+res.list.id+"&group_id="+1;
+                }else if(res.list.group_id == 2){
+                    url = "get_shop";
+                    window.location.href="apply.html?url="+url+"&id="+res.list.id+"&group_id="+2;
+                }else if(res.list.group_id == 3){
+                    url = "get_adv";
+                    window.location.href="apply.html?url="+url+"&id="+res.list.id+"&group_id="+3;
+                }else if(res.list.group_id == 4){
+                    url = "get_eng";
+                    window.location.href="apply.html?url="+url+"&id="+res.list.id+"&group_id="+4;
                 }
+            }else{
+                if(res.group_id == 1){
+                    $("#intro").show();
+                } else if(res.group_id == 2){
+                    $("#intro").hide();
+                    $("#intro-shop").show();
+                }else if(res.group_id == 3){
+                    $(".designer").hide();
+                    $(".home").show();
+                    $("#vpic").hide();
+                    $(".play").hide();
+                }else if(res.group_id == 4){
+                    $(".designer").hide();
+                    $(".home").hide();
+                    $(".work").show();
+                }
+                $this.getUser=res;
             }
+
         });
 
     },

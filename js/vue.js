@@ -1,12 +1,13 @@
 var data={
-    link:'http://toupiao.snimay.com/index.php/',
-    imgLink:'http://toupiao.snimay.com/public',
-    //link:'http://127.0.0.1/snimay/',
-    //imgLink:'http://127.0.0.1/snimay/public',
+    //link:'http://toupiao.snimay.com/index.php/',
+    //imgLink:'http://toupiao.snimay.com/public',
+    link:'http://127.0.0.1/snimay/',
+    imgLink:'http://127.0.0.1/snimay/public',
     token:'',
     adding:[],
     hasClick:true,
     user:'',
+    getUser:'',
 };
 
 var all = new Vue({
@@ -45,6 +46,50 @@ var all = new Vue({
                 },20);
             },500)
 
+        });
+
+        var url = $this.GetQueryString("url");
+        var id = $this.GetQueryString("id");
+        var group_id = $this.GetQueryString("group_id");
+        $this.AjaxL( $this.link+url,'GET',{"user_id":id,"group_id":group_id},function(res){
+            $("#firstStep").hide();
+            if(res.list.group_id == 1){
+                $("#secondStepOne").show();
+                $("#upImg_txt").hide();
+                $("#upImg_txt_0").hide();
+                if(res.list.effect_b != '' || res.list.real_b != ''){
+                    $("#d_pic").show();
+                    $("#upImg_txt_1").hide();
+                    $("#upImg_txt_2").hide();
+                }
+                if(res.list.effect_a != '' || res.list.real_a != ''){
+                    $("#d_pic_a").show();
+                    $("#upImg_txt_3").hide();
+                    $("#upImg_txt_4").hide();
+                }
+            }else if(res.list.group_id == 2){
+                $("#secondStepTwo").show();
+                $("#sell_e_txt").hide();
+                if(res.list.real_a != ''){
+                    $("#li_a").show();
+                    $("#sell_c_txt").hide();
+                }
+                if(res.list.real_b != ''){
+                    $("#li_b").show();
+                    $("#sell_d_txt").hide();
+                }
+            }else if(res.list.group_id == 3){
+                $("#secondStepThree").show();
+                $("#img_vido").hide();
+
+            }else if(res.list.group_id == 4){
+                $("#secondStepFour").show();
+                $("#v_txt").hide();
+                $("#owner_txt").hide();
+
+            }
+
+            $this.getUser=res.list;
         });
 
 
@@ -129,14 +174,14 @@ var all = new Vue({
         });
 
 
-        $('#file_upload_space').on('click',function(){
-            $this.uploads('#file_upload_space',function(res){
-                $("#spacepic_txt").hide();
-                $("#spacepic").attr('src',$this.imgLink+res.thumb.pic);
-                $("#space_pics").attr('value',res.thumb.pic_s);
-                $("#space_pic").attr('value',res.thumb.pic);
-            });
-        });
+        //$('#file_upload_space').on('click',function(){
+        //    $this.uploads('#file_upload_space',function(res){
+        //        $("#spacepic_txt").hide();
+        //        $("#spacepic").attr('src',$this.imgLink+res.thumb.pic);
+        //        $("#space_pics").attr('value',res.thumb.pic_s);
+        //        $("#space_pic").attr('value',res.thumb.pic);
+        //    });
+        //});
 
 
         $('#file_upload_a').on('click',function(){
@@ -327,9 +372,9 @@ var all = new Vue({
             var phone = $("#des_phone").val();
             var user_pic = $("#user_pic").val();
             var user_pics = $("#user_pics").val();
-            var desc = $("#des_content").val();
-            //var design_desc = $("#design_desc").val();
-            var space_pics = $("#space_pics").val();
+            var works = $("#des_work").val();
+            var money = $("#des_money").val();
+            var desc = "大家好,我是"+sell_name+"诗尼曼设计师"+username+"，今年累计设计作品"+works+"个，总签单金额"+money+",争做2017诗尼曼“年度十优”榜样，我相信我能行！";
             var space_pic = $("#space_pic").val();
 
             var real_pics = $("#real_pics").val();
@@ -375,6 +420,8 @@ var all = new Vue({
             $this.AjaxL($this.link+'addDesign','POST',{
                 "sell_name":sell_name,
                 "username":username,
+                "works":works,
+                "money":money,
                 "phone":phone,
                 "user_pic":user_pic,
                 "user_pics":user_pics,
@@ -383,7 +430,6 @@ var all = new Vue({
                 "effect_pic":effect_pic,
                 "real_pics":real_pics,
                 "real_pic":real_pic,
-                "space_pics":space_pics,
                 "space_pic":space_pic,
                 "__token__":$this.token
             },function(res){
@@ -420,7 +466,8 @@ var all = new Vue({
             var sell_name = $("#shop_sell").val();
             var username = $("#shop_name").val();
             var phone = $("#shop_phone").val();
-            var desc = $("#shop_des").val();
+            var complete = $("#shop_complete").val();
+            var desc = "大家好,我是"+sell_name+"诗尼曼店长"+username+"；今年年度销售目标完成率"+complete+"%；争做2017诗尼曼“年度十优”榜样，我相信我能行！";
             var user_pic = $("#adv_pic").val();
             var user_pics = $("#adv_pics").val();
             var team_pics = $("#team_pics").val();
@@ -433,9 +480,7 @@ var all = new Vue({
             var sell_pics_e = $("#sell_pics_e").val();
             var sell_pic_e = $("#sell_pic_e").val();
 
-            var shop_desc = $("#shop_desc").val();
-            //var space_pics = $("#space_pics_p").val();
-            //var space_pic = $("#space_pic_p").val();
+
             var sell_pic = sell_pic_c+';'+sell_pic_d+';'+sell_pic_e+';';
             var sell_pics = sell_pics_c+';'+sell_pics_d+';'+sell_pics_e+';';
             var index=layer.load(1);
@@ -447,7 +492,7 @@ var all = new Vue({
                 "team_pic":team_pic,
                 "sell_pic":sell_pic,
                 "desc":desc,
-                "shop_desc":shop_desc,
+                "complete":complete,
                 "user_pics":user_pics,
                 "team_pics":team_pics,
                 "sell_pics":sell_pics,
@@ -489,11 +534,12 @@ var all = new Vue({
             var sell_name = $("#adv_sell").val();
             var username = $("#adv_name").val();
             var phone = $("#adv_phone").val();
-            var desc = $("#adv_desc").val();
+            var works = $("#adv_works").val();
+            var money = $("#adv_money").val();
+            var desc = "大家好,我是"+sell_name+"诗尼曼家居顾问"+username+"；今年累计签单"+works+"笔，总签单金额"+money+"；争做2017诗尼曼“年度十优”榜样，我相信我能行！";
             var user_pic = $("#advpic").val();
             var user_pics = $("#advpics").val();
             var video = $("#vido").val();
-            var video_desc = $("#adv_vdes").val();
 
             var index=layer.load(1);
             $this.AjaxL($this.link+'addAdv','POST',{
@@ -502,7 +548,8 @@ var all = new Vue({
                 "phone":phone,
                 "user_pic":user_pic,
                 "desc":desc,
-                "video_desc":video_desc,
+                "works":works,
+                "money":money,
                 "user_pics":user_pics,
                 "video":video,
                 "__token__":$this.token
@@ -542,7 +589,8 @@ var all = new Vue({
             var sell_name = $("#eng_sell").val();
             var username = $("#eng_name").val();
             var phone = $("#eng_phone").val();
-            var desc = $("#eng_desc").val();
+            var serve_num = $("#eng_serve_num").val();
+            var desc = "大家好,我是"+sell_name+"诗尼曼安装工程师"+username+"；今年累计服务客户"+serve_num+"家；争做2017诗尼曼“年度十优”榜样，我相信我能行！";
             var user_pic = $("#engpic").val();
             var user_pics = $("#engpics").val();
             var owner_pic = $("#owner_pic").val();
@@ -555,6 +603,7 @@ var all = new Vue({
                 "sell_name":sell_name,
                 "username":username,
                 "phone":phone,
+                "serve_num":serve_num,
                 "user_pic":user_pic,
                 "desc":desc,
                 "user_pics":user_pics,
@@ -600,8 +649,14 @@ var all = new Vue({
                 $("#popWin4").show();
             },2000);
             $('#popWin4').on('click',function(){
-                window.location.href='apply.html';
+                window.location.href='index.html';
             });
+        },
+
+        GetQueryString:function(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
         },
 
     }

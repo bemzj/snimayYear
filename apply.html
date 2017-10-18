@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<!--第一步-->
-		<div id="firstStep" style="display: none;">
+		<div id="firstStep">
 			<!--logo-->
 			<div class="banner">
 				<img src="img/bannerApply.jpg" />
@@ -66,10 +66,15 @@
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
 				<div class="head" style="position: relative">
-					<img src="img/head.jpg" id="designPic"/>
+					<template v-if="getUser.user_pic">
+						<img src="{{imgLink + getUser.user_pic}}" id="designPic"/>
+					</template>
+					<template v-else>
+						<img src="img/head.jpg" id="designPic"/>
+					</template>
 					<input type="file" name="file" class="file_upload" id="file_upload" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
-					<input type="hidden" id="user_pics" name="user_pics" value="">
-					<input type="hidden" id="user_pic" name="user_pic" value="">
+					<input type="hidden" id="user_pics" name="user_pics" value="{{getUser.user_pics}}">
+					<input type="hidden" id="user_pic" name="user_pic" value="{{getUser.user_pic}}">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
@@ -83,7 +88,7 @@
 							<p>电话号码：</p>
 						</div>
 						<div class="inputR floatl">
-							<input type="text" id="des_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+							<input type="text" id="des_phone" value="{{getUser.phone}}" maxlength="11" placeholder="" v-on:blur="design_check()" />
 						</div>
 						<div class="clearl"></div>
 					</li>
@@ -93,29 +98,29 @@
 						</div>
 						<div class="pMid">
 							<p>大家好,我是</p>
-							<input type="text" id="des_sell" placeholder="(店名)"/>
-							<p>的</p>
+							<input type="text" id="des_sell" value="{{getUser.sell_name}}" placeholder="(店名)"/>
+							<p></p>
 							<p>诗尼曼设计师</p>
-							<input type="text" id="des_name" placeholder="(姓名)" style="width:26.2%"/>
+							<input type="text" id="des_name" value="{{getUser.username}}" placeholder="(姓名)" style="width:26.2%"/>
 							<p>，今年累计设计</p>
 							<p>作品</p>
-							<input type="text" style="width:23.4%" placeholder="(作品量 )"/>
+							<input type="text" id="des_work" value="{{getUser.works}}" style="width:23.4%" placeholder="(作品量 )"/>
 							<p>个，总签单金额</p>
-							<input type="text" style="width:23.4%" placeholder="(金额)"/>
+							<input type="text" id="des_money" value="{{getUser.money}}" style="width:23.4%" placeholder="(金额)"/>
 							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
-						<div class="pBottom">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<textarea maxlength="140" id="des_content" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
-						</div>						
+						<!--<div class="pBottom">-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<textarea maxlength="140" id="des_content" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>-->
+						<!--</div>						-->
 					</li>
 				</ul>
 			</div>
@@ -139,20 +144,31 @@
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
 				<div class="head" style="position: relative">
-					<img src="img/head.jpg" id="adviserPic"/>
+                    <template v-if="getUser.user_pic">
+                        <img src="{{imgLink + getUser.user_pic}}" id="adviserPic"/>
+                    </template>
+                    <template v-else>
+                        <img src="img/head.jpg" id="adviserPic"/>
+                    </template>
+
 					<input type="file" name="file" class="file_upload" id="file_upload_a" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
-					<input type="hidden" id="adv_pics" name="user_pics" value="">
-					<input type="hidden" id="adv_pic" name="user_pic" value="">
+					<input type="hidden" id="adv_pics" name="user_pics" value="{{getUser.user_pics}}">
+					<input type="hidden" id="adv_pic" name="user_pic" value="{{getUser.user_pic}}">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
 					<p>照片尺寸：600x500dpi,（1兆以内）</p>
 				</div>
 				<div class="headTwo" style="position: relative">
-					<img src="img/headTwo.jpg" id="teamPic"/>
+                    <template v-if="getUser.team_pic">
+                        <img src="{{imgLink + getUser.team_pic}}" id="teamPic"/>
+                    </template>
+                    <template v-else>
+                        <img src="img/head.jpg" id="teamPic"/>
+                    </template>
 					<input type="file" name="file" class="file_upload" id="file_upload_b" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
-					<input type="hidden" id="team_pics" name="team_pics" value="">
-					<input type="hidden" id="team_pic" name="team_pic" value="">
+					<input type="hidden" id="team_pics" name="team_pics" value="{{getUser.team_pics}}">
+					<input type="hidden" id="team_pic" name="team_pic" value="{{getUser.team_pic}}">
 				</div>
 				<div class="ptips">
 					<p>请上传团队合照一张</p>
@@ -166,37 +182,37 @@
 							<p>电话号码：</p>
 						</div>
 						<div class="inputR floatl">
-							<input type="text" id="shop_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+							<input type="text" id="shop_phone" value="{{getUser.phone}}" maxlength="11" placeholder="" v-on:blur="design_check()" />
 						</div>
 						<div class="clearl"></div>
 					</li>
-					<li style="min-height: 5.2rem;">
+					<li style="min-height: 3.0rem;">
 						<div class="ptop">
 							<p>个人简介：</p>
 						</div>
 						<div class="pMid">
 							<p>大家好,我是</p>
-							<input type="text" id="shop_sell" placeholder="(店名)" style="width:58.5%"/>
-							<p>的诗尼曼店长</p>
-							<input type="text" id="shop_name" placeholder="(姓名)" style="width:26.2%"/>
+							<input type="text" id="shop_sell" value="{{getUser.sell_name}}" placeholder="(店名)" style="width:58.5%"/>
+							<p>诗尼曼店长</p>
+							<input type="text" id="shop_name" value="{{getUser.username}}" placeholder="(姓名)" style="width:26.2%"/>
 							<p>；今年年度销售</p>
 							<p>目标完成率</p>
-							<input type="text" style="width:23.4%" placeholder="(完成率 )"/>
-							<p>%；争做2017诗尼</p>
-							<p>曼“年度十优”榜样，我相信我能行！</p>
+							<input type="text"id="shop_complete" value="{{getUser.complete}}" style="width:23.4%" placeholder="(完成率 )"/>
+							<p>%；争做2017诗尼曼“年度十</p>
+							<p>优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
-						<div class="pBottom">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<textarea maxlength="140" id="shop_des" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
-						</div>					
+						<!--<div class="pBottom">-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<textarea maxlength="140" id="shop_des" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>-->
+						<!--</div>					-->
 					</li>
 				</ul>
 			</div>
@@ -218,10 +234,16 @@
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
 				<div class="head" style="position: relative">
-					<img src="img/head.jpg" id="adPic"/>
+                    <template v-if="getUser.user_pic">
+                        <img src="{{imgLink + getUser.user_pic}}" id="adPic"/>
+                    </template>
+                    <template v-else>
+                        <img src="img/head.jpg" id="adPic"/>
+                    </template>
+
 					<input type="file" name="file" class="file_upload" id="file_upload_adv" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
-					<input type="hidden" id="advpics" name="user_pics" value="">
-					<input type="hidden" id="advpic" name="user_pic" value="">
+					<input type="hidden" id="advpics" name="user_pics" value="{{getUser.user_pic}}s">
+					<input type="hidden" id="advpic" name="user_pic" value="{{getUser.user_pic}}">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
@@ -235,7 +257,7 @@
 							<p>电话号码：</p>
 						</div>
 						<div class="inputR floatl">
-							<input type="text" id="adv_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+							<input type="text" id="adv_phone" value="{{getUser.phone}}" maxlength="11" placeholder="" v-on:blur="design_check()" />
 						</div>
 						<div class="clearl"></div>
 					</li>
@@ -245,30 +267,30 @@
 						</div>
 						<div class="pMid">
 							<p>大家好,我是</p>
-							<input type="text" id="adv_sell" placeholder="(店名)"/>
-							<p>的</p>
+							<input type="text" id="adv_sell" value="{{getUser.sell_name}}" placeholder="(店名)"/>
+							<p></p>
 							<p>诗尼曼家居顾问</p>
-							<input type="text" id="adv_name" placeholder="(姓名)" style="width:26.2%"/>
+							<input type="text" id="adv_name" value="{{getUser.username}}" placeholder="(姓名)" style="width:26.2%"/>
 							<p>；今年累计签</p>
 							<p>单</p>
-							<input type="text" style="width:23.4%" placeholder="(签单量 )"/>
+							<input type="text" id="adv_works" value="{{getUser.works}}" style="width:23.4%" placeholder="(签单量 )"/>
 							<p>笔，总签单金额</p>
-							<input type="text" style="width:23.4%" placeholder="(金额)"/>
+							<input type="text" id="adv_money" value="{{getUser.money}}" style="width:23.4%" placeholder="(金额)"/>
 							<p>；</p>
 							<p>争做2017诗尼曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
-						<div class="pBottom">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<textarea maxlength="140" id="adv_desc" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
-						</div>						
+						<!--<div class="pBottom">-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<textarea maxlength="140" id="adv_desc" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>-->
+						<!--</div>						-->
 					</li>
 				</ul>
 			</div>
@@ -290,10 +312,16 @@
 			<div class="upPhoto">
 				<p>请上传个人形象照</p>
 				<div class="head" style="position: relative">
-					<img src="img/head.jpg" id="enPic"/>
+                    <template v-if="getUser.user_pic">
+                        <img src="{{imgLink + getUser.user_pic}}" id="enPic"/>
+                    </template>
+                    <template v-else>
+                        <img src="img/head.jpg" id="enPic"/>
+                    </template>
+
 					<input type="file" name="file" class="file_upload" id="file_upload_eng" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;"/>
-					<input type="hidden" id="engpics" name="user_pics" value="">
-					<input type="hidden" id="engpic" name="user_pic" value="">
+					<input type="hidden" id="engpics" name="user_pics" value="{{getUser.user_pics}}">
+					<input type="hidden" id="engpic" name="user_pic" value="{{getUser.user_pic}}">
 				</div>
 				<div class="ptips">
 					<p>请上传个人形象照一张（着新版工衣）</p>
@@ -307,37 +335,37 @@
 							<p>电话号码：</p>
 						</div>
 						<div class="inputR floatl">
-							<input type="text" id="eng_phone" maxlength="11" placeholder="" v-on:blur="design_check()" />
+							<input type="text" id="eng_phone" value="{{getUser.phone}}" maxlength="11" placeholder="" v-on:blur="design_check()" />
 						</div>
 						<div class="clearl"></div>
 					</li>
-					<li style="min-height: 5.2rem;">
+					<li style="min-height: 3.2rem;">
 						<div class="ptop">
 							<p>个人简介：</p>
 						</div>
 						<div class="pMid">
 							<p>大家好,我是</p>
-							<input type="text" id="eng_sell" placeholder="(店名)" style="width:58.5%"/>
-							<p>的诗尼曼安装工程师</p>
-							<input type="text" id="eng_name" placeholder="(姓名)" style="width:26.2%"/>
+							<input type="text" id="eng_sell" value="{{getUser.sell_name}}" placeholder="(店名)" style="width:57.5%"/>
+							<p>诗尼曼安装工程师</p>
+							<input type="text" id="eng_name" value="{{getUser.username}}" placeholder="(姓名)" style="width:26.2%"/>
 							<p>；今年累</p>
 							<p>计服务客户 </p>
-							<input type="text" style="width:23.4%" placeholder="(数量 )"/>
+							<input type="text" id="eng_serve_num" value="{{getUser.serve_num}}" style="width:23.4%" placeholder="(数量 )"/>
 							<p>家；争做2017诗尼</p>
 							<p>曼“年度十优”榜样，我相信我能行！</p>
 						</div>
 						<div class="clearl"></div>
-						<div class="pBottom">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<textarea maxlength="140" id="eng_desc" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>
-						</div>					
+						<!--<div class="pBottom">-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<span></span>-->
+							<!--<textarea maxlength="140" id="eng_desc" placeholder="个人介绍（140字以内，包含但不限于：年度作品数量、签单量、签单金额、设计理念）"></textarea>-->
+						<!--</div>					-->
 					</li>
 				</ul>
 			</div>
@@ -348,7 +376,7 @@
 		</div>
 		<!--第三步-->
 			<!--设计师-->
-		<div id="thridStepOne" class="thridStep" >
+		<div id="thridStepOne" class="thridStep" style="display: none;">
 			<!--logo-->
 
 			<div class="stepTitle">
@@ -361,96 +389,111 @@
 				<ul>
                     <li id="d_pic_a" style="display: none;">
                         <div class="imgup" style="float: left;width: 38%;margin-left: 11%;margin-bottom: 3%;">
-                            <img src="img/upImg01.jpg" id="upImg3" />
+                            <template v-if="getUser.effect_a">
+                                <img src="{{imgLink + getUser.effect_a}}" id="upImg3"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="upImg3" />
+                            </template>
                             <div class="imgTips" id="upImg_txt_3">
                                 <img src="img/addupload.png" style="width:20%;" />
                                 <p>请点击并上传效果图</p>
                             </div>
                             <input type="file"  name="file" class="file_upload" id="file_upload_des3"/>
                             <input type="hidden" id="effect_pics3" name="effect_pics" value="">
-                            <input type="hidden" id="effect_pic3" name="effect_pic" value="">
+                            <input type="hidden" id="effect_pic3" name="effect_pic" value="{{getUser.effect_a}}">
                         </div>
                         <div class="imgup" style="float: right;width: 38%;margin-right: 11%;margin-bottom: 3%;">
-                            <img src="img/upImg01.jpg" id="upImg4" />
+                            <template v-if="getUser.real_a">
+                                <img src="{{imgLink + getUser.real_a}}" id="upImg4"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="upImg4" />
+                            </template>
                             <div class="imgTips" id="upImg_txt_4">
                                 <img src="img/addupload.png" style="width:20%;" />
                                 <p>请点击并上传实装图</p>
                             </div>
                             <input type="file"  name="file" class="file_upload" id="file_upload_des4"/>
                             <input type="hidden" id="real_pics4" name="real_pics" value="">
-                            <input type="hidden" id="real_pic4" name="real_pic" value="">
+                            <input type="hidden" id="real_pic4" name="real_pic" value="{{getUser.real_a}}">
                         </div>
                     </li>
-
                     <li id="d_pic" style="display: none;">
                         <div class="imgup" style="float: left;width: 38%;margin-left: 11%;margin-bottom: 3%;">
-                            <img src="img/upImg01.jpg" id="upImg1" />
+                            <template v-if="getUser.effect_b">
+                                <img src="{{imgLink + getUser.effect_b}}" id="upImg1"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="upImg1" />
+                            </template>
                             <div class="imgTips" id="upImg_txt_1">
                                 <img src="img/addupload.png" style="width:20%;" />
                                 <p>请点击并上传效果图</p>
                             </div>
                             <input type="file"  name="file" class="file_upload" id="file_upload_des1"/>
                             <input type="hidden" id="effect_pics1" name="effect_pics" value="">
-                            <input type="hidden" id="effect_pic1" name="effect_pic" value="">
+                            <input type="hidden" id="effect_pic1" name="effect_pic" value="{{getUser.effect_b}}">
                         </div>
                         <div class="imgup" style="float: right;width: 38%;margin-right: 11%;margin-bottom: 3%;">
-                            <img src="img/upImg01.jpg" id="upImg2" />
+                            <template v-if="getUser.real_b">
+                                <img src="{{imgLink + getUser.real_b}}" id="upImg2"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="upImg2" />
+                            </template>
+
                             <div class="imgTips" id="upImg_txt_2">
                                 <img src="img/addupload.png" style="width:20%;" />
                                 <p>请点击并上传实装图</p>
                             </div>
                             <input type="file"  name="file" class="file_upload" id="file_upload_des2"/>
                             <input type="hidden" id="real_pics2" name="real_pics" value="">
-                            <input type="hidden" id="real_pic2" name="real_pic" value="">
+                            <input type="hidden" id="real_pic2" name="real_pic" value="{{getUser.real_b}}">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="imgup" style="float: left;width: 38%;margin-left: 11%;">
+                            <template v-if="getUser.effect_c">
+                                <img src="{{imgLink + getUser.effect_c}}" id="upImg"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="upImg" />
+                            </template>
+
+                            <div class="imgTips" id="upImg_txt">
+                                <img src="img/addupload.png" style="width:20%;" />
+                                <p>请点击并上传效果图</p>
+                            </div>
+                            <input type="file"  name="file" class="file_upload" id="file_upload_des"/>
+                            <input type="hidden" id="effect_pics" name="effect_pics" value="">
+                            <input type="hidden" id="effect_pic" name="effect_pic" value="{{getUser.effect_c}}">
+                        </div>
+                        <div class="imgup" style="float: right;width: 38%;margin-right: 11%;">
+                            <template v-if="getUser.real_c">
+                                <img src="{{imgLink + getUser.real_c}}" id="upImg0"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="upImg0" />
+                            </template>
+
+                            <div class="imgTips" id="upImg_txt_0">
+                                <img src="img/addupload.png" style="width:20%;" />
+                                <p>请点击并上传实装图</p>
+                            </div>
+                            <input type="file"  name="file" class="file_upload" id="file_upload_des0"/>
+                            <input type="hidden" id="real_pics" name="real_pics" value="">
+                            <input type="hidden" id="real_pic" name="real_pic" value="{{getUser.real_c}}">
                         </div>
                     </li>
 
-					<li>
-						<div class="imgup" style="float: left;width: 38%;margin-left: 11%;">
-							<img src="img/upImg01.jpg" id="upImg" />
-							<div class="imgTips" id="upImg_txt">
-								<img src="img/addupload.png" style="width:20%;" />
-								<p>请点击并上传效果图</p>
-							</div>
-							<input type="file"  name="file" class="file_upload" id="file_upload_des"/>
-							<input type="hidden" id="effect_pics" name="effect_pics" value="">
-							<input type="hidden" id="effect_pic" name="effect_pic" value="">
-						</div>
-						<div class="imgup" style="float: right;width: 38%;margin-right: 11%;">
-							<img src="img/upImg01.jpg" id="upImg0" />
-							<div class="imgTips" id="upImg_txt_0">
-								<img src="img/addupload.png" style="width:20%;" />
-								<p>请点击并上传实装图</p>
-							</div>
-							<input type="file"  name="file" class="file_upload" id="file_upload_des0"/>
-							<input type="hidden" id="real_pics" name="real_pics" value="">
-							<input type="hidden" id="real_pic" name="real_pic" value="">
-						</div>
-					</li>
-					<!--<li>-->
-						<!--<div class="explain">-->
-							<!--<textarea id="design_desc" placeholder="案例介绍（140字以内）"></textarea>-->
-						<!--</div>-->
-					<!--</li>-->
 					<li style="padding-top: 3%;clear: both;">
-						<!--<div class="imgup">-->
-							<!--<img src="img/upImg02.jpg" id="spacepic"/>-->
-							<!--<div class="imgTips" id="spacepic_txt">-->
-								<!--<p>请填写酷家乐全景图链接</p>-->
-							<!--</div>-->
-							<!--&lt;!&ndash;<input type="text" id="space_pics" name="space_pics" value="">&ndash;&gt;-->
-						    <!--<ul>-->
-                                <!--<li>-->
-                                    <!---->
-                                <!--</li>-->
-                            <!--</ul>-->
-						<!--</div>-->
 						<div class="message1">
 							<div class="inputL1 floatl">
                             	<p>链接：</p>
 	                        </div>
 	                        <div class="inputR1 floatl">
-	                            <input type="text" id="" placeholder="请输入酷家乐全景图链接地址" />
+	                            <input type="text" id="space_pic" value="{{getUser.space_pic}}" placeholder="请粘贴酷家乐全景图链接地址" />
 	                        </div>
 	
 	                        <div class="clearl"></div>
@@ -477,7 +520,13 @@
 				<ul class="addSell">
 					<li id="li_a" style="display: none;">
 						<div class="imgup">
-							<img src="img/upImg01.jpg" id="sell_c" />
+                            <template v-if="getUser.real_a">
+                                <img src="{{imgLink + getUser.real_a}}" id="sell_c"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="sell_c" />
+                            </template>
+
 							<div class="imgTips" id="sell_c_txt">
 								<img src="img/addupload.png" style="width:16%;" />
 								<p>请点击并上传店面形象照3张</p>
@@ -486,12 +535,18 @@
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_c"/>
 							<input type="hidden" id="sell_pics_c" name="sell_pics" value="">
-							<input type="hidden" id="sell_pic_c" name="sell_pic" value="">
+							<input type="hidden" id="sell_pic_c" name="sell_pic" value="{{getUser.real_a}}">
 						</div>
 					</li>
 					<li id="li_b" style="display: none;">
 						<div class="imgup">
-							<img src="img/upImg01.jpg"  id="sell_d"/>
+                            <template v-if="getUser.real_b">
+                                <img src="{{imgLink + getUser.real_b}}" id="sell_d"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="sell_d" />
+                            </template>
+
 							<div class="imgTips" id="sell_d_txt">
 								<img src="img/addupload.png" style="width:16%;" />
 								<p>请点击并上传店面形象照3张</p>
@@ -500,12 +555,17 @@
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_d"/>
 							<input type="hidden" id="sell_pics_d" name="sell_pics" value="">
-							<input type="hidden" id="sell_pic_d" name="sell_pic" value="">
+							<input type="hidden" id="sell_pic_d" name="sell_pic" value="{{getUser.real_b}}">
 						</div>
 					</li>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" id="sell_e"/>
+                            <template v-if="getUser.real_c">
+                                <img src="{{imgLink + getUser.real_c}}" id="sell_e"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="sell_e" />
+                            </template>
 							<div class="imgTips" id="sell_e_txt">
 								<img src="img/addupload.png" style="width:16%;" />
 								<p>请点击并上传店面形象照3张</p>
@@ -514,25 +574,10 @@
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_e"/>
 							<input type="hidden" id="sell_pics_e" name="sell_pics" value="">
-							<input type="hidden" id="sell_pic_e" name="sell_pic" value="">
+							<input type="hidden" id="sell_pic_e" name="sell_pic" value="{{getUser.real_c}}">
 						</div>
 					</li>
-					<!--<li>-->
-						<!--<div class="explain">-->
-							<!--<textarea id="shop_desc" placeholder="店面介绍（140字以内）"></textarea>-->
-						<!--</div>-->
-					<!--</li>-->
-					<!--<li>-->
-						<!--<div class="imgup imgupTwo">-->
-							<!--<img src="img/upImg02.jpg" id="space_p"/>-->
-							<!--<div class="imgTips" id="space_p_txt">-->
-								<!--<p>请点击并上传酷家乐全景图链接</p>-->
-							<!--</div>-->
-							<!--<input type="file" name="file" class="file_upload" id="file_upload_p"/>-->
-							<!--<input type="hidden" id="space_pics_p" name="space_pics" value="">-->
-							<!--<input type="hidden" id="space_pic_p" name="space_pic" value="">-->
-						<!--</div>-->
-					<!--</li>-->
+
 				</ul>				
 			</div>
 			<div class="next">
@@ -553,13 +598,18 @@
 				<ul>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" id="vido_pic"/>
-							<!--<video src=""  controls="controls" class="layui-upload-img pic2" style="display: none;">-->
-                                <!--Your browser does not support the video tag.-->
-                            <!--</video>-->
-                            <video class="pics2" controls="controls" preload="auto" webkit-playsinline="" playsinline="" width="100%" height="100%" style="display: none;">
-                                <source src="" type="video/mp4" class="pic2">
-                            </video>
+                            <template v-if="getUser.video">
+                                <video class="pics2" controls="controls" preload="auto" webkit-playsinline="" playsinline="" width="100%" height="100%">
+                                    <source src="{{imgLink + getUser.video}}" type="video/mp4" class="pic2">
+                                </video>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="vido_pic"/>
+                                <video class="pics2" controls="controls" preload="auto" webkit-playsinline="" playsinline="" width="100%" height="100%" style="display: none;">
+                                    <source src="" type="video/mp4" class="pic2">
+                                </video>
+                            </template>
+
 							<div class="imgTips" id="img_vido">
 								<img src="img/addupload.png" style="width:16%;" />
 								<p>请点击并上传一段1分钟左右小视频，</p>
@@ -567,14 +617,10 @@
 								<p>谈单过程、讲述与顾客之间的故事...）</p>
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_v"/>
-							<input type="hidden" id="vido" name="vido" value="">
+							<input type="hidden" id="vido" name="vido" value="{{getUser.video}}">
 						</div>
 					</li>
-					<li>
-						<div class="explain">
-							<textarea id="adv_vdes" placeholder="视频介绍（140字以内）"></textarea>
-						</div>
-					</li>
+
 				</ul>				
 			</div>
 			<div class="next">
@@ -588,33 +634,46 @@
 			<div class="stepTitle">
 				<p>报名参赛</p>
 				<p>第三步</p>
-				<p>服务工程师组上传现场工作照及业主评价截图</p>
+				<p>服务工程师组上传现场安装效果图及业主评价截图</p>
 				<img src="img/stepTitle.png" />
 			</div>
 			<div class="upload">
 				<ul>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" id="eng_pic_v"/>
+                            <template v-if="getUser.tool_pic">
+                                <img src="{{imgLink + getUser.tool_pic}}" id="eng_pic_v"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="eng_pic_v" />
+                            </template>
+
 							<div class="imgTips" id="v_txt">
 								<img src="img/addupload.png" style="width:16%;" />
-								<p>请点击并上传现场工作图</p>
+								<p>请点击上传现场安装效果图</p>
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_engs"/>
-							<input type="hidden" id="tool_pic" name="tool_pic" value="">
-                            <input type="hidden" id="tool_pics" name="tool_pics" value="">
+							<input type="hidden" id="tool_pic" name="tool_pic" value="{{getUser.tool_pic}}">
+                            <input type="hidden" id="tool_pics" name="tool_pics" value="{{getUser.tool_pics}}">
 						</div>
 					</li>
 					<li>
 						<div class="imgup">
-							<img src="img/upImg01.jpg" id="ownerpic"/>
+                            <template v-if="getUser.owner_pic">
+                                <img src="{{imgLink + getUser.owner_pic}}" id="ownerpic"/>
+                            </template>
+                            <template v-else>
+                                <img src="img/upImg01.jpg" id="ownerpic" />
+                            </template>
+
 							<div class="imgTips" id="owner_txt">
 								<img src="img/addupload.png" style="width:16%;"/>
 								<p>请点击并上传业主评价截图</p>
+                                <p>（选填）</p>
 							</div>
 							<input type="file" name="file" class="file_upload" id="file_upload_o"/>
-							<input type="hidden" id="owner_pics" name="owner_pics" value="">
-							<input type="hidden" id="owner_pic" name="owner_pic" value="">
+							<input type="hidden" id="owner_pics" name="owner_pics" value="{{getUser.owner_pics}}">
+							<input type="hidden" id="owner_pic" name="owner_pic" value="{{getUser.owner_pic}}">
 						</div>
 					</li>
 				</ul>				
@@ -648,7 +707,7 @@
 					<p>活动已截至报名！</p>
 					<p>感谢关注！</p>
 					<p></p>
-					<p>2017年9月30日～12月27日</p>
+					<p>2017年10月18日～10月31日</p>
 				</div>
 			</div>
 		</div>

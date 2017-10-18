@@ -69,8 +69,8 @@
   display: block;
   margin: 0 auto;
   font-size: 0.28rem;
-  line-height: 0.5rem;
-  height: 0.5rem;
+  line-height: 0.7rem;
+  height: 0.7rem;
   margin-bottom: 5px; }
   .secondStep .message ul > li .inputL {
     width: 35%;
@@ -120,7 +120,7 @@
   background-size: 100% 100%; }
 .secondStep .message ul > li:nth-child(2) {
   margin-top: 7px;
-  min-height: 5.5rem;
+  min-height: 3.0rem;
   background: url(../img/textareaBkg.png) no-repeat;
   background-size: cover; }
   .secondStep .message ul > li:nth-child(2) .ptop p {
@@ -384,8 +384,8 @@
 }
 .message1{
 	width: 74%;
-	height: 0.5rem;
-	line-height: 0.5rem;
+	height: 0.7rem;
+	line-height: 0.7rem;
 	margin: 0 auto;
 	background: url(../img/mBkg.jpg) no-repeat;
 	background-size: cover;
@@ -409,6 +409,7 @@
 	line-height: 0.5rem;
 	background: rgba(0,0,0,0);
 	color: white;
+  font-size: 0.28rem;
 }
 .inputR1 input::-webkit-input-placeholder{
 	color: white;

@@ -19,8 +19,8 @@ $.ajax({
         });
         wx.ready(function () {
             wx.onMenuShareTimeline({
-                title: '诗尼曼年度十优评选盛典',
-                desc: '榜样的力量，激励我们前行',
+                title: '2017年诗尼曼年度十优评选盛典开赛啦',
+                desc: '颜值担当、人气爆棚、实力至上、百万大奖……火热全开，尽在这里！',
                 link: res.url,
                 imgUrl: 'http://toupiao.snimay.com/public/home/img/fenxiang.png',//
                 trigger: function (res) {
@@ -34,8 +34,8 @@ $.ajax({
                 }
             });
             wx.onMenuShareAppMessage({
-                title: '诗尼曼年度十优评选盛典',
-                desc: '榜样的力量，激励我们前行',
+                title: '2017年诗尼曼年度十优评选盛典开赛啦',
+                desc: '颜值担当、人气爆棚、实力至上、百万大奖……火热全开，尽在这里！',
                 link: res.url,
                 imgUrl: 'http://toupiao.snimay.com/public/home/img/fenxiang.png',//
                 trigger: function (res) {
@@ -60,26 +60,59 @@ function popWindow(error){
 	});
 }
 
+function setTimeouts(){
+    $("#popWin2").show();
+    setTimeout(function(){
+        $("#popWin2").hide();
+    },2000);
+    $('#popWin2').on('click',function(){
+        window.location.href='index.html';
+    });
+}
+
 //报名
 function applys(){
     $.ajax({
-        url:"http://toupiao.snimay.com/index.php/checkLogin",//  http://127.0.0.1/snimay/index.php/checkLogin
+        url:"http://127.0.0.1/snimay/index.php/checkLogin",//  http://toupiao.snimay.com/index.php/checkLogin
         type:"get",
         success:function(re){
+            if(re.code == 404){
+                setTimeouts();
+                return;
+            }
             if(re.code == 0){
-                window.location.href="http://toupiao.snimay.com/public/home/apply.html";//  http://127.0.0.1/snimay/public/home/apply.html
+                window.location.href="http://127.0.0.1/snimay/public/home/apply.html";//http://toupiao.snimay.com/public/home/apply.html
             }else if(re.code == 1){
                 var url = "get_des";
-                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+1;
+                if(re.thumb < 2){
+                    window.location.href="apply.html?url="+url+"&id="+re.id+"&group_id="+1;
+                }else{
+                    window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+1;
+                }
+
             }else if(re.code == 2){
                 var url = "get_shop";
-                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+2;
+                if(re.thumb < 2){
+                    window.location.href="apply.html?url="+url+"&id="+re.id+"&group_id="+2;
+                }else{
+                    window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+2;
+                }
+
             }else if(re.code == 3){
                 var url = "get_adv";
-                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+3;
+                if(re.thumb < 2){
+                    window.location.href="apply.html?url="+url+"&id="+re.id+"&group_id="+3;
+                }else{
+                    window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+3;
+                }
             }else if(re.code == 4){
                 var url = "get_eng";
-                window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+4;
+                if(re.thumb < 2){
+                    window.location.href="apply.html?url="+url+"&id="+re.id+"&group_id="+4;
+                }else{
+                    window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+4;
+                }
+                //window.location.href="userDetail.html?url="+url+"&id="+re.id+"&group_id="+4;
             }
         }
     });
